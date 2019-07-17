@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from bs4 import BeautifulSoup
-import requests
 import json
 import os.path
-import yaml
 import time
+import yaml
+from bs4 import BeautifulSoup
+
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
 except ImportError:
     from yaml import Loader, Dumper
+
+import requests
 from requests.exceptions import HTTPError
+
 import logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.WARNING)
 
+BASE_URL = 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide'
 MAX_PAGES_TO_PULL = 0
-
-
-base_url = 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide'
-starting_page = "aws-template-resource-type-ref.html"
+MIN_TIME_BETWEEN_REQUESTS = 1
+STARTING_PAGE = "aws-template-resource-type-ref.html"
+TEMP_DIR = './scratch'
+TEMPLATE_DIR = './templates'
 
 
 top_level_resources = {}
@@ -26,7 +30,7 @@ resource_subtypes = {}
 
 
 def get_resource_pages():
-    root_url = f'{base_url}/{starting_page}'
+    root_url = f'{BASE_URL}/{STARTING_PAGE}'
     logging.info(json.dumps({
         "method": "get_resource_pages",
         "root_url": root_url
@@ -55,7 +59,7 @@ def get_resource_subtypes():
             "resource_page": resource_page
         }, indent=4, sort_keys=True))
 
-        tree = get_page(f'{base_url}/{resource_page}')
+        tree = get_page(f'{BASE_URL}/{resource_page}')
 
         for li in tree.find_all('li', attrs={"class": "listitem"}):
             subtype_link = li.find('a')
@@ -100,7 +104,7 @@ def collect_subtypes_for_resource():
                 "resource_type": resource_type
             }, indent=4, sort_keys=True))
 
-            subtype_content = get_page(f'{base_url}/{resource_type.get("url")}')
+            subtype_content = get_page(f'{BASE_URL}/{resource_type.get("url")}')
 
             subtype_description = subtype_content.find('div', id="main-col-body").find('p').get_text()
 
@@ -109,11 +113,13 @@ def collect_subtypes_for_resource():
             subtype_yaml_out = subtype_yaml_head + subtype_yaml_string.replace('\n', '\n  ')
 
             subtype_yaml = yaml.load(subtype_yaml_out, Loader=Loader)
-            logging.warning(subtype_yaml)
+            logging.debug(subtype_yaml)
 
             try:
                 subtype_variables = subtype_content.find('div', class_='variablelist').find('dl')
             except AttributeError as aErr:
+                logging.exception(f'There has been an error processing: {resource_type}.')
+                logging.exception(f'aErr')
                 continue
 
             terms = []
@@ -134,7 +140,7 @@ def collect_subtypes_for_resource():
                 'name': resource_type.get('name'),
                 'description': text_cleanup(subtype_description),
                 'properties': subtype_properties,
-                'url': f'{base_url}/{resource_type.get("url")}'
+                'url': f'{BASE_URL}/{resource_type.get("url")}'
             }
 
             logging.debug(json.dumps({
@@ -167,19 +173,25 @@ def collect_subtypes_for_resource():
 
 def save_page(name=None, content=None):
     if name and content:
+        logging.info(f'Saving file: {name}')
         with open(name, 'w') as file:
             file.write(content)
     else:
+        logging.exception(f'Requested to save but name or content is empty.')
         raise Exception('Invalid file name or content.')
 
 
 def remove_empty_lines(filename):
+    logging.info(f'Cleaning file: {filename}')
     if not os.path.isfile(filename):
-        print("{} does not exist ".format(filename))
-        return
+        logging.warning("{} does not exist ".format(filename))
+        return False
+
+    logging.debug(f'Opening file: {filename}')
     with open(filename) as filehandle:
         lines = filehandle.readlines()
 
+    logging.debug(f'Cleaning file: {filename}')
     with open(filename, 'w') as filehandle:
         lines = filter(lambda x: x.strip(), lines)
         lines = [i.replace("''", '') for i in lines]
@@ -187,40 +199,49 @@ def remove_empty_lines(filename):
 
 
 def cleanup_files():
-    rootDir = './templates'
-    for dirName, subdirList, fileList in os.walk(rootDir):
+    logging.info('Starting cleanup of files')
+    for dirName, subdirList, fileList in os.walk(f'{TEMPLATE_DIR}'):
         for fname in fileList:
-            remove_empty_lines(f'{rootDir}/{fname}')
+            logging.debug(f'Found file: {TEMPLATE_DIR}/{fname}')
+            remove_empty_lines(f'{TEMPLATE_DIR}/{fname}')
 
 
 def get_page(url=None):
+    name = url.split('/')[-1]
+    case_file = f'{TEMP_DIR}/{name}'
     try:
-        name = url.split('/')[-1]
         logging.info(json.dumps({
             "method": "get_page",
             "url": url
         }, indent=4, sort_keys=True))
 
-        if os.path.exists(f'scratch/{name}'):
+        if os.path.exists(case_file):
             logging.debug('Cache File Found.')
-            with open(f'scratch/{name}', "r") as file:
+            with open(case_file, "r") as file:
                 text = file.read()
             file.close()
         else:
             logging.debug('Fetching from online.')
-            time.sleep(1)
+            time.sleep(MIN_TIME_BETWEEN_REQUESTS)
             response = requests.get(url)
             text = response.text
-        save_page(f'scratch/{name}', text)
+        save_page(case_file, text)
         tree = BeautifulSoup(text, 'html.parser')
         return tree
     except HTTPError as http_error:
-        print(f'Http error occurred: {http_error}')
+        logging.exception(f'Attempting to retrieve: {url}')
+        logging.exception(f'Http error occurred: {http_error}')
     except Exception as err:
-        print(f'Other Error occurred: {err}')
+        logging.exception(f'Attempting to retrieve: {url}')
+        logging.exception(f'Other Error occurred: {err}')
 
 
-get_resource_pages()
-get_resource_subtypes()
-collect_subtypes_for_resource()
-cleanup_files()
+def main():
+    get_resource_pages()
+    get_resource_subtypes()
+    collect_subtypes_for_resource()
+    cleanup_files()
+
+
+if __name__ == "__main__":
+    main()
