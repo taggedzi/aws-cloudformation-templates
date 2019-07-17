@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 import requests
@@ -14,7 +14,7 @@ from requests.exceptions import HTTPError
 import logging
 logging.basicConfig(level=logging.INFO)
 
-MAX_PAGES_TO_PULL=0
+MAX_PAGES_TO_PULL = 0
 
 
 base_url = 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide'
