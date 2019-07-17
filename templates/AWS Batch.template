@@ -1,0 +1,267 @@
+---
+AWS Batch:
+- ComputeEnvironment:
+    Properties:
+      ComputeEnvironmentName: String
+      ComputeResources: ComputeResources
+      ServiceRole: String
+      State: String
+      Type: String
+    Type: AWS::Batch::ComputeEnvironment
+  MetaData:
+    description: 'The AWS::Batch::ComputeEnvironment resource defines your AWS Batch
+      compute environment. For more information, see Compute Environments in the AWS
+      Batch User Guide. '
+    name: AWS::Batch::ComputeEnvironment
+    properties:
+    - ComputeEnvironmentName: 'The name for your compute environment. Up to 128 letters
+        (uppercase and lowercase),
+
+        numbers, hyphens, and underscores are allowed.
+
+        Required: No
+
+        Type: String
+
+        Update requires: Replacement'
+    - ComputeResources: 'The ComputeResources property type specifies details of the
+        compute resources managed
+
+        by the compute
+
+        environment. This parameter is required for managed compute environments.
+        For more
+
+        information, see Compute Environments in the
+
+        AWS Batch User Guide.
+
+        Required: No
+
+        Type: ComputeResources
+
+        Update requires: No interruption'
+    - ServiceRole: 'The full Amazon Resource Name (ARN) of the IAM role that allows
+        AWS Batch to make
+
+        calls to other AWS services on your
+
+        behalf.
+
+        If your specified role has a path other than /, then you must either specify
+        the full role ARN
+
+        (this is recommended) or prefix the role name with the path.
+
+        Note
+
+        Depending on how you created your AWS Batch service role, its ARN may contain
+        the
+
+        service-role path
+
+        prefix. When you only specify the name of the service role, AWS Batch assumes
+        that
+
+        your ARN does not use the
+
+        service-role path prefix. Because of this, we recommend that you specify the
+        full ARN of your
+
+        service
+
+        role when you create compute environments.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - State: 'The state of the compute environment. If the state is ENABLED, then
+        the compute environment accepts
+
+        jobs from a queue and can scale out automatically based on queues.
+
+        Required: No
+
+        Type: String
+
+        Allowed Values: DISABLED | ENABLED
+
+        Update requires: No interruption'
+    - Type: 'The type of the compute environment. For more information, see Compute
+        Environments in the
+
+        AWS Batch User Guide.
+
+        Required: Yes
+
+        Type: String
+
+        Allowed Values: MANAGED | UNMANAGED
+
+        Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html
+- JobDefinition:
+    Properties:
+      ContainerProperties: ContainerProperties
+      JobDefinitionName: String
+      NodeProperties: NodeProperties
+      Parameters: Json
+      RetryStrategy: RetryStrategy
+      Timeout: Timeout
+      Type: String
+    Type: AWS::Batch::JobDefinition
+  MetaData:
+    description: 'The AWS::Batch::JobDefinition resource specifies the parameters
+      for an AWS Batch job definition. For more information, see Job Definitions in
+      the AWS Batch User Guide. '
+    name: AWS::Batch::JobDefinition
+    properties:
+    - ContainerProperties: 'An object with various properties specific to container-based
+        jobs.
+
+        Required: No
+
+        Type: ContainerProperties
+
+        Update requires: No interruption'
+    - JobDefinitionName: 'The name of the job definition.
+
+        Required: No
+
+        Type: String
+
+        Update requires: Replacement'
+    - NodeProperties: 'An object with various properties specific to multi-node parallel
+        jobs.
+
+        Required: No
+
+        Type: NodeProperties
+
+        Update requires: No interruption'
+    - Parameters: 'Default parameters or parameter substitution placeholders that
+        are set in the job
+
+        definition. Parameters are
+
+        specified as a key-value pair mapping. Parameters in a SubmitJob request override
+        any corresponding
+
+        parameter defaults from the job definition. For more information about specifying
+
+        parameters, see Job Definition Parameters
+
+        in the AWS Batch User Guide.
+
+        Required: No
+
+        Type: Json
+
+        Update requires: No interruption'
+    - RetryStrategy: 'The retry strategy to use for failed jobs that are submitted
+        with this job definition.
+
+        Required: No
+
+        Type: RetryStrategy
+
+        Update requires: No interruption'
+    - Timeout: 'The timeout configuration for jobs that are submitted with this job
+        definition. You
+
+        can specify a timeout
+
+        duration after which AWS Batch terminates your jobs if they have not finished.
+
+        Required: No
+
+        Type: Timeout
+
+        Update requires: No interruption'
+    - Type: 'The type of job definition.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html
+- JobQueue:
+    Properties:
+      ComputeEnvironmentOrder:
+      - ComputeEnvironmentOrder
+      JobQueueName: String
+      Priority: Integer
+      State: String
+    Type: AWS::Batch::JobQueue
+  MetaData:
+    description: 'The AWS::Batch::JobQueue resource specifies the parameters for an
+      AWS Batch job queue definition. For more information, see Job Queues in the
+      AWS Batch User Guide. '
+    name: AWS::Batch::JobQueue
+    properties:
+    - ComputeEnvironmentOrder: 'The set of compute environments mapped to a job queue
+        and their order relative to
+
+        each other. The job scheduler
+
+        uses this parameter to determine which compute environment should execute
+        a given
+
+        job. Compute environments must be
+
+        in the VALID state before you can associate them with a job queue. You can
+        associate up to three
+
+        compute
+
+        environments with a job queue.
+
+        Required: Yes
+
+        Type: List of ComputeEnvironmentOrder
+
+        Update requires: No interruption'
+    - JobQueueName: 'The name of the job queue.
+
+        Required: No
+
+        Type: String
+
+        Update requires: Replacement'
+    - Priority: 'The priority of the job queue. Job queues with a higher priority
+        (or a higher integer
+
+        value for the
+
+        priority parameter) are evaluated first when associated with the same compute
+        environment.
+
+        Priority is
+
+        determined in descending order, for example, a job queue with a priority value
+        of
+
+        10 is given scheduling
+
+        preference over a job queue with a priority value of 1.
+
+        Required: Yes
+
+        Type: Integer
+
+        Update requires: No interruption'
+    - State: 'The state of the job queue. If the job queue state is ENABLED, it is
+        able to accept jobs.
+
+        Required: No
+
+        Type: String
+
+        Allowed Values: DISABLED | ENABLED
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html
+...

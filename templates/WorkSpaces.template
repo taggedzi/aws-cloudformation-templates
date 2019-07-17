@@ -1,0 +1,80 @@
+---
+WorkSpaces:
+- MetaData:
+    description: Specifies a WorkSpace.
+    name: AWS::WorkSpaces::Workspace
+    properties:
+    - BundleId: 'The identifier of the bundle for the WorkSpace.
+
+        Required: Yes
+
+        Type: String
+
+        Pattern: ^wsb-[0-9a-z]{8,63}$'
+    - DirectoryId: 'The identifier of the AWS Directory Service directory for the
+        WorkSpace.
+
+        Required: Yes
+
+        Type: String
+
+        Pattern: ^d-[0-9a-f]{8,63}$'
+    - RootVolumeEncryptionEnabled: 'Indicates whether the data stored on the root
+        volume is encrypted.
+
+        Required: No
+
+        Type: Boolean'
+    - Tags: 'The tags for the WorkSpace.
+
+        Required: No
+
+        Type: List of Tag
+
+        Update requires: No interruption'
+    - UserName: 'The username of the user for the WorkSpace. This username must exist
+        in the
+
+        AWS Directory Service directory for the WorkSpace.
+
+        Required: Yes
+
+        Type: String
+
+        Minimum: 1
+
+        Maximum: 63
+
+        Update requires: Replacement'
+    - UserVolumeEncryptionEnabled: 'Indicates whether the data stored on the user
+        volume is encrypted.
+
+        Required: No
+
+        Type: Boolean'
+    - VolumeEncryptionKey: 'The KMS key used to encrypt data stored on your WorkSpace.
+
+        Required: No
+
+        Type: String'
+    - WorkspaceProperties: 'The WorkSpace properties.
+
+        Required: No
+
+        Type: WorkspaceProperties
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html
+  Workspace:
+    Properties:
+      BundleId: String
+      DirectoryId: String
+      RootVolumeEncryptionEnabled: Boolean
+      Tags:
+      - Tag
+      UserName: String
+      UserVolumeEncryptionEnabled: Boolean
+      VolumeEncryptionKey: String
+      WorkspaceProperties: WorkspaceProperties
+    Type: AWS::WorkSpaces::Workspace
+...

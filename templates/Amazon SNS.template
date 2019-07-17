@@ -1,0 +1,237 @@
+---
+Amazon SNS:
+- MetaData:
+    description: 'The AWS::SNS::Subscription resource subscribes an endpoint to an
+      Amazon Simple Notification Service (Amazon SNS) topic. For a subscription to
+      be created, the owner of the endpoint must confirm the subscription. '
+    name: AWS::SNS::Subscription
+    properties:
+    - DeliveryPolicy: 'The JSON serialization of the subscription''s delivery policy.
+        For more information,
+
+        see
+
+        GetSubscriptionAttributes
+
+        in the Amazon Simple Notification
+
+        Service API Reference.
+
+        Required: No
+
+        Type: Json
+
+        Update requires: No interruption'
+    - Endpoint: 'The subscription''s endpoint. The endpoint value depends on the protocol
+        that you
+
+        specify. For more information, see the Endpoint parameter of the
+
+        Subscribe
+
+        action in the Amazon Simple Notification Service API Reference.
+
+        Required: No
+
+        Type: String
+
+        Update requires: Replacement'
+    - FilterPolicy: 'The filter policy JSON assigned to the subscription. For more
+        information, see
+
+        GetSubscriptionAttributes
+
+        in the Amazon Simple Notification
+
+        Service API Reference.
+
+        Required: No
+
+        Type: Json
+
+        Update requires: No interruption'
+    - Protocol: 'The subscription''s protocol. For more information, see the Protocol
+
+        parameter of the
+
+        Subscribe
+
+        action in the Amazon Simple Notification Service
+
+        API Reference.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - RawMessageDelivery: 'When set to true, enables raw message delivery. Raw messages
+        don''t contain
+
+        any JSON formatting and can be sent to Amazon SQS and HTTP/S endpoints. For
+        more
+
+        information, see
+
+        GetSubscriptionAttributes
+
+        in the Amazon Simple Notification
+
+        Service API Reference.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - Region: 'For cross-region subscriptions, the region in which the topic resides.
+
+        Required: No
+
+        Type: String
+
+        Update requires: Replacement'
+    - TopicArn: 'The ARN of the topic to subscribe to.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html
+  Subscription:
+    Properties:
+      DeliveryPolicy: Json
+      Endpoint: String
+      FilterPolicy: Json
+      Protocol: String
+      RawMessageDelivery: Boolean
+      Region: String
+      TopicArn: String
+    Type: AWS::SNS::Subscription
+- MetaData:
+    description: 'The AWS::SNS::Topic resource creates a topic to which notifications
+      can be published. '
+    name: AWS::SNS::Topic
+    properties:
+    - DisplayName: 'The display name to use for an Amazon SNS topic with SMS subscriptions.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - KmsMasterKeyId: 'The ID of an AWS-managed customer master key (CMK) for Amazon
+        SNS or a custom CMK.
+
+        For
+
+        more information, see Key Terms. For
+
+        more examples, see
+
+        KeyId
+
+        in the AWS Key Management Service API
+
+        Reference.
+
+        This property applies only to server-side-encryption.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - Subscription: 'The SNS subscriptions (endpoints) for this topic.
+
+        Required: No
+
+        Type: List of Subscription
+
+        Update requires: No interruption'
+    - TopicName: 'The name of the topic you want to create. Topic names must include
+        only
+
+        uppercase and lowercase ASCII letters, numbers, underscores, and hyphens,
+        and must
+
+        be
+
+        between 1 and 256 characters long.
+
+        If you don''t specify a name, AWS CloudFormation generates a unique physical
+        ID and
+
+        uses
+
+        that ID for the topic name. For more information, see Name
+
+        Type.
+
+        Important
+
+        If you specify a name, you can''t perform updates that require replacement
+        of this
+
+        resource. You can perform updates that require no or some interruption. If
+        you must
+
+        replace the resource, specify a new name.
+
+        Required: No
+
+        Type: String
+
+        Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html
+  Topic:
+    Properties:
+      DisplayName: String
+      KmsMasterKeyId: String
+      Subscription:
+      - Subscription
+      TopicName: String
+    Type: AWS::SNS::Topic
+- MetaData:
+    description: 'The AWS::SNS::TopicPolicy resource associates Amazon SNS topics
+      with a policy. For an example snippet, see Declaring an Amazon SNS Policy in
+      the AWS CloudFormation User Guide. '
+    name: AWS::SNS::TopicPolicy
+    properties:
+    - PolicyDocument: 'A policy document that contains permissions to add to the specified
+        SNS topics.
+
+        Required: Yes
+
+        Type: Json
+
+        Update requires: No interruption'
+    - Topics: 'The Amazon Resource Names (ARN) of the topics to which you want to
+        add the policy.
+
+        You
+
+        can use the
+
+        Ref
+
+        function to specify an
+
+        AWS::SNS::Topic
+
+        resource.
+
+        Required: Yes
+
+        Type: List of String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html
+  TopicPolicy:
+    Properties:
+      PolicyDocument: Json
+      Topics:
+      - String
+    Type: AWS::SNS::TopicPolicy
+...

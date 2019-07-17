@@ -1,0 +1,39 @@
+---
+AWS Budgets:
+- Budget:
+    Properties:
+      Budget: BudgetData
+      NotificationsWithSubscribers:
+      - NotificationWithSubscribers
+    Type: AWS::Budgets::Budget
+  MetaData:
+    description: 'The AWS::Budgets::Budget resource creates, replaces, or deletes
+      budgets for Billing and Cost Management. For more information, see Managing
+      Your Costs with Budgets in the AWS Billing and Cost Management User Guide. '
+    name: AWS::Budgets::Budget
+    properties:
+    - Budget: 'The budget object that you want to create.
+
+        Required: Yes
+
+        Type: BudgetData
+
+        Update requires: No interruption'
+    - NotificationsWithSubscribers: 'A notification that you want to associate with
+        a budget. A budget can have up to five
+
+        notifications, and each notification can have one SNS subscriber and up to
+        10 email
+
+        subscribers. If you include notifications and subscribers in your CreateBudget
+        call, AWS creates the notifications and subscribers for you.
+
+        Required: No
+
+        Type: List of NotificationWithSubscribers
+
+        Maximum: 5
+
+        Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-budgets-budget.html
+...

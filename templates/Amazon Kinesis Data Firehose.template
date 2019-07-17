@@ -1,0 +1,139 @@
+---
+Amazon Kinesis Data Firehose:
+- DeliveryStream:
+    Properties:
+      DeliveryStreamName: String
+      DeliveryStreamType: String
+      ElasticsearchDestinationConfiguration: ElasticsearchDestinationConfiguration
+      ExtendedS3DestinationConfiguration: ExtendedS3DestinationConfiguration
+      KinesisStreamSourceConfiguration: KinesisStreamSourceConfiguration
+      RedshiftDestinationConfiguration: RedshiftDestinationConfiguration
+      S3DestinationConfiguration: S3DestinationConfiguration
+      SplunkDestinationConfiguration: SplunkDestinationConfiguration
+    Type: AWS::KinesisFirehose::DeliveryStream
+  MetaData:
+    description: 'The AWS::KinesisFirehose::DeliveryStream resource creates an Amazon
+      Kinesis Data Firehose (Kinesis Data Firehose) delivery stream that delivers
+      real-time streaming data to an Amazon Simple Storage Service (Amazon S3), Amazon
+      Redshift, or Amazon Elasticsearch Service (Amazon ES) destination. For more
+      information, see Creating an Amazon Kinesis Data Firehose Delivery Stream in
+      the Amazon Kinesis Data Firehose Developer Guide. '
+    name: AWS::KinesisFirehose::DeliveryStream
+    properties:
+    - DeliveryStreamName: 'The name of the delivery stream.
+
+        Required: No
+
+        Type: String
+
+        Minimum: 1
+
+        Maximum: 64
+
+        Pattern: [a-zA-Z0-9_.-]+
+
+        Update requires: Replacement'
+    - DeliveryStreamType: 'The delivery stream type. This can be one of the following
+        values:
+
+        DirectPut: Provider applications access the delivery stream
+
+        directly.
+
+        KinesisStreamAsSource: The delivery stream uses a Kinesis data stream as a
+
+        source.
+
+        Required: No
+
+        Type: String
+
+        Allowed Values: DirectPut | KinesisStreamAsSource
+
+        Update requires: Replacement'
+    - ElasticsearchDestinationConfiguration: 'An Amazon ES destination for the delivery
+        stream.
+
+        Conditional. You must specify only one destination configuration.
+
+        If you change the delivery stream destination from an Amazon ES destination
+        to an
+
+        Amazon S3 or Amazon Redshift destination, update requires some interruptions.
+
+        Required: Conditional
+
+        Type: ElasticsearchDestinationConfiguration
+
+        Update requires: No interruption'
+    - ExtendedS3DestinationConfiguration: 'An Amazon S3 destination for the delivery
+        stream.
+
+        Conditional. You must specify only one destination configuration.
+
+        If you change the delivery stream destination from an Amazon Extended S3 destination
+
+        to an Amazon ES destination, update requires some interruptions.
+
+        Required: Conditional
+
+        Type: ExtendedS3DestinationConfiguration
+
+        Update requires: No interruption'
+    - KinesisStreamSourceConfiguration: 'When a Kinesis stream is used as the source
+        for the delivery stream, a KinesisStreamSourceConfiguration containing the
+        Kinesis stream ARN and the role
+
+        ARN for the source stream.
+
+        Required: No
+
+        Type: KinesisStreamSourceConfiguration
+
+        Update requires: No interruption'
+    - RedshiftDestinationConfiguration: 'An Amazon Redshift destination for the delivery
+        stream.
+
+        Conditional. You must specify only one destination configuration.
+
+        If you change the delivery stream destination from an Amazon Redshift destination
+
+        to an Amazon ES destination, update requires some interruptions.
+
+        Required: Conditional
+
+        Type: RedshiftDestinationConfiguration
+
+        Update requires: No interruption'
+    - S3DestinationConfiguration: 'The S3DestinationConfiguration property type specifies
+        an Amazon Simple
+
+        Storage Service (Amazon S3) destination to which Amazon Kinesis Data Firehose
+        (Kinesis
+
+        Data
+
+        Firehose) delivers data.
+
+        Conditional. You must specify only one destination configuration.
+
+        If you change the delivery stream destination from an Amazon S3 destination
+        to an
+
+        Amazon ES destination, update requires some interruptions.
+
+        Required: Conditional
+
+        Type: S3DestinationConfiguration
+
+        Update requires: No interruption'
+    - SplunkDestinationConfiguration: 'The configuration of a destination in Splunk
+        for the delivery stream.
+
+        Required: No
+
+        Type: SplunkDestinationConfiguration
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html
+...

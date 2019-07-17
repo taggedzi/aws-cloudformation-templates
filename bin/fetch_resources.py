@@ -81,6 +81,7 @@ def text_cleanup(in_text):
     p2 = [i.strip() for i in p1]
     return ' '.join(p2)
 
+
 def collect_subtypes_for_resource():
     logging.info(json.dumps({
         "method": "collect_subtypes_for_resource"
@@ -126,7 +127,8 @@ def collect_subtypes_for_resource():
             for i in range(0, len(terms)):
                 def_list = [j.strip() for j in definitions[i].splitlines()]
                 def_list = list(filter(None, def_list))
-                subtype_properties.append({terms[i]: def_list})
+                def_string = '\n'.join(def_list)
+                subtype_properties.append({terms[i]: def_string})
 
             subtype_metadata = {
                 'name': resource_type.get('name'),
@@ -149,9 +151,18 @@ def collect_subtypes_for_resource():
             subtypes.append(subtype_yaml)
 
         final_output[resource_name] = subtypes
-        yaml_output = yaml.dump(json.loads(json.dumps(final_output)), indent=2, allow_unicode=True)
+        yaml_output = yaml.dump(json.loads(json.dumps(final_output)),
+                                indent=2,
+                                explicit_start=True,
+                                explicit_end=True,
+                                default_style=None,
+                                default_flow_style=False,
+                                line_break="+++",
+                                allow_unicode=True,
+                                width=80,
+                                Dumper=Dumper)
         logging.debug(yaml_output)
-        save_page(f'Resources/{resource_name}.template', yaml_output)
+        save_page(f'templates/{resource_name}.template', yaml_output)
 
 
 def save_page(name=None, content=None):

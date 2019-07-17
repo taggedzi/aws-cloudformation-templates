@@ -1,0 +1,1117 @@
+---
+Pinpoint:
+- ADMChannel:
+    Properties:
+      ApplicationId: String
+      ClientId: String
+      ClientSecret: String
+      Enabled: Boolean
+    Type: AWS::Pinpoint::ADMChannel
+  MetaData:
+    description: 'A channel is a type of platform that you can deliver messages to.
+      You can use the ADM channel to send push notifications through the Amazon Device
+      Messaging (ADM) service to apps that run on Amazon devices, such as Kindle Fire
+      tablets. Before you use Amazon Pinpoint to send messages to Amazon devices,
+      you have to enable the ADM channel for an Amazon Pinpoint application. '
+    name: AWS::Pinpoint::ADMChannel
+    properties:
+    - ApplicationId: 'The unique identifier of the Amazon Pinpoint application that
+        the ADM channel
+
+        applies to.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - ClientId: 'The Client ID that you received from Amazon to send messages by using
+        ADM.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - ClientSecret: 'The Client Secret that you received from Amazon to send messages
+        by using
+
+        ADM.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - Enabled: 'Specifies whether to enable the ADM channel for the application.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-admchannel.html
+- APNSChannel:
+    Properties:
+      ApplicationId: String
+      BundleId: String
+      Certificate: String
+      DefaultAuthenticationMethod: String
+      Enabled: Boolean
+      PrivateKey: String
+      TeamId: String
+      TokenKey: String
+      TokenKeyId: String
+    Type: AWS::Pinpoint::APNSChannel
+  MetaData:
+    description: 'A channel is a type of platform that you can deliver messages to.
+      You can use the APNs channel to send push notification messages to the Apple
+      Push Notification service (APNs). Before you use Amazon Pinpoint to send notifications
+      to APNs, you have to enable the APNs channel for an Amazon Pinpoint app. '
+    name: AWS::Pinpoint::APNSChannel
+    properties:
+    - ApplicationId: 'The unique identifier of the Amazon Pinpoint application that
+        the APNs channel
+
+        applies to.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - BundleId: 'The bundle identifier that''s assigned to your iOS app. This identifier
+        is used for
+
+        APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - Certificate: 'The APNs client certificate that you received from Apple. Specify
+        this value if
+
+        you want Amazon Pinpoint to communicate with APNs by using an APNs
+
+        certificate.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - DefaultAuthenticationMethod: 'The default authentication method that you want
+        Amazon Pinpoint to use when
+
+        authenticating with APNs. Valid options are key or
+
+        certificate.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - Enabled: 'Specifies whether to enable the APNs channel for the application.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - PrivateKey: 'The private key for the APNs client certificate that you want Amazon
+        Pinpoint to
+
+        use to communicate with APNs.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TeamId: 'The identifier that''s assigned to your Apple Developer Account team.
+        This
+
+        identifier is used for APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TokenKey: 'The authentication key to use for APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TokenKeyId: 'The key identifier that''s assigned to your APNs signing key. Specify
+        this value if
+
+        you want Amazon Pinpoint to communicate with APNs by using APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnschannel.html
+- APNSSandboxChannel:
+    Properties:
+      ApplicationId: String
+      BundleId: String
+      Certificate: String
+      DefaultAuthenticationMethod: String
+      Enabled: Boolean
+      PrivateKey: String
+      TeamId: String
+      TokenKey: String
+      TokenKeyId: String
+    Type: AWS::Pinpoint::APNSSandboxChannel
+  MetaData:
+    description: 'A channel is a type of platform that you can deliver messages to.
+      You can use the APNs sandbox channel to send push notification messages to the
+      sandbox environment of the Apple Push Notification service (APNs). Before you
+      use Amazon Pinpoint to send notifications to the APNs sandbox environment, you
+      have to enable the APNs sandbox channel for an Amazon Pinpoint app. '
+    name: AWS::Pinpoint::APNSSandboxChannel
+    properties:
+    - ApplicationId: 'The unique identifier of the Amazon Pinpoint application that
+        the APNs sandbox
+
+        channel applies to.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - BundleId: 'The bundle identifier that''s assigned to your iOS app. This identifier
+        is used for
+
+        APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - Certificate: 'The APNs client certificate that you received from Apple. Specify
+        this value if
+
+        you want Amazon Pinpoint to communicate with APNs by using an APNs
+
+        certificate.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - DefaultAuthenticationMethod: 'The default authentication method that you want
+        Amazon Pinpoint to use when
+
+        authenticating with APNs. Valid options are key or
+
+        certificate.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - Enabled: 'Specifies whether to enable the APNs Sandbox channel for the Amazon
+        Pinpoint
+
+        application.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - PrivateKey: 'The private key for the APNs client certificate that you want Amazon
+        Pinpoint to
+
+        use to communicate with APNs.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TeamId: 'The identifier that''s assigned to your Apple Developer Account team.
+        This
+
+        identifier is used for APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TokenKey: 'The authentication key to use for APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TokenKeyId: 'The key identifier that''s assigned to your APNs signing key. Specify
+        this value if
+
+        you want Amazon Pinpoint to communicate with APNs by using APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnssandboxchannel.html
+- APNSVoipChannel:
+    Properties:
+      ApplicationId: String
+      BundleId: String
+      Certificate: String
+      DefaultAuthenticationMethod: String
+      Enabled: Boolean
+      PrivateKey: String
+      TeamId: String
+      TokenKey: String
+      TokenKeyId: String
+    Type: AWS::Pinpoint::APNSVoipChannel
+  MetaData:
+    description: 'A channel is a type of platform that you can deliver messages to.
+      You can use the APNs VoIP channel to send VoIP notification messages to the
+      Apple Push Notification service (APNs). Before you use Amazon Pinpoint to send
+      VoIP notifications to APNs, you have to enable the APNs VoIP channel for an
+      Amazon Pinpoint app. '
+    name: AWS::Pinpoint::APNSVoipChannel
+    properties:
+    - ApplicationId: 'The unique identifier of the Amazon Pinpoint application that
+        the APNs VoIP
+
+        channel applies to.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - BundleId: 'The bundle identifier that''s assigned to your iOS app. This identifier
+        is used for
+
+        APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - Certificate: 'The APNs client certificate that you received from Apple. Specify
+        this value if
+
+        you want Amazon Pinpoint to communicate with APNs by using an APNs
+
+        certificate.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - DefaultAuthenticationMethod: 'The default authentication method that you want
+        Amazon Pinpoint to use when
+
+        authenticating with APNs. Valid options are key or
+
+        certificate.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - Enabled: 'Specifies whether to enable the APNs VoIP channel for the Amazon Pinpoint
+
+        application.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - PrivateKey: 'The private key for the APNs client certificate that you want Amazon
+        Pinpoint to
+
+        use to communicate with APNs.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TeamId: 'The identifier that''s assigned to your Apple Developer Account team.
+        This
+
+        identifier is used for APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TokenKey: 'The authentication key to use for APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TokenKeyId: 'The key identifier that''s assigned to your APNs signing key. Specify
+        this value if
+
+        you want Amazon Pinpoint to communicate with APNs by using APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnsvoipchannel.html
+- APNSVoipSandboxChannel:
+    Properties:
+      ApplicationId: String
+      BundleId: String
+      Certificate: String
+      DefaultAuthenticationMethod: String
+      Enabled: Boolean
+      PrivateKey: String
+      TeamId: String
+      TokenKey: String
+      TokenKeyId: String
+    Type: AWS::Pinpoint::APNSVoipSandboxChannel
+  MetaData:
+    description: 'A channel is a type of platform that you can deliver messages to.
+      You can use the APNs VoIP sandbox channel to send VoIP notification messages
+      to the sandbox environment of the Apple Push Notification service (APNs). Before
+      you use Amazon Pinpoint to send VoIP notifications to the APNs sandbox environment,
+      you have to enable the APNs VoIP sandbox channel for an Amazon Pinpoint app. '
+    name: AWS::Pinpoint::APNSVoipSandboxChannel
+    properties:
+    - ApplicationId: 'The unique identifier for the application that the APNs VoIP
+        sandbox channel
+
+        applies to.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - BundleId: 'The bundle identifier that''s assigned to your iOS app. This identifier
+        is used for
+
+        APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - Certificate: 'The APNs client certificate that you received from Apple. Specify
+        this value if
+
+        you want Amazon Pinpoint to communicate with the APNs sandbox environment
+        by using
+
+        an APNs certificate.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - DefaultAuthenticationMethod: 'The default authentication method that you want
+        Amazon Pinpoint to use when
+
+        authenticating with APNs. Valid options are key or
+
+        certificate.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - Enabled: 'Specifies whether the APNs VoIP sandbox channel is enabled for the
+
+        application.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - PrivateKey: 'The private key for the APNs client certificate that you want Amazon
+        Pinpoint to
+
+        use to communicate with the APNs sandbox environment.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TeamId: 'The identifier that''s assigned to your Apple developer account team.
+        This
+
+        identifier is used for APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TokenKey: 'The authentication key to use for APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TokenKeyId: 'The key identifier that''s assigned to your APNs signing key. Specify
+        this value if
+
+        you want Amazon Pinpoint to communicate with the APNs sandbox environment
+        by using
+
+        APNs tokens.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-apnsvoipsandboxchannel.html
+- App:
+    Properties:
+      Name: String
+    Type: AWS::Pinpoint::App
+  MetaData:
+    description: 'Specifies an app. In Amazon Pinpoint, an app (also referred to as
+      a project) is a collection of settings, customer information, segments, and
+      campaigns. '
+    name: AWS::Pinpoint::App
+    properties:
+    - Name: 'The display name of the application.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-app.html
+- ApplicationSettings:
+    Properties:
+      ApplicationId: String
+      CampaignHook: CampaignHook
+      CloudWatchMetricsEnabled: Boolean
+      Limits: Limits
+      QuietTime: QuietTime
+    Type: AWS::Pinpoint::ApplicationSettings
+  MetaData:
+    description: Specifies the settings for an Amazon Pinpoint app.
+    name: AWS::Pinpoint::ApplicationSettings
+    properties:
+    - ApplicationId: 'The unique ID of the Amazon Pinpoint app.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - CampaignHook: 'The settings for the AWS Lambda function to use by default as
+        a code hook for
+
+        campaigns in the application. To override these settings for a specific campaign,
+
+        use the Campaign resource to define custom Lambda function settings for the
+
+        campaign.
+
+        Required: No
+
+        Type: CampaignHook
+
+        Update requires: No interruption'
+    - CloudWatchMetricsEnabled: 'Specifies whether to enable application-related alarms
+        in Amazon
+
+        CloudWatch.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - Limits: 'The default sending limits for campaigns in the application. To override
+        these
+
+        limits for a specific campaign, use the Campaign resource to define custom
+        limits
+
+        for the campaign.
+
+        Required: No
+
+        Type: Limits
+
+        Update requires: No interruption'
+    - QuietTime: 'The default quiet time for campaigns in the application. Quiet time
+        is a specific
+
+        time range when campaigns don''t send messages to endpoints, if all the following
+
+        conditions are met:
+
+        - The EndpointDemographic.Timezone property of the endpoint is set to
+
+        a valid value.
+
+        - The current time in the endpoint''s time zone is later than or equal to
+        the time
+
+        specified by the QuietTime.Start property for the application (or a
+
+        campaign that has custom quiet time settings).
+
+        - The current time in the endpoint''s time zone is earlier than or equal to
+        the
+
+        time specified by the QuietTime.End property for the application (or
+
+        a campaign that has custom quiet time settings).
+
+        If any of the preceding conditions isn''t met, the endpoint will receive messages
+
+        from a campaign, even if quiet time is enabled.
+
+        To override the default quiet time settings for a specific campaign, use the
+
+        Campaign resource to define a custom quiet time for the campaign.
+
+        Required: No
+
+        Type: QuietTime
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-applicationsettings.html
+- BaiduChannel:
+    Properties:
+      ApiKey: String
+      ApplicationId: String
+      Enabled: Boolean
+      SecretKey: String
+    Type: AWS::Pinpoint::BaiduChannel
+  MetaData:
+    description: 'A channel is a type of platform that you can deliver messages to.
+      You can use the Baidu channel to send notifications to the Baidu notification
+      service. Before you use Amazon Pinpoint to send notifications to Baidu, you
+      have to enable the Baidu channel for an Amazon Pinpoint app. '
+    name: AWS::Pinpoint::BaiduChannel
+    properties:
+    - ApiKey: 'The API key that you received from the Baidu Cloud Push service to
+        communicate
+
+        with the service.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - ApplicationId: 'The unique ID of the Amazon Pinpoint app that you''re configuring
+        the Baidu channel
+
+        for.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - Enabled: 'Specifies whether to enable the Baidu channel for the application.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - SecretKey: 'The secret key that you received from the Baidu Cloud Push service
+        to communicate
+
+        with the service.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-baiduchannel.html
+- Campaign:
+    Properties:
+      AdditionalTreatments:
+      - WriteTreatmentResource
+      ApplicationId: String
+      CampaignHook: CampaignHook
+      Description: String
+      HoldoutPercent: Integer
+      IsPaused: Boolean
+      Limits: Limits
+      MessageConfiguration: MessageConfiguration
+      Name: String
+      Schedule: Schedule
+      SegmentId: String
+      SegmentVersion: Integer
+      TreatmentDescription: String
+      TreatmentName: String
+    Type: AWS::Pinpoint::Campaign
+  MetaData:
+    description: Updates the settings for a campaign.
+    name: AWS::Pinpoint::Campaign
+    properties:
+    - AdditionalTreatments: 'An array of requests that defines additional treatments
+        for the campaign, in
+
+        addition to the default treatment for the campaign.
+
+        Required: No
+
+        Type: List of WriteTreatmentResource
+
+        Update requires: No interruption'
+    - ApplicationId: 'The unique ID of the Amazon Pinpoint app that the campaign is
+        associated
+
+        with.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - CampaignHook: 'Specifies the AWS Lambda function to use as a code hook for a
+        campaign.
+
+        Required: No
+
+        Type: CampaignHook
+
+        Update requires: No interruption'
+    - Description: 'The custom description of the campaign.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - HoldoutPercent: 'The allocated percentage of users (segment members) who shouldn''t
+        receive messages
+
+        from the campaign.
+
+        Required: No
+
+        Type: Integer
+
+        Update requires: No interruption'
+    - IsPaused: 'Specifies whether to pause the campaign. A paused campaign doesn''t
+        run unless you
+
+        resume it by setting this value to false.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - Limits: 'The messaging limits for the campaign.
+
+        Required: No
+
+        Type: Limits
+
+        Update requires: No interruption'
+    - MessageConfiguration: 'The message configuration settings for the campaign.
+
+        Required: Yes
+
+        Type: MessageConfiguration
+
+        Update requires: No interruption'
+    - Name: 'The custom name of the campaign.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - Schedule: 'The schedule settings for the campaign.
+
+        Required: Yes
+
+        Type: Schedule
+
+        Update requires: No interruption'
+    - SegmentId: 'The unique identifier for the segment to associate with the campaign.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - SegmentVersion: 'The version of the segment to associate with the campaign.
+
+        Required: No
+
+        Type: Integer
+
+        Update requires: No interruption'
+    - TreatmentDescription: 'The custom description of a variation of the campaign
+        to use for A/B
+
+        testing.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - TreatmentName: 'The custom name of a variation of the campaign to use for A/B
+        testing.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-campaign.html
+- EmailChannel:
+    Properties:
+      ApplicationId: String
+      ConfigurationSet: String
+      Enabled: Boolean
+      FromAddress: String
+      Identity: String
+      RoleArn: String
+    Type: AWS::Pinpoint::EmailChannel
+  MetaData:
+    description: Updates the status and settings of the email channel for an application.
+    name: AWS::Pinpoint::EmailChannel
+    properties:
+    - ApplicationId: 'The unique ID of the Amazon Pinpoint app that you''re specifying
+        the email channel
+
+        for.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - ConfigurationSet: 'The configuration set that you want to apply to email that
+        you send through the
+
+        channel by using the Amazon Pinpoint Email
+
+        API.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - Enabled: 'Specifies whether to enable the email channel for the application.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - FromAddress: 'The verified email address that you want to send email from when
+        you send email
+
+        through the channel.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - Identity: 'The Amazon Resource Name (ARN) of the identity, verified with Amazon
+        Simple Email
+
+        Service (Amazon SES), that you want to use when you send email through the
+
+        channel.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - RoleArn: 'The ARN of the AWS Identity and Access Management (IAM) role that
+        you want Amazon
+
+        Pinpoint to use when it submits email-related event data for the channel.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-emailchannel.html
+- EventStream:
+    Properties:
+      ApplicationId: String
+      DestinationStreamArn: String
+      RoleArn: String
+    Type: AWS::Pinpoint::EventStream
+  MetaData:
+    description: 'Creates a new event stream for an application or updates the settings
+      of an existing event stream for an application. '
+    name: AWS::Pinpoint::EventStream
+    properties:
+    - ApplicationId: 'The unique ID of the Amazon Pinpoint app that you want to export
+        data from.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - DestinationStreamArn: 'The Amazon Resource Name (ARN) of the Amazon Kinesis
+        data stream or Amazon Kinesis
+
+        Data Firehose delivery stream that you want to publish event data to.
+
+        For a Kinesis data stream, the ARN format is:
+
+        arn:aws:kinesis:region:account-id:stream/stream_name
+
+        For a Kinesis Data Firehose delivery stream, the ARN format is:
+
+        arn:aws:firehose:region:account-id:deliverystream/stream_name
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - RoleArn: 'The AWS Identity and Access Management (IAM) role that authorizes
+        Amazon Pinpoint
+
+        to publish event data to the stream in your AWS account.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-eventstream.html
+- GCMChannel:
+    Properties:
+      ApiKey: String
+      ApplicationId: String
+      Enabled: Boolean
+    Type: AWS::Pinpoint::GCMChannel
+  MetaData:
+    description: 'A channel is a type of platform that you can deliver messages to.
+      You can use the GCM channel to send push notification messages to the Firebase
+      Cloud Messaging (FCM) service, which replaced the Google Cloud Messaging (GCM)
+      service. Before you use Amazon Pinpoint to send notifications to FCM, you have
+      to enable the GCM channel for an Amazon Pinpoint application. '
+    name: AWS::Pinpoint::GCMChannel
+    properties:
+    - ApiKey: 'The API key, also called the server key, that you received
+
+        from Google to communicate with Google services.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - ApplicationId: 'The unique identifier for the Amazon Pinpoint app that the GCM
+        channel applies
+
+        to.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - Enabled: 'Specifies whether to enable the GCM channel for the Amazon Pinpoint
+
+        application.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-gcmchannel.html
+- MetaData:
+    description: 'Creates a new segment for an application or updates the configuration,
+      dimension, and other settings for an existing segment that''s associated with
+      an application. '
+    name: AWS::Pinpoint::Segment
+    properties:
+    - ApplicationId: 'The unique ID of the Amazon Pinpoint app that the segment is
+        associated
+
+        with.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - Dimensions: 'The criteria that define the dimensions for the segment.
+
+        Required: No
+
+        Type: SegmentDimensions
+
+        Update requires: No interruption'
+    - Name: 'The name of the segment.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - SegmentGroups: 'The segment group to use and the dimensions to apply to the
+        group''s base segments
+
+        in order to build the segment. A segment group can consist of zero or more
+        base
+
+        segments. Your request can include only one segment group.
+
+        Required: No
+
+        Type: SegmentGroups
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-segment.html
+  Segment:
+    Properties:
+      ApplicationId: String
+      Dimensions: SegmentDimensions
+      Name: String
+      SegmentGroups: SegmentGroups
+    Type: AWS::Pinpoint::Segment
+- MetaData:
+    description: 'A channel is a type of platform that you can deliver messages to.
+      To send an SMS text message, you send the message through the SMS channel. Before
+      you use Amazon Pinpoint to send text messages, you have enable the SMS channel
+      for an Amazon Pinpoint application. '
+    name: AWS::Pinpoint::SMSChannel
+    properties:
+    - ApplicationId: 'The unique identifier for the Amazon Pinpoint app that the SMS
+        channel applies
+
+        to.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - Enabled: 'Specifies whether to enable the SMS channel for the app.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - SenderId: 'The identity that you want to display on recipients'' devices when
+        they receive
+
+        messages from the SMS channel.
+
+        Note
+
+        SenderIDs are only supported in certain countries and regions. For more
+
+        information, see Supported Countries and Regions in the
+
+        Amazon Pinpoint User Guide.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - ShortCode: 'The registered short code that you want to use when you send messages
+        through the
+
+        SMS channel.
+
+        Note
+
+        For information about obtaining a dedicated short code for sending SMS
+
+        messages, see Requesting Dedicated Short Codes for SMS
+
+        Messaging with Amazon Pinpoint in the Amazon
+
+        Pinpoint User Guide.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-smschannel.html
+  SMSChannel:
+    Properties:
+      ApplicationId: String
+      Enabled: Boolean
+      SenderId: String
+      ShortCode: String
+    Type: AWS::Pinpoint::SMSChannel
+- MetaData:
+    description: Updates the status and settings of the voice channel for an application.
+    name: AWS::Pinpoint::VoiceChannel
+    properties:
+    - ApplicationId: 'The unique ID of the Amazon Pinpoint app that you''re setting
+        up the voice channel
+
+        for.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - Enabled: 'Specifies whether to enable the voice channel for the application.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-voicechannel.html
+  VoiceChannel:
+    Properties:
+      ApplicationId: String
+      Enabled: Boolean
+    Type: AWS::Pinpoint::VoiceChannel
+...

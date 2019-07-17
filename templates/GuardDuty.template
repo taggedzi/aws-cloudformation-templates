@@ -1,0 +1,333 @@
+---
+GuardDuty:
+- Detector:
+    Properties:
+      Enable: Boolean
+      FindingPublishingFrequency: String
+    Type: AWS::GuardDuty::Detector
+  MetaData:
+    description: 'The AWS::GuardDuty::Detector resource specifies a new Amazon GuardDuty
+      detector. A detector is an object that represents the Amazon GuardDuty service.
+      A detector is required for Amazon GuardDuty to become operational. '
+    name: AWS::GuardDuty::Detector
+    properties:
+    - Enable: 'Specifies whether or not to enable the detector.
+
+        Required: Yes
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - FindingPublishingFrequency: 'A enumeration value that specifies how frequently
+        finding updates are
+
+        published. Valid values include: FIFTEEN_MINUTES | ONE_HOUR | SIX_HOURS. The
+        default
+
+        value is SIX_HOURS.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-detector.html
+- Filter:
+    Properties:
+      Action: String
+      Description: String
+      DetectorId: String
+      FindingCriteria: FindingCriteria
+      Name: String
+      Rank: Integer
+    Type: AWS::GuardDuty::Filter
+  MetaData:
+    description: 'The AWS::GuardDuty::Filter resource specifies a new filter defined
+      by the provided findingCriteria. '
+    name: AWS::GuardDuty::Filter
+    properties:
+    - Action: 'Specifies the action that is to be applied to the findings that match
+        the filter.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - Description: 'The description of the filter.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - DetectorId: 'The ID of the detector to associate the Filter with.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - FindingCriteria: 'Represents the criteria to be used in the filter for querying
+        findings.
+
+        Required: Yes
+
+        Type: FindingCriteria
+
+        Update requires: No interruption'
+    - Name: 'The name of the filter.
+
+        Required: No
+
+        Type: String
+
+        Update requires: Replacement'
+    - Rank: 'Specifies the position of the filter in the list of current filters.
+        Also specifies
+
+        the order in which this filter is applied to the findings.
+
+        Required: Yes
+
+        Type: Integer
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-filter.html
+- IPSet:
+    Properties:
+      Activate: Boolean
+      DetectorId: String
+      Format: String
+      Location: String
+      Name: String
+    Type: AWS::GuardDuty::IPSet
+  MetaData:
+    description: 'The AWS::GuardDuty::IPSet resource specifies a new IPSet. An IPSet
+      is a list of trusted IP addresses from which secure communication is allowed
+      with AWS infrastructure and applications. '
+    name: AWS::GuardDuty::IPSet
+    properties:
+    - Activate: 'Indicated whether or not GuardDuty uses the IPSet.
+
+        Required: Yes
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - DetectorId: 'The unique ID of the detector for the GuardDuty service to associate
+        the
+
+        IPSet with.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - Format: 'The format of the file that contains the IPSet.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - Location: 'The URI of the file that contains the IPSet.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - Name: 'The name for the IPSet. This name is displayed in all findings that
+
+        are triggered by activity associated with the IP addresses included in this
+
+        IPSet.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-ipset.html
+- Master:
+    Properties:
+      DetectorId: String
+      InvitationId: String
+      MasterId: String
+    Type: AWS::GuardDuty::Master
+  MetaData:
+    description: 'You can use the AWS::GuardDuty::Master resource in a GuardDuty member
+      account to accept an invitation from a GuardDuty master account. The invitation
+      to the member account must be sent prior to using the AWS::GuardDuty::Master
+      resource to accept the master account''s invitation. You can invite a member
+      account by using the InviteMembers operation of the Amazon GuardDuty API, or
+      by creating an AWS::GuardDuty::Member resource. '
+    name: AWS::GuardDuty::Master
+    properties:
+    - DetectorId: 'The unique ID of the detector associated with the GuardDuty master
+        account.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - InvitationId: 'The ID of the invitation that is sent to the account designated
+        as a member account.
+
+        You can find the
+
+        invitation ID by using the ListInvitation action of the GuardDuty API.
+
+        Required: No
+
+        Type: String
+
+        Update requires: Replacement'
+    - MasterId: 'The AWS account ID of the account designated as the GuardDuty master
+        account.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-master.html
+- Member:
+    Properties:
+      DetectorId: String
+      DisableEmailNotification: Boolean
+      Email: String
+      MemberId: String
+      Message: String
+      Status: String
+    Type: AWS::GuardDuty::Member
+  MetaData:
+    description: 'You can use the AWS::GuardDuty::Member resource to add an AWS account
+      as a GuardDuty member account to the current GuardDuty master account. If the
+      value of the Status property is not provided or is set to Created, a member
+      account is created but not invited. If the value of the Status property is set
+      to Invited, a member account is created and invited. A AWS::GuardDuty::Member
+      resource must be created with the Status property set to Invited before the
+      AWS::GuardDuty::Master resource can be created in a GuardDuty member account. '
+    name: AWS::GuardDuty::Member
+    properties:
+    - DetectorId: 'The ID of the detector associated with the GuardDuty service to
+        add the member to.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - DisableEmailNotification: 'Specifies whether or not to disable email notification
+        for
+
+        the member account that you invite.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - Email: 'The email address associated with the member account.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - MemberId: 'The AWS account ID of the account to designate as a member.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - Message: 'The message to include with the invitation sent to the member accounts.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - Status: 'You can use the Status property to update the status of the relationship
+        between
+
+        the member account and its master account. Valid values are Created and Invited
+
+        when using a AWS::GuardDuty::Member resource. If the value for this property
+        is not provided or set
+
+        to Created, a member account is created but not invited. If the value of this
+        property is set
+
+        to Invited,
+
+        a member account is created and invited.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-member.html
+- MetaData:
+    description: 'The AWS::GuardDuty::ThreatIntelSet resource specifies a new ThreatIntelSet.
+      A ThreatIntelSet consists of known malicious IP addresses. GuardDuty generates
+      findings based on the ThreatIntelSet when it is activated. '
+    name: AWS::GuardDuty::ThreatIntelSet
+    properties:
+    - Activate: 'Specifies whether or not GuardDuty uses the ThreatIntelSet.
+
+        Required: Yes
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - DetectorId: 'The ID of the detector to associate the ThreatIntelSet
+
+        with.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - Format: 'The format of the file that contains the ThreatIntelSet.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: Replacement'
+    - Location: 'The URI of the file that contains the ThreatIntelSet.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - Name: 'A name for the ThreatIntelSet. The name is displayed in all finding
+
+        generated by activity associated with the IP addresses included in this
+
+        ThreatIntelSet.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatintelset.html
+  ThreatIntelSet:
+    Properties:
+      Activate: Boolean
+      DetectorId: String
+      Format: String
+      Location: String
+      Name: String
+    Type: AWS::GuardDuty::ThreatIntelSet
+...

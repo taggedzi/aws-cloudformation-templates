@@ -1,0 +1,503 @@
+---
+Elastic Beanstalk:
+- Application:
+    Properties:
+      ApplicationName: String
+      Description: String
+      ResourceLifecycleConfig: ApplicationResourceLifecycleConfig
+    Type: AWS::ElasticBeanstalk::Application
+  MetaData:
+    description: 'The AWS::ElasticBeanstalk::Application resource is an AWS Elastic
+      Beanstalk resource type that specifies an Elastic Beanstalk application. '
+    name: AWS::ElasticBeanstalk::Application
+    properties:
+    - ApplicationName: 'A name for the Elastic Beanstalk application. If you don''t
+        specify a name, AWS
+
+        CloudFormation generates a unique physical ID and uses that ID for the application
+
+        name. For
+
+        more information, see Name Type.
+
+        Important
+
+        If you specify a name, you cannot perform updates that require replacement
+        of this
+
+        resource. You can perform updates that require no or some interruption. If
+        you must
+
+        replace
+
+        the resource, specify a new name.
+
+        Required: No
+
+        Type: String
+
+        Minimum: 1
+
+        Maximum: 100
+
+        Update requires: Replacement'
+    - Description: 'Your description of the application.
+
+        Required: No
+
+        Type: String
+
+        Maximum: 200
+
+        Update requires: No interruption'
+    - ResourceLifecycleConfig: 'Specifies an application resource lifecycle configuration
+        to prevent your application
+
+        from accumulating too many versions.
+
+        Required: No
+
+        Type: ApplicationResourceLifecycleConfig
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk.html
+- ApplicationVersion:
+    Properties:
+      ApplicationName: String
+      Description: String
+      SourceBundle: SourceBundle
+    Type: AWS::ElasticBeanstalk::ApplicationVersion
+  MetaData:
+    description: 'The AWS::ElasticBeanstalk::ApplicationVersion resource is an AWS
+      Elastic Beanstalk resource type that specifies an application version, an iteration
+      of deployable code, for an Elastic Beanstalk application. '
+    name: AWS::ElasticBeanstalk::ApplicationVersion
+    properties:
+    - ApplicationName: 'The name of the Elastic Beanstalk application that is associated
+        with this application
+
+        version.
+
+        Required: Yes
+
+        Type: String
+
+        Minimum: 1
+
+        Maximum: 100
+
+        Update requires: Replacement'
+    - Description: 'A description of this application version.
+
+        Required: No
+
+        Type: String
+
+        Maximum: 200
+
+        Update requires: No interruption'
+    - SourceBundle: 'The Amazon S3 bucket and key that identify the location of the
+        source bundle for this
+
+        version.
+
+        Note
+
+        The Amazon S3 bucket must be in the same region as the
+
+        environment.
+
+        Required: Yes
+
+        Type: SourceBundle
+
+        Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-version.html
+- ConfigurationTemplate:
+    Properties:
+      ApplicationName: String
+      Description: String
+      EnvironmentId: String
+      OptionSettings:
+      - ConfigurationOptionSetting
+      PlatformArn: String
+      SolutionStackName: String
+      SourceConfiguration: SourceConfiguration
+    Type: AWS::ElasticBeanstalk::ConfigurationTemplate
+  MetaData:
+    description: 'The AWS::ElasticBeanstalk::ConfigurationTemplate resource is an
+      AWS Elastic Beanstalk resource type that specifies an Elastic Beanstalk configuration
+      template, associated with a specific Elastic Beanstalk application. You define
+      application configuration settings in a configuration template. You can then
+      use the configuration template to deploy different versions of the application
+      with the same configuration settings. '
+    name: AWS::ElasticBeanstalk::ConfigurationTemplate
+    properties:
+    - ApplicationName: 'The name of the Elastic Beanstalk application to associate
+        with this configuration
+
+        template.
+
+        Required: Yes
+
+        Type: String
+
+        Minimum: 1
+
+        Maximum: 100
+
+        Update requires: Replacement'
+    - Description: 'An optional description for this configuration.
+
+        Required: No
+
+        Type: String
+
+        Maximum: 200
+
+        Update requires: No interruption'
+    - EnvironmentId: 'The ID of an environment whose settings you want to use to create
+        the configuration
+
+        template. You must specify EnvironmentId if you don''t specify
+
+        PlatformArn, SolutionStackName, or
+
+        SourceConfiguration.
+
+        Required: Conditional
+
+        Type: String
+
+        Update requires: Replacement'
+    - OptionSettings: 'Option values for the Elastic Beanstalk configuration, such
+        as the instance type.
+
+        If specified, these
+
+        values override the values obtained from the solution stack or the source
+        configuration
+
+        template. For a complete list of Elastic Beanstalk configuration options,
+        see Option Values in the
+
+        AWS Elastic Beanstalk Developer Guide.
+
+        Required: No
+
+        Type: List of ConfigurationOptionSetting
+
+        Update requires: No interruption'
+    - PlatformArn: 'The Amazon Resource Name (ARN) of the custom platform. For more
+        information, see  Custom
+
+        Platforms in the AWS Elastic Beanstalk Developer Guide.
+
+        Note
+
+        If you specify PlatformArn, then don''t specify
+
+        SolutionStackName.
+
+        Required: No
+
+        Type: String
+
+        Update requires: Replacement'
+    - SolutionStackName: 'The name of an Elastic Beanstalk solution stack (platform
+        version) that this configuration
+
+        uses. For
+
+        example, 64bit Amazon Linux 2013.09 running Tomcat 7 Java 7. A solution stack
+
+        specifies the operating system, runtime, and application server for a configuration
+
+        template.
+
+        It also determines the set of configuration options as well as the possible
+        and default
+
+        values. For more information, see Supported Platforms in the
+
+        AWS Elastic Beanstalk Developer Guide.
+
+        You must specify SolutionStackName if you don''t specify
+
+        PlatformArn, EnvironmentId, or
+
+        SourceConfiguration.
+
+        Use the
+
+        ListAvailableSolutionStacks
+
+        API to obtain a list of available
+
+        solution stacks.
+
+        Required: Conditional
+
+        Type: String
+
+        Update requires: Replacement'
+    - SourceConfiguration: 'An Elastic Beanstalk configuration template to base this
+        one on. If specified, Elastic
+
+        Beanstalk uses the configuration values from the specified
+
+        configuration template to create a new configuration.
+
+        Values specified in OptionSettings override any values obtained from the
+
+        SourceConfiguration.
+
+        You must specify SourceConfiguration if you don''t specify
+
+        PlatformArn, EnvironmentId, or
+
+        SolutionStackName.
+
+        Constraint: If both solution stack name and source configuration are specified,
+        the
+
+        solution stack of the source configuration template must match the specified
+        solution
+
+        stack
+
+        name.
+
+        Required: Conditional
+
+        Type: SourceConfiguration
+
+        Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-configurationtemplate.html
+- Environment:
+    Properties:
+      ApplicationName: String
+      CNAMEPrefix: String
+      Description: String
+      EnvironmentName: String
+      OptionSettings:
+      - OptionSetting
+      PlatformArn: String
+      SolutionStackName: String
+      Tags:
+      - Tag
+      TemplateName: String
+      Tier: Tier
+      VersionLabel: String
+    Type: AWS::ElasticBeanstalk::Environment
+  MetaData:
+    description: 'The AWS::ElasticBeanstalk::Environment resource is an AWS Elastic
+      Beanstalk resource type that specifies an Elastic Beanstalk environment. '
+    name: AWS::ElasticBeanstalk::Environment
+    properties:
+    - ApplicationName: 'The name of the application that is associated with this environment.
+
+        Required: Yes
+
+        Type: String
+
+        Minimum: 1
+
+        Maximum: 100
+
+        Update requires: Replacement'
+    - CNAMEPrefix: 'If specified, the environment attempts to use this value as the
+        prefix for the CNAME
+
+        in
+
+        your Elastic Beanstalk environment URL. If not specified, the CNAME is generated
+        automatically
+
+        by
+
+        appending a random alphanumeric string to the environment name.
+
+        Required: No
+
+        Type: String
+
+        Minimum: 4
+
+        Maximum: 63
+
+        Update requires: Replacement'
+    - Description: 'Your description for this environment.
+
+        Required: No
+
+        Type: String
+
+        Maximum: 200
+
+        Update requires: No interruption'
+    - EnvironmentName: 'A unique name for the environment.
+
+        Constraint: Must be from 4 to 40 characters in length. The name can contain
+        only
+
+        letters, numbers, and hyphens. It can''t start or end with a hyphen. This
+        name must
+
+        be unique
+
+        within a region in your account.
+
+        If you don''t specify the CNAMEPrefix parameter, the environment name becomes
+        part of
+
+        the CNAME, and therefore part of the visible URL for your application.
+
+        If you don''t specify an environment name, AWS CloudFormation generates a
+        unique physical
+
+        ID and uses that ID for the environment name. For more information, see Name
+
+        Type.
+
+        Important
+
+        If you specify a name, you cannot perform updates that require replacement
+        of this
+
+        resource. You can perform updates that require no or some interruption. If
+        you must
+
+        replace
+
+        the resource, specify a new name.
+
+        Required: No
+
+        Type: String
+
+        Minimum: 4
+
+        Maximum: 40
+
+        Update requires: Replacement'
+    - OptionSettings: 'Key-value pairs defining configuration options for this environment,
+        such as the instance
+
+        type. These options override the values that are defined in the solution stack
+        or
+
+        the configuration template.
+
+        If you remove any options during a stack update, the removed options retain
+        their
+
+        current values.
+
+        Required: Yes. The IamInstanceProfile option is required.
+
+        Required: No
+
+        Type: List of OptionSetting
+
+        Update requires: No interruption'
+    - PlatformArn: 'The Amazon Resource Name (ARN) of the custom platform to use with
+        the environment.
+
+        For more information, see
+
+        Custom Platforms in the AWS Elastic Beanstalk Developer Guide.
+
+        Note
+
+        If you specify PlatformArn, don''t specify
+
+        SolutionStackName.
+
+        Required: No
+
+        Type: String
+
+        Update requires: No interruption'
+    - SolutionStackName: 'The name of an Elastic Beanstalk solution stack (platform
+        version) to use with the
+
+        environment. If
+
+        specified, Elastic Beanstalk sets the configuration values to the default
+        values associated
+
+        with the
+
+        specified solution stack. For a list of current solution stacks, see Elastic
+        Beanstalk Supported Platforms in the AWS Elastic Beanstalk
+
+        Platforms guide.
+
+        Note
+
+        If you specify SolutionStackName, don''t specify PlatformArn or
+
+        TemplateName.
+
+        Required: No
+
+        Type: String
+
+        Update requires: Replacement'
+    - Tags: 'Specifies the tags applied to resources in the environment.
+
+        Required: No
+
+        Type: List of Tag
+
+        Update requires: No interruption'
+    - TemplateName: 'The name of the Elastic Beanstalk configuration template to use
+        with the environment.
+
+        Note
+
+        If you specify TemplateName, then don''t specify
+
+        SolutionStackName.
+
+        Required: No
+
+        Type: String
+
+        Minimum: 1
+
+        Maximum: 100
+
+        Update requires: No interruption'
+    - Tier: 'Specifies the tier to use in creating this environment. The environment
+        tier that
+
+        you
+
+        choose determines whether Elastic Beanstalk provisions resources to support
+        a web
+
+        application that handles
+
+        HTTP(S) requests or a web application that handles background-processing tasks.
+
+        Required: No
+
+        Type: Tier'
+    - VersionLabel: 'The name of the application version to deploy.
+
+        Default: If not specified, Elastic Beanstalk attempts to deploy the sample
+        application.
+
+        Required: No
+
+        Type: String
+
+        Minimum: 1
+
+        Maximum: 100
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html
+...

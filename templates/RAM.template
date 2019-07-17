@@ -1,0 +1,63 @@
+---
+RAM:
+- MetaData:
+    description: Specifies a resource share.
+    name: AWS::RAM::ResourceShare
+    properties:
+    - AllowExternalPrincipals: 'Indicates whether principals outside your AWS organization
+        can be associated with
+
+        a resource share.
+
+        Required: No
+
+        Type: Boolean
+
+        Update requires: No interruption'
+    - Name: 'The name of the resource share.
+
+        Required: Yes
+
+        Type: String
+
+        Update requires: No interruption'
+    - Principals: 'The principals to associate with the resource share. The possible
+        values are IDs of
+
+        AWS accounts,
+
+        the ARN of an OU or organization from AWS Organizations.
+
+        Required: No
+
+        Type: List of String
+
+        Update requires: No interruption'
+    - ResourceArns: 'The Amazon Resource Names (ARN) of the resources to associate
+        with the resource share.
+
+        Required: No
+
+        Type: List of String
+
+        Update requires: No interruption'
+    - Tags: 'One or more tags.
+
+        Required: No
+
+        Type: List of Tag
+
+        Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ram-resourceshare.html
+  ResourceShare:
+    Properties:
+      AllowExternalPrincipals: Boolean
+      Name: String
+      Principals:
+      - String
+      ResourceArns:
+      - String
+      Tags:
+      - Tag
+    Type: AWS::RAM::ResourceShare
+...
