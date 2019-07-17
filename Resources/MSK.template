@@ -1,0 +1,68 @@
+MSK:
+- Cluster:
+    Properties:
+      BrokerNodeGroupInfo: BrokerNodeGroupInfo
+      ClientAuthentication: ClientAuthentication
+      ClusterName: String
+      ConfigurationInfo: ConfigurationInfo
+      EncryptionInfo: EncryptionInfo
+      EnhancedMonitoring: String
+      KafkaVersion: String
+      NumberOfBrokerNodes: Integer
+      Tags: Json
+    Type: AWS::MSK::Cluster
+  MetaData:
+    description: 'The AWS::MSK::Cluster resource creates an Amazon MSK cluster. For
+      more information, see What Is Amazon MSK? in the Amazon MSK Developer Guide. '
+    name: AWS::MSK::Cluster
+    properties:
+    - BrokerNodeGroupInfo:
+      - The setup to be used for brokers in the cluster.
+      - 'Required: Yes'
+      - 'Type: BrokerNodeGroupInfo'
+      - 'Update requires: Replacement'
+    - ClientAuthentication:
+      - Includes information related to client authentication.
+      - 'Required: No'
+      - 'Type: ClientAuthentication'
+      - 'Update requires: Replacement'
+    - ClusterName:
+      - The name of the cluster.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - ConfigurationInfo:
+      - The Amazon MSK configuration to use for the cluster.
+      - 'Required: No'
+      - 'Type: ConfigurationInfo'
+      - 'Update requires: Replacement'
+    - EncryptionInfo:
+      - Includes all encryption-related information.
+      - 'Required: No'
+      - 'Type: EncryptionInfo'
+      - 'Update requires: Replacement'
+    - EnhancedMonitoring:
+      - Specifies the level of monitoring for the MSK cluster. The possible values
+        are DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - KafkaVersion:
+      - The version of Apache Kafka.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - NumberOfBrokerNodes:
+      - The number of broker nodes you want in the Amazon MSK cluster.
+      - 'Required: Yes'
+      - 'Type: Integer'
+      - 'Update requires: Replacement'
+    - Tags:
+      - An array of key-value pairs to apply to this resource. You can specify tags
+        in JSON
+      - or in YAML, depending on which format you use for your template.
+      - For more information, see Tag.
+      - 'Required: No'
+      - 'Type: Json'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-cluster.html

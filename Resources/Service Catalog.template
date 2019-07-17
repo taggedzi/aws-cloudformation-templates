@@ -1,0 +1,747 @@
+Service Catalog:
+- AcceptedPortfolioShare:
+    Properties:
+      AcceptLanguage: String
+      PortfolioId: String
+    Type: AWS::ServiceCatalog::AcceptedPortfolioShare
+  MetaData:
+    description: Accepts an offer to share the specified portfolio.
+    name: AWS::ServiceCatalog::AcceptedPortfolioShare
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: Replacement'
+    - PortfolioId:
+      - The portfolio identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-acceptedportfolioshare.html
+- CloudFormationProduct:
+    Properties:
+      AcceptLanguage: String
+      Description: String
+      Distributor: String
+      Name: String
+      Owner: String
+      ProvisioningArtifactParameters:
+      - ProvisioningArtifactProperties
+      SupportDescription: String
+      SupportEmail: String
+      SupportUrl: String
+      Tags:
+      - Tag
+    Type: AWS::ServiceCatalog::CloudFormationProduct
+  MetaData:
+    description: Specifies a product.
+    name: AWS::ServiceCatalog::CloudFormationProduct
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - Description:
+      - The description of the product.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 8191'
+      - 'Update requires: No interruption'
+    - Distributor:
+      - The distributor of the product.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 8191'
+      - 'Update requires: No interruption'
+    - Name:
+      - The name of the product.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Maximum: 8191'
+      - 'Update requires: No interruption'
+    - Owner:
+      - The owner of the product.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Maximum: 8191'
+      - 'Update requires: No interruption'
+    - ProvisioningArtifactParameters:
+      - The configuration of the provisioning artifact (also known as a version).
+      - 'Required: Yes'
+      - 'Type: List of ProvisioningArtifactProperties'
+      - 'Update requires: No interruption'
+    - SupportDescription:
+      - The support information about the product.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 8191'
+      - 'Update requires: No interruption'
+    - SupportEmail:
+      - The contact email for product support.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 254'
+      - 'Update requires: No interruption'
+    - SupportUrl:
+      - The contact URL for product support.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 2083'
+      - 'Update requires: No interruption'
+    - Tags:
+      - One or more tags.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Maximum: 20'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html
+- CloudFormationProvisionedProduct:
+    Properties:
+      AcceptLanguage: String
+      NotificationArns:
+      - String
+      PathId: String
+      ProductId: String
+      ProductName: String
+      ProvisionedProductName: String
+      ProvisioningArtifactId: String
+      ProvisioningArtifactName: String
+      ProvisioningParameters:
+      - ProvisioningParameter
+      ProvisioningPreferences: ProvisioningPreferences
+      Tags:
+      - Tag
+    Type: AWS::ServiceCatalog::CloudFormationProvisionedProduct
+  MetaData:
+    description: Provisions the specified product.
+    name: AWS::ServiceCatalog::CloudFormationProvisionedProduct
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - NotificationArns:
+      - Passed to CloudFormation. The SNS topic ARNs to which to publish stack-related
+      - events.
+      - 'Required: No'
+      - 'Type: List of String'
+      - 'Maximum: 5'
+      - 'Update requires: Replacement'
+    - PathId:
+      - The path identifier of the product. This value is optional if the product
+        has a
+      - default path, and required if the product has more than one path. To list
+        the paths
+      - for a
+      - product, use ListLaunchPaths.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: No interruption'
+    - ProductId:
+      - The product identifier.
+      - Note
+      - You must specify either the ID or the name of the product,
+      - but not both.
+      - 'Required: Conditional'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: No interruption'
+    - ProductName:
+      - A user-friendly name for the provisioned product. This value must be unique
+        for the
+      - AWS account and cannot be updated after the product is provisioned.
+      - Each time a stack is created or updated, if ProductName is provided it will
+      - successfully resolve to ProductId as long as only one product exists in the
+      - account/region with that ProductName.
+      - Note
+      - You must specify either
+      - the name or the ID of the product, but not both.
+      - 'Required: Conditional'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Pattern: [a-zA-Z0-9][a-zA-Z0-9._-]*'
+      - 'Update requires: No interruption'
+    - ProvisionedProductName:
+      - A user-friendly name for the provisioned product. This value must be
+      - unique for the AWS account and cannot be updated after the product is provisioned.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Pattern: [a-zA-Z0-9][a-zA-Z0-9._-]*'
+      - 'Update requires: Replacement'
+    - ProvisioningArtifactId:
+      - The identifier of the provisioning artifact (also known as a version).
+      - Note
+      - You must specify
+      - either the ID or the name of the provisioning artifact, but not both.
+      - 'Required: Conditional'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: No interruption'
+    - ProvisioningArtifactName:
+      - The name of the provisioning artifact (also known as a version) for the product.
+        This
+      - name must be unique for the product.
+      - Note
+      - You must specify either the name or the ID of the
+      - provisioning artifact, but not both.
+      - 'Required: Conditional'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    - ProvisioningParameters:
+      - Parameters specified by the administrator that are required for provisioning
+        the
+      - product.
+      - 'Required: No'
+      - 'Type: List of ProvisioningParameter'
+      - 'Update requires: No interruption'
+    - ProvisioningPreferences:
+      - StackSet preferences that are required for provisioning the product or updating
+        a
+      - provisioned product.
+      - 'Required: No'
+      - 'Type: ProvisioningPreferences'
+      - 'Update requires: No interruption'
+    - Tags:
+      - One or more tags.
+      - Note
+      - Requires the provisioned product to have an ResourceUpdateConstraint resource
+        with
+      - TagUpdatesOnProvisionedProduct set to ALLOWED to allow tag
+      - updates. If RESOURCE_UPDATE constraint is not present, tags updates are ignored.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Maximum: 50'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html
+- LaunchNotificationConstraint:
+    Properties:
+      AcceptLanguage: String
+      Description: String
+      NotificationArns:
+      - String
+      PortfolioId: String
+      ProductId: String
+    Type: AWS::ServiceCatalog::LaunchNotificationConstraint
+  MetaData:
+    description: Specifies a notification constraint.
+    name: AWS::ServiceCatalog::LaunchNotificationConstraint
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - Description:
+      - The description of the constraint.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 2000'
+      - 'Update requires: No interruption'
+    - NotificationArns:
+      - The notification ARNs.
+      - 'Required: Yes'
+      - 'Type: List of String'
+      - 'Update requires: No interruption'
+    - PortfolioId:
+      - The portfolio identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - ProductId:
+      - The product identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-launchnotificationconstraint.html
+- LaunchRoleConstraint:
+    Properties:
+      AcceptLanguage: String
+      Description: String
+      PortfolioId: String
+      ProductId: String
+      RoleArn: String
+    Type: AWS::ServiceCatalog::LaunchRoleConstraint
+  MetaData:
+    description: Specifies a launch constraint.
+    name: AWS::ServiceCatalog::LaunchRoleConstraint
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - Description:
+      - The description of the constraint.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 2000'
+      - 'Update requires: No interruption'
+    - PortfolioId:
+      - The portfolio identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - ProductId:
+      - The product identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - RoleArn:
+      - The ARN of the launch role.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-launchroleconstraint.html
+- LaunchTemplateConstraint:
+    Properties:
+      AcceptLanguage: String
+      Description: String
+      PortfolioId: String
+      ProductId: String
+      Rules: String
+    Type: AWS::ServiceCatalog::LaunchTemplateConstraint
+  MetaData:
+    description: Specifies a template constraint.
+    name: AWS::ServiceCatalog::LaunchTemplateConstraint
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - Description:
+      - The description of the constraint.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 2000'
+      - 'Update requires: No interruption'
+    - PortfolioId:
+      - The portfolio identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - ProductId:
+      - The product identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - Rules:
+      - The constraint rules.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-launchtemplateconstraint.html
+- MetaData:
+    description: Specifies a portfolio.
+    name: AWS::ServiceCatalog::Portfolio
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - Description:
+      - The description of the portfolio.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 2000'
+      - 'Update requires: No interruption'
+    - DisplayName:
+      - The name to use for display purposes.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - ProviderName:
+      - The name of the portfolio provider.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 50'
+      - 'Update requires: No interruption'
+    - Tags:
+      - One or more tags.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Maximum: 20'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolio.html
+  Portfolio:
+    Properties:
+      AcceptLanguage: String
+      Description: String
+      DisplayName: String
+      ProviderName: String
+      Tags:
+      - Tag
+    Type: AWS::ServiceCatalog::Portfolio
+- MetaData:
+    description: Associates the specified principal ARN with the specified portfolio.
+    name: AWS::ServiceCatalog::PortfolioPrincipalAssociation
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: Replacement'
+    - PortfolioId:
+      - The portfolio identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - PrincipalARN:
+      - The ARN of the principal (IAM user, role, or group).
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 1000'
+      - 'Update requires: Replacement'
+    - PrincipalType:
+      - The principal type. The supported value is IAM.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Allowed Values: IAM'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioprincipalassociation.html
+  PortfolioPrincipalAssociation:
+    Properties:
+      AcceptLanguage: String
+      PortfolioId: String
+      PrincipalARN: String
+      PrincipalType: String
+    Type: AWS::ServiceCatalog::PortfolioPrincipalAssociation
+- MetaData:
+    description: Associates the specified product with the specified portfolio.
+    name: AWS::ServiceCatalog::PortfolioProductAssociation
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: Replacement'
+    - PortfolioId:
+      - The portfolio identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - ProductId:
+      - The product identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - SourcePortfolioId:
+      - The identifier of the source portfolio.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioproductassociation.html
+  PortfolioProductAssociation:
+    Properties:
+      AcceptLanguage: String
+      PortfolioId: String
+      ProductId: String
+      SourcePortfolioId: String
+    Type: AWS::ServiceCatalog::PortfolioProductAssociation
+- MetaData:
+    description: 'Shares the specified portfolio with the specified account or organization
+      node. Shares to an organization node can only be created by the master account
+      of an Organization. AWSOrganizationsAccess must be enabled in order to create
+      a portfolio share to an organization node. '
+    name: AWS::ServiceCatalog::PortfolioShare
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: Replacement'
+    - AccountId:
+      - The AWS account ID. For example, 123456789012.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Pattern: ^[0-9]{12}$'
+      - 'Update requires: Replacement'
+    - PortfolioId:
+      - The portfolio identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioshare.html
+  PortfolioShare:
+    Properties:
+      AcceptLanguage: String
+      AccountId: String
+      PortfolioId: String
+    Type: AWS::ServiceCatalog::PortfolioShare
+- MetaData:
+    description: 'Specifies a RESOURCE_UPDATE constraint. '
+    name: AWS::ServiceCatalog::ResourceUpdateConstraint
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - Description:
+      - The description of the constraint.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 2000'
+      - 'Update requires: No interruption'
+    - PortfolioId:
+      - The portfolio identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - ProductId:
+      - The product identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - TagUpdateOnProvisionedProduct:
+      - If set to ALLOWED, lets users change tags in a CloudFormationProvisionedProduct
+        resource.
+      - If set to NOT_ALLOWED, prevents users from changing tags in a CloudFormationProvisionedProduct
+        resource.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-resourceupdateconstraint.html
+  ResourceUpdateConstraint:
+    Properties:
+      AcceptLanguage: String
+      Description: String
+      PortfolioId: String
+      ProductId: String
+      TagUpdateOnProvisionedProduct: String
+    Type: AWS::ServiceCatalog::ResourceUpdateConstraint
+- MetaData:
+    description: Specifies a StackSet constraint.
+    name: AWS::ServiceCatalog::StackSetConstraint
+    properties:
+    - AcceptLanguage:
+      - The language code.
+      - en - English (default)
+      - jp - Japanese
+      - zh - Chinese
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - AccountList:
+      - One or more AWS accounts that will have access to the provisioned product.
+      - 'Required: Yes'
+      - 'Type: List of String'
+      - 'Update requires: No interruption'
+    - AdminRole:
+      - AdminRole ARN
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    - Description:
+      - The description of the constraint.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Maximum: 2000'
+      - 'Update requires: No interruption'
+    - ExecutionRole:
+      - ExecutionRole name
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    - PortfolioId:
+      - The portfolio identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - ProductId:
+      - The product identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Pattern: ^[a-zA-Z0-9_\-]*'
+      - 'Update requires: Replacement'
+    - RegionList:
+      - One or more AWS Regions where the provisioned product will be available.
+      - Applicable only to a CFN_STACKSET provisioned product type.
+      - The specified regions should be within the list of regions from the STACKSET
+        constraint. To get the list of regions in the STACKSET constraint, use the
+        DescribeProvisioningParameters operation.
+      - If no values are specified, the default value is all regions from the STACKSET
+        constraint.
+      - 'Required: Yes'
+      - 'Type: List of String'
+      - 'Update requires: No interruption'
+    - StackInstanceControl:
+      - Permission to create, update, and delete stack instances. Choose from ALLOWED
+        and
+      - NOT_ALLOWED.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-stacksetconstraint.html
+  StackSetConstraint:
+    Properties:
+      AcceptLanguage: String
+      AccountList:
+      - String
+      AdminRole: String
+      Description: String
+      ExecutionRole: String
+      PortfolioId: String
+      ProductId: String
+      RegionList:
+      - String
+      StackInstanceControl: String
+    Type: AWS::ServiceCatalog::StackSetConstraint
+- MetaData:
+    description: 'Specifies a TagOption. A TagOption is a key-value pair managed by
+      AWS Service Catalog that serves as a template for creating an AWS tag. '
+    name: AWS::ServiceCatalog::TagOption
+    properties:
+    - Active:
+      - The TagOption active state.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: No interruption'
+    - Key:
+      - The TagOption key.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - Value:
+      - The TagOption value.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-tagoption.html
+  TagOption:
+    Properties:
+      Active: Boolean
+      Key: String
+      Value: String
+    Type: AWS::ServiceCatalog::TagOption
+- MetaData:
+    description: Associate the specified TagOption with the specified portfolio or
+      product.
+    name: AWS::ServiceCatalog::TagOptionAssociation
+    properties:
+    - ResourceId:
+      - The resource identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - TagOptionId:
+      - The TagOption identifier.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-tagoptionassociation.html
+  TagOptionAssociation:
+    Properties:
+      ResourceId: String
+      TagOptionId: String
+    Type: AWS::ServiceCatalog::TagOptionAssociation

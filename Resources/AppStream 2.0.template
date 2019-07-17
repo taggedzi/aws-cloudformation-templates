@@ -1,0 +1,563 @@
+AppStream 2.0:
+- DirectoryConfig:
+    Properties:
+      DirectoryName: String
+      OrganizationalUnitDistinguishedNames:
+      - String
+      ServiceAccountCredentials: ServiceAccountCredentials
+    Type: AWS::AppStream::DirectoryConfig
+  MetaData:
+    description: 'The AWS::AppStream::DirectoryConfig resource specifies the configuration
+      information required to join Amazon AppStream 2.0 fleets and image builders
+      to Microsoft Active Directory domains. '
+    name: AWS::AppStream::DirectoryConfig
+    properties:
+    - DirectoryName:
+      - The fully qualified name of the directory (for example, corp.example.com).
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - OrganizationalUnitDistinguishedNames:
+      - The distinguished names of the organizational units for computer accounts.
+      - 'Required: Yes'
+      - 'Type: List of String'
+      - 'Update requires: No interruption'
+    - ServiceAccountCredentials:
+      - The credentials for the service account used by the streaming instance to
+        connect
+      - to
+      - the directory. Do not use this parameter directly. Use ServiceAccountCredentials
+        as an input parameter with noEcho as shown in
+      - the Parameters. For best practices information, see Do Not Embed Credentials
+        in Your Templates.
+      - 'Required: Yes'
+      - 'Type: ServiceAccountCredentials'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-directoryconfig.html
+- Fleet:
+    Properties:
+      ComputeCapacity: ComputeCapacity
+      Description: String
+      DisconnectTimeoutInSeconds: Integer
+      DisplayName: String
+      DomainJoinInfo: DomainJoinInfo
+      EnableDefaultInternetAccess: Boolean
+      FleetType: String
+      IdleDisconnectTimeoutInSeconds: Integer
+      ImageArn: String
+      ImageName: String
+      InstanceType: String
+      MaxUserDurationInSeconds: Integer
+      Name: String
+      Tags:
+      - Tag
+      VpcConfig: VpcConfig
+    Type: AWS::AppStream::Fleet
+  MetaData:
+    description: 'The AWS::AppStream::Fleet resource creates a fleet for Amazon AppStream
+      2.0. A fleet consists of streaming instances that run a specified image. '
+    name: AWS::AppStream::Fleet
+    properties:
+    - ComputeCapacity:
+      - The desired capacity for the fleet.
+      - 'Required: Yes'
+      - 'Type: ComputeCapacity'
+      - 'Update requires: No interruption'
+    - Description:
+      - The description to display.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 256'
+      - 'Update requires: No interruption'
+    - DisconnectTimeoutInSeconds:
+      - The amount of time that a streaming session remains active after users disconnect.
+      - If users try to reconnect to the streaming session after a disconnection or
+        network
+      - interruption within this time interval, they are connected to their previous
+        session.
+      - Otherwise, they are connected to a new session with a new streaming instance.
+      - Specify a value between 60 and 360000.
+      - 'Required: No'
+      - 'Type: Integer'
+      - 'Update requires: No interruption'
+    - DisplayName:
+      - The fleet name to display.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - DomainJoinInfo:
+      - The name of the directory and organizational unit (OU) to use to join the
+        fleet to
+      - a Microsoft Active Directory domain.
+      - 'Required: No'
+      - 'Type: DomainJoinInfo'
+      - 'Update requires: No interruption'
+    - EnableDefaultInternetAccess:
+      - Enables or disables default internet access for the fleet.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: No interruption'
+    - FleetType:
+      - The fleet type.
+      - ALWAYS_ON
+      - Provides users with instant-on access to their apps.
+      - You are charged for all running instances in your fleet, even if no users
+        are streaming
+      - apps.
+      - ON_DEMAND
+      - Provide users with access to applications after they connect, which takes
+        one to two
+      - minutes.
+      - You are charged for instance streaming when users are connected and a
+      - small hourly fee for instances that are not streaming apps.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Allowed Values: ALWAYS_ON | ON_DEMAND'
+      - 'Update requires: Replacement'
+    - ALWAYS_ON:
+      - Provides users with instant-on access to their apps.
+      - You are charged for all running instances in your fleet, even if no users
+        are streaming
+      - apps.
+    - ON_DEMAND:
+      - Provide users with access to applications after they connect, which takes
+        one to two
+      - minutes.
+      - You are charged for instance streaming when users are connected and a
+      - small hourly fee for instances that are not streaming apps.
+    - IdleDisconnectTimeoutInSeconds:
+      - The amount of time that users can be idle (inactive) before they are disconnected
+      - from their streaming session and the DisconnectTimeoutInSeconds time
+      - interval begins. Users are notified before they are disconnected due to inactivity.
+      - If
+      - they try to reconnect to the streaming session before the time interval specified
+      - in
+      - DisconnectTimeoutInSeconds elapses, they are connected to their
+      - previous session. Users are considered idle when they stop providing keyboard
+        or mouse
+      - input during their streaming session. File uploads and downloads, audio in,
+        audio
+      - out,
+      - and pixels changing do not qualify as user activity. If users continue to
+        be idle
+      - after
+      - the time interval in IdleDisconnectTimeoutInSeconds elapses, they are
+      - disconnected.
+      - To prevent users from being disconnected due to inactivity, specify a value
+        of 0.
+      - Otherwise, specify a value between 60 and 3600.
+      - Note
+      - If you enable this feature, we recommend that you specify a value that corresponds
+      - exactly to a whole number of minutes (for example, 60, 120, and 180). If you
+        don't
+      - do this, the value is rounded to the nearest minute. For example, if you specify
+        a
+      - value of 70, users are disconnected after 1 minute of inactivity. If you specify
+        a
+      - value that is at the midpoint between two different minutes, the value is
+        rounded
+      - up. For example, if you specify a value of 90, users are disconnected after
+        2 minutes
+      - of inactivity.
+      - 'Required: No'
+      - 'Type: Integer'
+      - 'Update requires: No interruption'
+    - ImageArn:
+      - The ARN of the public, private, or shared image to use.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Pattern: ^arn:aws:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$'
+      - 'Update requires: No interruption'
+    - ImageName:
+      - The name of the image used to create the fleet.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Update requires: No interruption'
+    - InstanceType:
+      - The instance type to use when launching fleet instances. The following instance
+        types
+      - 'are available:'
+      - stream.standard.medium
+      - stream.standard.large
+      - stream.compute.large
+      - stream.compute.xlarge
+      - stream.compute.2xlarge
+      - stream.compute.4xlarge
+      - stream.compute.8xlarge
+      - stream.memory.large
+      - stream.memory.xlarge
+      - stream.memory.2xlarge
+      - stream.memory.4xlarge
+      - stream.memory.8xlarge
+      - stream.graphics-design.large
+      - stream.graphics-design.xlarge
+      - stream.graphics-design.2xlarge
+      - stream.graphics-design.4xlarge
+      - stream.graphics-desktop.2xlarge
+      - stream.graphics-pro.4xlarge
+      - stream.graphics-pro.8xlarge
+      - stream.graphics-pro.16xlarge
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Update requires: No interruption'
+    - MaxUserDurationInSeconds:
+      - The maximum amount of time that a streaming session can remain active, in
+        seconds.
+      - If users are still connected to a streaming instance five minutes before this
+        limit
+      - is reached, they are prompted to save any open documents before being disconnected.
+      - After this time elapses, the instance is terminated and replaced by a new
+        instance.
+      - Specify a value between 600 and 360000.
+      - 'Required: No'
+      - 'Type: Integer'
+      - 'Update requires: No interruption'
+    - Name:
+      - A unique name for the fleet.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Pattern: ^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$'
+      - 'Update requires: Replacement'
+    - Tags:
+      - An array of key-value pairs. For more information, see Using
+      - Cost Allocation Tags in the AWS Billing and Cost Management User
+      - Guide.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Update requires: No interruption'
+    - VpcConfig:
+      - The VPC configuration for the fleet.
+      - 'Required: No'
+      - 'Type: VpcConfig'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html
+- ImageBuilder:
+    Properties:
+      AppstreamAgentVersion: String
+      Description: String
+      DisplayName: String
+      DomainJoinInfo: DomainJoinInfo
+      EnableDefaultInternetAccess: Boolean
+      ImageArn: String
+      ImageName: String
+      InstanceType: String
+      Name: String
+      Tags:
+      - Tag
+      VpcConfig: VpcConfig
+    Type: AWS::AppStream::ImageBuilder
+  MetaData:
+    description: 'The AWS::AppStream::ImageBuilder resource creates an image builder
+      for Amazon AppStream 2.0. An image builder is a virtual machine that is used
+      to create an image. '
+    name: AWS::AppStream::ImageBuilder
+    properties:
+    - AppstreamAgentVersion:
+      - The version of the AppStream 2.0 agent to use for this image builder. To use
+        the latest
+      - version of the AppStream 2.0 agent, specify [LATEST].
+      - 'Required: No'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - Description:
+      - The description to display.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 256'
+      - 'Update requires: No interruption'
+    - DisplayName:
+      - The image builder name to display.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - DomainJoinInfo:
+      - The name of the directory and organizational unit (OU) to use to join the
+        image builder
+      - to a Microsoft Active Directory domain.
+      - 'Required: No'
+      - 'Type: DomainJoinInfo'
+      - 'Update requires: No interruption'
+    - EnableDefaultInternetAccess:
+      - Enables or disables default internet access for the image builder.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: No interruption'
+    - ImageArn:
+      - The ARN of the public, private, or shared image to use.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Pattern: ^arn:aws:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$'
+      - 'Update requires: No interruption'
+    - ImageName:
+      - The name of the image used to create the image builder.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Update requires: No interruption'
+    - InstanceType:
+      - The instance type to use when launching the image builder.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Update requires: No interruption'
+    - Name:
+      - A unique name for the image builder.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Pattern: ^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$'
+      - 'Update requires: No interruption'
+    - Tags:
+      - An array of key-value pairs. For more information, see Using
+      - Cost Allocation Tags in the AWS Billing and Cost Management User
+      - Guide.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Update requires: No interruption'
+    - VpcConfig:
+      - The VPC configuration for the image builder. You can specify only one subnet.
+      - 'Required: No'
+      - 'Type: VpcConfig'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-imagebuilder.html
+- MetaData:
+    description: 'The AWS::AppStream::Stack resource creates a stack to start streaming
+      applications to Amazon AppStream 2.0 users. A stack consists of an associated
+      fleet, user access policies, and storage configurations. '
+    name: AWS::AppStream::Stack
+    properties:
+    - ApplicationSettings:
+      - The persistent application settings for users of the stack. When these settings
+        are
+      - enabled, changes that users make to applications and Windows settings are
+        automatically
+      - saved after each session and applied to the next session.
+      - 'Required: No'
+      - 'Type: ApplicationSettings'
+      - 'Update requires: No interruption'
+    - AttributesToDelete:
+      - The stack attributes to delete.
+      - 'Required: No'
+      - 'Type: List of String'
+      - 'Update requires: No interruption'
+    - DeleteStorageConnectors:
+      - This parameter has been deprecated.
+      - Deletes the storage connectors currently enabled for the stack.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: No interruption'
+    - Description:
+      - The description to display.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Update requires: No interruption'
+    - DisplayName:
+      - The stack name to display.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 100'
+      - 'Update requires: No interruption'
+    - FeedbackURL:
+      - The URL that users are redirected to after they click the Send Feedback link.
+        If no
+      - URL is specified, no Send Feedback link is displayed.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 1000'
+      - 'Update requires: No interruption'
+    - Name:
+      - The name of the stack.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Pattern: ^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$'
+      - 'Update requires: Replacement'
+    - RedirectURL:
+      - The URL that users are redirected to after their streaming session ends.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 1000'
+      - 'Update requires: No interruption'
+    - StorageConnectors:
+      - The storage connectors to enable.
+      - 'Required: No'
+      - 'Type: List of StorageConnector'
+      - 'Update requires: No interruption'
+    - Tags:
+      - An array of key-value pairs. For more information, see Using
+      - Cost Allocation Tags in the AWS Billing and Cost Management User
+      - Guide.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Update requires: No interruption'
+    - UserSettings:
+      - The actions that are enabled or disabled for users during their streaming
+        sessions.
+      - By default, these actions are enabled.
+      - 'Required: No'
+      - 'Type: List of UserSetting'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-stack.html
+  Stack:
+    Properties:
+      ApplicationSettings: ApplicationSettings
+      AttributesToDelete:
+      - String
+      DeleteStorageConnectors: Boolean
+      Description: String
+      DisplayName: String
+      FeedbackURL: String
+      Name: String
+      RedirectURL: String
+      StorageConnectors:
+      - StorageConnector
+      Tags:
+      - Tag
+      UserSettings:
+      - UserSetting
+    Type: AWS::AppStream::Stack
+- MetaData:
+    description: 'The AWS::AppStream::StackFleetAssociation resource associates the
+      specified fleet with the specified stack for Amazon AppStream 2.0. '
+    name: AWS::AppStream::StackFleetAssociation
+    properties:
+    - FleetName:
+      - The name of the fleet.
+      - To associate a fleet with a stack, you must specify a dependency on the fleet
+        resource.
+      - For more information, see DependsOn Attribute.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Update requires: No interruption'
+    - StackName:
+      - The name of the stack.
+      - To associate a fleet with a stack, you must specify a dependency on the stack
+        resource.
+      - For more information, see DependsOn Attribute.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-stackfleetassociation.html
+  StackFleetAssociation:
+    Properties:
+      FleetName: String
+      StackName: String
+    Type: AWS::AppStream::StackFleetAssociation
+- MetaData:
+    description: 'The AWS::AppStream::StackUserAssociation resource associates the
+      specified users with the specified stacks for Amazon AppStream 2.0. Users in
+      an AppStream 2.0 user pool cannot be assigned to stacks with fleets that are
+      joined to an Active Directory domain. '
+    name: AWS::AppStream::StackUserAssociation
+    properties:
+    - AuthenticationType:
+      - The authentication type for the user who is associated with the stack. You
+        must specify
+      - USERPOOL.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Allowed Values: API | SAML | USERPOOL'
+      - 'Update requires: Replacement'
+    - SendEmailNotification:
+      - Specifies whether a welcome email is sent to a user after the user is created
+        in the
+      - user pool.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: Replacement'
+    - StackName:
+      - The name of the stack that is associated with the user.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Update requires: Replacement'
+    - UserName:
+      - The email address of the user who is associated with the stack.
+      - Note
+      - Users' email addresses are case-sensitive.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}]+'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-stackuserassociation.html
+  StackUserAssociation:
+    Properties:
+      AuthenticationType: String
+      SendEmailNotification: Boolean
+      StackName: String
+      UserName: String
+    Type: AWS::AppStream::StackUserAssociation
+- MetaData:
+    description: 'The AWS::AppStream::User resource creates a new user in the AppStream
+      2.0 user pool. '
+    name: AWS::AppStream::User
+    properties:
+    - AuthenticationType:
+      - The authentication type for the user. You must specify USERPOOL.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Allowed Values: API | SAML | USERPOOL'
+      - 'Update requires: Replacement'
+    - FirstName:
+      - The first name, or given name, of the user.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 2048'
+      - 'Pattern: ^[A-Za-z0-9_\-\s]+$'
+      - 'Update requires: Replacement'
+    - LastName:
+      - The last name, or surname, of the user.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 2048'
+      - 'Pattern: ^[A-Za-z0-9_\-\s]+$'
+      - 'Update requires: Replacement'
+    - MessageAction:
+      - The action to take for the welcome email that is sent to a user after the
+        user is
+      - created in the user pool. If you specify SUPPRESS, no email is sent. If you
+        specify
+      - RESEND, do not specify the first name or last name of the user. If the value
+        is null,
+      - the email is sent.
+      - Note
+      - "The temporary password in the welcome email is valid for only 7 days. If\
+        \ users donâ\x80\x99t"
+      - set their passwords within 7 days, you must send them a new welcome email.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Allowed Values: RESEND | SUPPRESS'
+      - 'Update requires: Replacement'
+    - UserName:
+      - The email address of the user.
+      - Note
+      - Users' email addresses are case-sensitive. During login, if they specify an
+        email
+      - address that doesn't use the same capitalization as the email address specified
+        when
+      - their user pool account was created, a "user does not exist" error message
+        displays.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}]+'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-user.html
+  User:
+    Properties:
+      AuthenticationType: String
+      FirstName: String
+      LastName: String
+      MessageAction: String
+      UserName: String
+    Type: AWS::AppStream::User

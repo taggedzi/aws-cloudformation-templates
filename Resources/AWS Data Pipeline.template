@@ -1,0 +1,77 @@
+AWS Data Pipeline:
+- MetaData:
+    description: 'The AWS::DataPipeline::Pipeline resource specifies a data pipeline
+      that you can use to automate the movement and transformation of data. In each
+      pipeline, you define pipeline objects, such as activities, schedules, data nodes,
+      and resources. For information about pipeline objects and components that you
+      can use, see Pipeline Object Reference in the AWS Data Pipeline Developer Guide. '
+    name: AWS::DataPipeline::Pipeline
+    properties:
+    - Activate:
+      - Indicates whether to validate and start the pipeline or stop an active pipeline.
+        By
+      - default, the value is set to true.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: No interruption'
+    - Description:
+      - A description of the pipeline.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Minimum: 0'
+      - 'Maximum: 1024'
+      - 'Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*'
+      - 'Update requires: Replacement'
+    - Name:
+      - The name of the pipeline.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 1024'
+      - 'Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\n\t]*'
+      - 'Update requires: Replacement'
+    - ParameterObjects:
+      - The parameter objects used with the pipeline.
+      - 'Required: Yes'
+      - 'Type: List of ParameterObject'
+      - 'Update requires: No interruption'
+    - ParameterValues:
+      - The parameter values used with the pipeline.
+      - 'Required: No'
+      - 'Type: List of ParameterValue'
+      - 'Update requires: No interruption'
+    - PipelineObjects:
+      - The objects that define the pipeline. These objects overwrite the existing
+        pipeline
+      - definition. Not all objects, fields, and values
+      - can be updated. For information about restrictions, see
+      - Editing Your Pipeline
+      - in the AWS Data Pipeline Developer Guide.
+      - 'Required: No'
+      - 'Type: List of PipelineObject'
+      - 'Update requires: No interruption'
+    - PipelineTags:
+      - A list of arbitrary tags (key-value pairs) to associate with the pipeline,
+        which you
+      - can use to control permissions. For more information, see Controlling Access
+        to
+      - Pipelines and Resources in the
+      - AWS Data Pipeline Developer Guide.
+      - 'Required: No'
+      - 'Type: List of PipelineTag'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html
+  Pipeline:
+    Properties:
+      Activate: Boolean
+      Description: String
+      Name: String
+      ParameterObjects:
+      - ParameterObject
+      ParameterValues:
+      - ParameterValue
+      PipelineObjects:
+      - PipelineObject
+      PipelineTags:
+      - PipelineTag
+    Type: AWS::DataPipeline::Pipeline

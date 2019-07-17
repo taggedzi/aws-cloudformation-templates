@@ -1,0 +1,186 @@
+AWS SFTP:
+- MetaData:
+    description: 'Instantiates an autoscaling virtual server based on Secure File
+      Transfer Protocol (SFTP) in AWS. When you make updates to your server or when
+      you work with users, use the service-generated ServerId property that is assigned
+      to the newly created server. '
+    name: AWS::Transfer::Server
+    properties:
+    - EndpointDetails:
+      - The virtual private cloud (VPC) endpoint settings that you want to configure
+        for your
+      - SFTP server.
+      - This parameter is required when you specify a value for the EndpointType parameter.
+      - 'Required: No'
+      - 'Type: EndpointDetails'
+      - 'Update requires: No interruption'
+    - EndpointType:
+      - The type of VPC endpoint that you want your SFTP server to connect to. If
+        you connect
+      - to a
+      - VPC endpoint, your SFTP server isn't accessible over the public internet.
+      - 'Required: Conditional'
+      - 'Type: String'
+      - 'Allowed Values: PUBLIC | VPC_ENDPOINT'
+      - 'Update requires: No interruption'
+    - IdentityProviderDetails:
+      - This parameter is required when the IdentityProviderType
+      - is set to API_GATEWAY. Accepts an array containing all of the information
+        required to call a customer-supplied
+      - authentication API, including the API Gateway URL. This property is not required
+        when
+      - the IdentityProviderType
+      - is set to SERVICE_MANAGED.
+      - 'Required: No'
+      - 'Type: IdentityProviderDetails'
+      - 'Update requires: No interruption'
+    - IdentityProviderType:
+      - Specifies the mode of authentication for the SFTP server. The default value
+        is
+      - SERVICE_MANAGED, which allows you to store and access SFTP user credentials
+      - within the AWS Transfer for SFTP service. Use the API_GATEWAY value to integrate
+        with an
+      - identity provider of your choosing. The API_GATEWAY setting requires you to
+      - provide an API Gateway endpoint URL to call for authentication using the
+      - IdentityProviderDetails parameter.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Allowed Values: API_GATEWAY | SERVICE_MANAGED'
+      - 'Update requires: Replacement'
+    - LoggingRole:
+      - A value that allows the service to write your SFTP users' activity to your
+        Amazon
+      - CloudWatch logs for monitoring and auditing purposes.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Pattern: arn:.*role/.*'
+      - 'Update requires: No interruption'
+    - Tags:
+      - Key-value pairs that can be used to group and search for servers.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Maximum: 50'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-server.html
+  Server:
+    Properties:
+      EndpointDetails: EndpointDetails
+      EndpointType: String
+      IdentityProviderDetails: IdentityProviderDetails
+      IdentityProviderType: String
+      LoggingRole: String
+      Tags:
+      - Tag
+    Type: AWS::Transfer::Server
+- MetaData:
+    description: 'Creates a user and associates them with an existing Secure File
+      Transfer Protocol (SFTP) server. You can only create and associate users with
+      SFTP servers that have the IdentityProviderType set to SERVICE_MANAGED. Using
+      parameters for CreateUser, you can specify the user name, set the home directory,
+      store the user''s public key, and assign the user''s AWS Identity and Access
+      Management (IAM) role. You can also optionally add a scope-down policy, and
+      assign metadata with tags that can be used to group and search for users. '
+    name: AWS::Transfer::User
+    properties:
+    - HomeDirectory:
+      - The landing directory (folder) for a user when they log in to the server using
+        their
+      - SFTP
+      - client. An example is /home/username
+      - .
+      - 'Required: No'
+      - 'Type: String'
+      - 'Maximum: 1024'
+      - 'Pattern: ^$|/.*'
+      - 'Update requires: No interruption'
+    - Policy:
+      - A scope-down policy for your user so you can use the same IAM role across
+        multiple
+      - users.
+      - This policy scopes down user access to portions of their Amazon S3 bucket.
+        Variables
+      - that you
+      - can use inside this policy include ${Transfer:UserName},
+      - ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
+      - Note
+      - For scope-down policies, AWS Transfer for SFTP stores the policy as a JSON
+        blob, instead
+      - of the Amazon Resource Name (ARN) of the policy. You save the policy as a
+        JSON blob
+      - and pass
+      - it in the Policy argument.
+      - For an example of a scope-down policy, see
+      - Creating a Scope-Down Policy.
+      - For more information, see AssumeRole
+      - in the AWS Security Token Service API Reference.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    - Role:
+      - The IAM role that controls your user's access to your Amazon S3 bucket. The
+        policies
+      - attached to this role will determine the level of access you want to provide
+        your
+      - users when
+      - transferring files into and out of your Amazon S3 bucket or buckets. The IAM
+        role
+      - should also
+      - contain a trust relationship that allows the SFTP server to access your resources
+      - when
+      - servicing your SFTP user's transfer requests.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Pattern: arn:.*role/.*'
+      - 'Update requires: No interruption'
+    - ServerId:
+      - A system-assigned unique identifier for an SFTP server instance. This is the
+        specific
+      - SFTP
+      - server that you added your user to.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Pattern: ^s-([0-9a-f]{17})$'
+      - 'Update requires: Replacement'
+    - SshPublicKeys:
+      - This property contains the public key portion of the Secure Shell (SSH) keys
+        stored
+      - for
+      - the described user.
+      - 'Required: No'
+      - 'Type: List of SshPublicKey'
+      - 'Maximum: 5'
+      - 'Update requires: No interruption'
+    - Tags:
+      - Key-value pairs that can be used to group and search for users. Tags are metadata
+      - attached
+      - to users for any purpose.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Maximum: 50'
+      - 'Update requires: No interruption'
+    - UserName:
+      - A unique string that identifies a user and is associated with a server as
+        specified
+      - by the
+      - ServerId. This user name must be a minimum of 3 and a maximum of 32 characters
+      - 'long. The following are valid characters: a-z, A-Z, 0-9, underscore, and
+        hyphen. The'
+      - user name
+      - can't start with a hyphen.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Pattern: ^[a-zA-Z0-9_][a-zA-Z0-9_-]{2,31}$'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-user.html
+  User:
+    Properties:
+      HomeDirectory: String
+      Policy: String
+      Role: String
+      ServerId: String
+      SshPublicKeys:
+      - SshPublicKey
+      Tags:
+      - Tag
+      UserName: String
+    Type: AWS::Transfer::User

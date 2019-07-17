@@ -1,0 +1,165 @@
+Directory Service:
+- MetaData:
+    description: 'The AWS::DirectoryService::MicrosoftAD resource specifies a Microsoft
+      Active Directory in AWS so that your directory users and groups can access the
+      AWS Management Console and AWS applications using their existing credentials.
+      For more information, see AWS Managed Microsoft AD in the AWS Directory Service
+      Admin Guide. '
+    name: AWS::DirectoryService::MicrosoftAD
+    properties:
+    - CreateAlias:
+      - Specifies an alias for a directory and assigns the alias to the directory.
+        The alias
+      - is used to construct the access URL for the directory, such as
+      - http://<alias>.awsapps.com. By default, AWS CloudFormation does not
+      - create an alias.
+      - Important
+      - After an alias has been created, it cannot be deleted or reused, so this operation
+      - should only be used when absolutely necessary.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: Replacement'
+    - Edition:
+      - 'AWS Managed Microsoft AD is available in two editions: Standard and Enterprise.
+        Enterprise is the default.'
+      - 'Required: No'
+      - 'Type: String'
+      - 'Allowed Values: Enterprise | Standard'
+      - 'Update requires: Replacement'
+    - EnableSso:
+      - Whether to enable single sign-on for a Microsoft Active Directory in AWS.
+        Single sign-on
+      - allows users in your directory to access certain AWS services from a computer
+        joined
+      - to the directory without having to enter their credentials separately. If
+        you don't
+      - specify a value, AWS CloudFormation disables single sign-on by default.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: No interruption'
+    - Name:
+      - The fully qualified domain name for the AWS Managed Microsoft AD directory,
+        such as
+      - corp.example.com. This name will resolve inside your VPC only. It does not
+        need
+      - to be publicly resolvable.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Pattern: ^([a-zA-Z0-9]+[\\.-])+([a-zA-Z0-9])+$'
+      - 'Update requires: Replacement'
+    - Password:
+      - The password for the default administrative user named Admin.
+      - If you need to change the password for the administrator account, see the
+        ResetUserPassword API call in the AWS Directory Service API Reference.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Pattern: (?=^.{8,64}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9\s])(?=.*[a-z])|(?=.*[^A-Za-z0-9\s])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9\s]))^.*'
+      - 'Update requires: Replacement'
+    - ShortName:
+      - The NetBIOS name for your domain, such as CORP. If you don't specify a NetBIOS
+        name, it will default to the first part of your directory
+      - DNS. For example, CORP for the directory DNS corp.example.com.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Pattern: ^[^\\/:*?\"\<\>|.]+[^\\/:*?\"<>|]*$'
+      - 'Update requires: Replacement'
+    - VpcSettings:
+      - Specifies the VPC settings of the Microsoft AD directory server in AWS.
+      - 'Required: Yes'
+      - 'Type: VpcSettings'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html
+  MicrosoftAD:
+    Properties:
+      CreateAlias: Boolean
+      Edition: String
+      EnableSso: Boolean
+      Name: String
+      Password: String
+      ShortName: String
+      VpcSettings: VpcSettings
+    Type: AWS::DirectoryService::MicrosoftAD
+- MetaData:
+    description: "The AWS::DirectoryService::SimpleAD resource specifies an AWS Directory\
+      \ Service Simple Active Directory (Simple AD) in AWS so that your directory\
+      \ users and groups can access the AWS Management Console and AWS applications\
+      \ using their existing credentials. Simple AD is a Microsoft Active Directoryâ\x80\
+      \x93compatible directory. For more information, see Simple Active Directory\
+      \ in the AWS Directory Service Admin Guide. "
+    name: AWS::DirectoryService::SimpleAD
+    properties:
+    - CreateAlias:
+      - If set to true, specifies an alias for a directory and assigns the
+      - alias to the directory. The alias is used to construct the access URL for
+        the directory,
+      - such
+      - as http://<alias>.awsapps.com. By default, this property is set to
+      - false.
+      - Important
+      - After an alias has been created, it cannot be deleted or reused, so this operation
+      - should only be used when absolutely necessary.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: Replacement'
+    - Description:
+      - A description for the directory.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Minimum: 0'
+      - 'Maximum: 128'
+      - 'Pattern: ^([a-zA-Z0-9_])[\\a-zA-Z0-9_@#%*+=:?./!\s-]*$'
+      - 'Update requires: Replacement'
+    - EnableSso:
+      - Whether to enable single sign-on for a directory. If you don't specify a value,
+      - AWS CloudFormation disables single sign-on by default.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: No interruption'
+    - Name:
+      - The fully qualified name for the directory, such as corp.example.com.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Pattern: ^([a-zA-Z0-9]+[\\.-])+([a-zA-Z0-9])+$'
+      - 'Update requires: Replacement'
+    - Password:
+      - The password for the directory administrator. The directory creation process
+        creates
+      - a directory administrator account with the user name Administrator and this
+      - password.
+      - If you need to change the password for the administrator account, see the
+        ResetUserPassword API call in the AWS Directory Service API Reference.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Pattern: (?=^.{8,64}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9\s])(?=.*[a-z])|(?=.*[^A-Za-z0-9\s])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9\s]))^.*'
+      - 'Update requires: Replacement'
+    - ShortName:
+      - The NetBIOS name of the directory, such as CORP.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Pattern: ^[^\\/:*?\"\<\>|.]+[^\\/:*?\"<>|]*$'
+      - 'Update requires: Replacement'
+    - Size:
+      - The size of the directory. For valid values, see CreateDirectory in the AWS
+        Directory Service API Reference.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Allowed Values: Large | Small'
+      - 'Update requires: Replacement'
+    - VpcSettings:
+      - A DirectoryVpcSettings object that contains additional information for the
+      - operation.
+      - 'Required: Yes'
+      - 'Type: VpcSettings'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html
+  SimpleAD:
+    Properties:
+      CreateAlias: Boolean
+      Description: String
+      EnableSso: Boolean
+      Name: String
+      Password: String
+      ShortName: String
+      Size: String
+      VpcSettings: VpcSettings
+    Type: AWS::DirectoryService::SimpleAD

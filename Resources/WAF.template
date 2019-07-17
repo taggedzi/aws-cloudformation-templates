@@ -1,0 +1,238 @@
+WAF:
+- ByteMatchSet:
+    Properties:
+      ByteMatchTuples:
+      - ByteMatchTuple
+      Name: String
+    Type: AWS::WAF::ByteMatchSet
+  MetaData:
+    description: 'The AWS::WAF::ByteMatchSet resource creates an AWS WAF ByteMatchSet
+      that identifies a part of a web request that you want to inspect. '
+    name: AWS::WAF::ByteMatchSet
+    properties:
+    - ByteMatchTuples:
+      - Specifies the bytes (typically a string that corresponds with ASCII characters)
+        that
+      - you want AWS WAF to search for in web requests, the location in requests that
+        you
+      - want AWS WAF to search, and other settings.
+      - 'Required: No'
+      - 'Type: List of ByteMatchTuple'
+      - 'Update requires: No interruption'
+    - Name:
+      - A friendly name or description of the ByteMatchSet. You can't change Name
+        after you create a ByteMatchSet.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-bytematchset.html
+- IPSet:
+    Properties:
+      IPSetDescriptors:
+      - IPSetDescriptor
+      Name: String
+    Type: AWS::WAF::IPSet
+  MetaData:
+    description: 'Contains one or more IP addresses or blocks of IP addresses specified
+      in Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports IPv4 address
+      ranges: /8 and any range between /16 through /32.  AWS WAF supports IPv6 address
+      ranges: /24, /32, /48, /56, /64, and /128. '
+    name: AWS::WAF::IPSet
+    properties:
+    - IPSetDescriptors:
+      - The IP address type (IPV4 or IPV6) and the IP address range (in CIDR notation)
+        that web requests originate from.
+      - If the WebACL is associated with a CloudFront distribution and the viewer
+        did not use an HTTP proxy
+      - or a load balancer to send the request, this is the value of the c-ip field
+        in the
+      - CloudFront access logs.
+      - 'Required: No'
+      - 'Type: List of IPSetDescriptor'
+      - 'Update requires: No interruption'
+    - Name:
+      - A friendly name or description of the IPSet. You can't change the name of
+        an IPSet after you create it.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-ipset.html
+- MetaData:
+    description: 'A combination of ByteMatchSet, IPSet, and/or SqlInjectionMatchSet
+      objects that identify the web requests that you want to allow, block, or count.
+      For example, you might create a Rule that includes the following predicates: '
+    name: AWS::WAF::Rule
+    properties:
+    - MetricName:
+      - A friendly name or description for the metrics for this Rule. The name can
+        contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum
+      - length 128 and minimum length one. It can't contain
+      - whitespace or metric names reserved for AWS WAF, including "All" and "Default_Action."
+      - You can't change MetricName after you create the Rule.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - Name:
+      - The friendly name or description for the Rule. You can't change the name of
+        a Rule after you create it.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Update requires: Replacement'
+    - Predicates:
+      - The Predicates object contains one Predicate element for each ByteMatchSet,
+        IPSet, or
+      - SqlInjectionMatchSet object that you want to include in a Rule.
+      - 'Required: No'
+      - 'Type: List of Predicate'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-rule.html
+  Rule:
+    Properties:
+      MetricName: String
+      Name: String
+      Predicates:
+      - Predicate
+    Type: AWS::WAF::Rule
+- MetaData:
+    description: 'A complex type that contains SizeConstraint objects, which specify
+      the parts of web requests that you want AWS WAF to inspect the size of. If a
+      SizeConstraintSet contains more than one SizeConstraint object, a request only
+      needs to match one constraint to be considered a match. '
+    name: AWS::WAF::SizeConstraintSet
+    properties:
+    - Name:
+      - The name, if any, of the SizeConstraintSet.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Update requires: Replacement'
+    - SizeConstraints:
+      - The size constraint and the part of the web request to check.
+      - 'Required: Yes'
+      - 'Type: List of SizeConstraint'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-sizeconstraintset.html
+  SizeConstraintSet:
+    Properties:
+      Name: String
+      SizeConstraints:
+      - SizeConstraint
+    Type: AWS::WAF::SizeConstraintSet
+- MetaData:
+    description: 'A complex type that contains SqlInjectionMatchTuple objects, which
+      specify the parts of web requests that you want AWS WAF to inspect for snippets
+      of malicious SQL code and, if you want AWS WAF to inspect a header, the name
+      of the header. If a SqlInjectionMatchSet contains more than one SqlInjectionMatchTuple
+      object, a request needs to include snippets of SQL code in only one of the specified
+      parts of the request to be considered a match. '
+    name: AWS::WAF::SqlInjectionMatchSet
+    properties:
+    - Name:
+      - The name, if any, of the SqlInjectionMatchSet.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Update requires: Replacement'
+    - SqlInjectionMatchTuples:
+      - Specifies the parts of web requests that you want to inspect for snippets
+        of malicious
+      - SQL code.
+      - 'Required: No'
+      - 'Type: List of SqlInjectionMatchTuple'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-sqlinjectionmatchset.html
+  SqlInjectionMatchSet:
+    Properties:
+      Name: String
+      SqlInjectionMatchTuples:
+      - SqlInjectionMatchTuple
+    Type: AWS::WAF::SqlInjectionMatchSet
+- MetaData:
+    description: 'Contains the Rules that identify the requests that you want to allow,
+      block, or count. In a WebACL, you also specify a default action (ALLOW or BLOCK),
+      and the action for each Rule that you add to a WebACL, for example, block requests
+      from specified IP addresses or block requests from specified referrers. You
+      also associate the WebACL with a CloudFront distribution to identify the requests
+      that you want AWS WAF to filter. If you add more than one Rule to a WebACL,
+      a request needs to match only one of the specifications to be allowed, blocked,
+      or counted. '
+    name: AWS::WAF::WebACL
+    properties:
+    - DefaultAction:
+      - The action to perform if none of the Rules contained in the WebACL match.
+        The action is specified by the
+      - WafAction object.
+      - 'Required: Yes'
+      - 'Type: WafAction'
+      - 'Update requires: No interruption'
+    - MetricName:
+      - A friendly name or description for the metrics for this WebACL. The name can
+        contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum
+      - length 128 and minimum length one. It can't contain
+      - whitespace or metric names reserved for AWS WAF, including "All" and "Default_Action."
+      - You can't change MetricName after you create the WebACL.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - Name:
+      - A friendly name or description of the WebACL. You can't change the name of
+        a WebACL after you create it.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Update requires: Replacement'
+    - Rules:
+      - An array that contains the action for each Rule in a WebACL, the priority
+        of the Rule,
+      - and the ID of the Rule.
+      - 'Required: No'
+      - 'Type: List of ActivatedRule'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html
+  WebACL:
+    Properties:
+      DefaultAction: WafAction
+      MetricName: String
+      Name: String
+      Rules:
+      - ActivatedRule
+    Type: AWS::WAF::WebACL
+- MetaData:
+    description: 'A complex type that contains XssMatchTuple objects, which specify
+      the parts of web requests that you want AWS WAF to inspect for cross-site scripting
+      attacks and, if you want AWS WAF to inspect a header, the name of the header.
+      If a XssMatchSet contains more than one XssMatchTuple object, a request needs
+      to include cross-site scripting attacks in only one of the specified parts of
+      the request to be considered a match. '
+    name: AWS::WAF::XssMatchSet
+    properties:
+    - Name:
+      - The name, if any, of the XssMatchSet.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Update requires: Replacement'
+    - XssMatchTuples:
+      - Specifies the parts of web requests that you want to inspect for cross-site
+        scripting
+      - attacks.
+      - 'Required: Yes'
+      - 'Type: List of XssMatchTuple'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-xssmatchset.html
+  XssMatchSet:
+    Properties:
+      Name: String
+      XssMatchTuples:
+      - XssMatchTuple
+    Type: AWS::WAF::XssMatchSet

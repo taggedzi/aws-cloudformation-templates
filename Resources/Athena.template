@@ -1,0 +1,43 @@
+Athena:
+- MetaData:
+    description: 'The AWS::Athena::NamedQuery resource specifies an Amazon Athena
+      query, where QueryString is the list of SQL query statements that comprise the
+      query. For more information, see CreateNamedQuery in the Amazon Athena API Reference. '
+    name: AWS::Athena::NamedQuery
+    properties:
+    - Database:
+      - The database to which the query belongs.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 255'
+      - 'Update requires: Replacement'
+    - Description:
+      - The query description.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 1024'
+      - 'Update requires: Replacement'
+    - Name:
+      - The query name.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 128'
+      - 'Update requires: Replacement'
+    - QueryString:
+      - The SQL query statements that comprise the query.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Minimum: 1'
+      - 'Maximum: 262144'
+      - 'Update requires: Replacement'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-namedquery.html
+  NamedQuery:
+    Properties:
+      Database: String
+      Description: String
+      Name: String
+      QueryString: String
+    Type: AWS::Athena::NamedQuery

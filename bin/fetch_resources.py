@@ -110,7 +110,11 @@ def collect_subtypes_for_resource():
             subtype_yaml = yaml.load(subtype_yaml_out, Loader=Loader)
             logging.warning(subtype_yaml)
 
-            subtype_variables = subtype_content.find('div', class_='variablelist').find('dl')
+            try:
+                subtype_variables = subtype_content.find('div', class_='variablelist').find('dl')
+            except AttributeError as aErr:
+                continue
+
             terms = []
             definitions = []
             subtype_properties = []
@@ -152,7 +156,6 @@ def collect_subtypes_for_resource():
 
 def save_page(name=None, content=None):
     if name and content:
-        time.sleep(1)
         with open(name, 'w') as file:
             file.write(content)
     else:
@@ -174,6 +177,7 @@ def get_page(url=None):
             file.close()
         else:
             logging.debug('Fetching from online.')
+            time.sleep(1)
             response = requests.get(url)
             text = response.text
         save_page(f'scratch/{name}', text)

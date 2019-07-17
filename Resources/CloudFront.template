@@ -1,0 +1,66 @@
+CloudFront:
+- CloudFrontOriginAccessIdentity:
+    Properties:
+      CloudFrontOriginAccessIdentityConfig: CloudFrontOriginAccessIdentityConfig
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+  MetaData:
+    description: 'The request to create a new origin access identity (OAI). An origin
+      access identity is a special CloudFront user that you can associate with Amazon
+      S3 origins, so that you can secure all or just some of your Amazon S3 content.
+      For more information, see Restricting Access to Amazon S3 Content by Using an
+      Origin Access Identity in the Amazon CloudFront Developer Guide. '
+    name: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    properties:
+    - CloudFrontOriginAccessIdentityConfig:
+      - The current configuration information for the identity.
+      - 'Required: Yes'
+      - 'Type: CloudFrontOriginAccessIdentityConfig'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html
+- Distribution:
+    Properties:
+      DistributionConfig: DistributionConfig
+      Tags:
+      - Tag
+    Type: AWS::CloudFront::Distribution
+  MetaData:
+    description: 'A distribution tells CloudFront where you want content to be delivered
+      from, and the details about how to track and manage content delivery. '
+    name: AWS::CloudFront::Distribution
+    properties:
+    - DistributionConfig:
+      - The current configuration information for the distribution. Send a GET
+      - request to the /CloudFront API version/distribution ID/config
+      - resource.
+      - 'Required: Yes'
+      - 'Type: DistributionConfig'
+      - 'Update requires: No interruption'
+    - Tags:
+      - A complex type that contains zero or more Tag elements.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html
+- MetaData:
+    description: 'A streaming distribution tells CloudFront where you want RTMP content
+      to be delivered from, and the details about how to track and manage content
+      delivery. '
+    name: AWS::CloudFront::StreamingDistribution
+    properties:
+    - StreamingDistributionConfig:
+      - The current configuration information for the RTMP distribution.
+      - 'Required: Yes'
+      - 'Type: StreamingDistributionConfig'
+      - 'Update requires: No interruption'
+    - Tags:
+      - A complex type that contains zero or more Tag elements.
+      - 'Required: Yes'
+      - 'Type: List of Tag'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html
+  StreamingDistribution:
+    Properties:
+      StreamingDistributionConfig: StreamingDistributionConfig
+      Tags:
+      - Tag
+    Type: AWS::CloudFront::StreamingDistribution

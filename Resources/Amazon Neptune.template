@@ -1,0 +1,350 @@
+Amazon Neptune:
+- DBCluster:
+    Properties:
+      AvailabilityZones:
+      - String
+      BackupRetentionPeriod: Integer
+      DBClusterIdentifier: String
+      DBClusterParameterGroupName: String
+      DBSubnetGroupName: String
+      IamAuthEnabled: Boolean
+      KmsKeyId: String
+      Port: Integer
+      PreferredBackupWindow: String
+      PreferredMaintenanceWindow: String
+      SnapshotIdentifier: String
+      StorageEncrypted: Boolean
+      Tags:
+      - Tag
+      VpcSecurityGroupIds:
+      - String
+    Type: AWS::Neptune::DBCluster
+  MetaData:
+    description: 'The AWS::Neptune::DBCluster resource creates an Amazon Neptune DB
+      cluster. Neptune is a fully managed graph database. '
+    name: AWS::Neptune::DBCluster
+    properties:
+    - AvailabilityZones:
+      - Provides the list of EC2 Availability Zones that instances in the DB cluster
+        can be
+      - created in.
+      - 'Required: No'
+      - 'Type: List of String'
+      - 'Update requires: Replacement'
+    - BackupRetentionPeriod:
+      - Specifies the number of days for which automatic DB snapshots are retained.
+      - An update may require some interruption. See ModifyDBInstance in the Amazon
+        Neptune User Guide for more information.
+      - 'Required: No'
+      - 'Type: Integer'
+      - 'Update requires: No interruption'
+    - DBClusterIdentifier:
+      - Contains a user-supplied DB cluster identifier. This identifier is the unique
+        key
+      - that
+      - identifies a DB cluster.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - DBClusterParameterGroupName:
+      - Provides the name of the DB cluster parameter group.
+      - An update may require some interruption. See ModifyDBInstance in the Amazon
+        Neptune User Guide for more information.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    - DBSubnetGroupName:
+      - Specifies information on the subnet group associated with the DB cluster,
+        including
+      - the
+      - name, description, and subnets in the subnet group.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - IamAuthEnabled:
+      - True if mapping of AWS Identity and Access Management (IAM) accounts to database
+        accounts
+      - is enabled, and otherwise false.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: No interruption'
+    - KmsKeyId:
+      - If StorageEncrypted is true, the AWS KMS key identifier for the encrypted
+        DB
+      - cluster.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - Port:
+      - Specifies the port that the database engine is listening on.
+      - 'Required: No'
+      - 'Type: Integer'
+      - 'Update requires: No interruption'
+    - PreferredBackupWindow:
+      - Specifies the daily time range during which automated backups are created
+        if automated
+      - backups are enabled, as determined by the BackupRetentionPeriod.
+      - An update may require some interruption.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    - PreferredMaintenanceWindow:
+      - Specifies the weekly time range during which system maintenance can occur,
+        in Universal
+      - Coordinated Time (UTC).
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    - SnapshotIdentifier:
+      - Contains the identifier of the source DB cluster if this DB cluster is a Read
+      - Replica.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - StorageEncrypted:
+      - Indicates whether the DB cluster is encrypted.
+      - If you specify the DBClusterIdentifier,
+      - DBSnapshotIdentifier, or SourceDBInstanceIdentifier
+      - property, don't specify this property. The value is inherited from the cluster,
+      - snapshot, or source DB instance. If you specify the KmsKeyId property, you
+      - must enable encryption.
+      - If you specify the KmsKeyId, you must enable encryption by setting
+      - StorageEncrypted to true.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: Replacement'
+    - Tags:
+      - The tags assigned to this cluster.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Update requires: No interruption'
+    - VpcSecurityGroupIds:
+      - Provides a list of VPC security groups that the DB cluster belongs to.
+      - 'Required: No'
+      - 'Type: List of String'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html
+- DBClusterParameterGroup:
+    Properties:
+      Description: String
+      Family: String
+      Name: String
+      Parameters: Json
+      Tags:
+      - Tag
+    Type: AWS::Neptune::DBClusterParameterGroup
+  MetaData:
+    description: 'The AWS::Neptune::DBClusterParameterGroup resource creates a new
+      Amazon Neptune DB cluster parameter group. '
+    name: AWS::Neptune::DBClusterParameterGroup
+    properties:
+    - Description:
+      - Provides the customer-specified description for this DB cluster parameter
+        group.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - Family:
+      - Must be neptune1.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - Name:
+      - Provides the name of the DB cluster parameter group.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - Parameters:
+      - The parameters to set for this DB cluster parameter group.
+      - The parameters are expressed as a JSON object consisting of key-value pairs.
+      - If you update the parameters, some interruption may occur depending on which
+      - parameters you update.
+      - 'Required: Yes'
+      - 'Type: Json'
+      - 'Update requires: No interruption'
+    - Tags:
+      - The tags that you want to attach to this parameter group.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbclusterparametergroup.html
+- DBInstance:
+    Properties:
+      AllowMajorVersionUpgrade: Boolean
+      AutoMinorVersionUpgrade: Boolean
+      AvailabilityZone: String
+      DBClusterIdentifier: String
+      DBInstanceClass: String
+      DBInstanceIdentifier: String
+      DBParameterGroupName: String
+      DBSnapshotIdentifier: String
+      DBSubnetGroupName: String
+      PreferredMaintenanceWindow: String
+      Tags:
+      - Tag
+    Type: AWS::Neptune::DBInstance
+  MetaData:
+    description: 'The AWS::Neptune::DBInstance type creates an Amazon Neptune DB instance. '
+    name: AWS::Neptune::DBInstance
+    properties:
+    - AllowMajorVersionUpgrade:
+      - Indicates that major version upgrades are allowed. Changing this
+      - parameter doesn't result in an outage and the change is asynchronously
+      - applied as soon as possible. This parameter must be set to true when specifying
+      - a value for the EngineVersion parameter that is a different major version
+        than
+      - the DB instance's current version.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: No interruption'
+    - AutoMinorVersionUpgrade:
+      - Indicates that minor version patches are applied automatically.
+      - When updating this property, some interruptions may occur.
+      - 'Required: No'
+      - 'Type: Boolean'
+      - 'Update requires: No interruption'
+    - AvailabilityZone:
+      - Specifies the name of the Availability Zone the DB instance is located in.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - DBClusterIdentifier:
+      - If the DB instance is a member of a DB cluster, contains the name of the DB
+        cluster
+      - that
+      - the DB instance is a member of.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - DBInstanceClass:
+      - Contains the name of the compute and memory capacity class of the DB instance.
+      - If you update this property, some interruptions may occur.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    - DBInstanceIdentifier:
+      - Contains a user-supplied database identifier. This identifier is the unique
+        key that
+      - identifies a DB instance.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - DBParameterGroupName:
+      - The name of an existing DB parameter group or a reference to an
+      - AWS::Neptune::DBParameterGroup resource created in the template.
+      - If any of the data members of the referenced parameter
+      - group are changed during an update, the DB instance might need to be restarted,
+      - which causes some interruption. If the parameter group contains static parameters,
+      - whether they were changed or not, an update triggers a reboot.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    - DBSnapshotIdentifier:
+      - This parameter is not supported.
+      - AWS::Neptune::DBInstance does not support restoring from snapshots.
+      - AWS::Neptune::DBCluster does support restoring from snapshots.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - DBSubnetGroupName:
+      - A DB subnet group to associate with the DB instance. If you update this value,
+      - the new subnet group must be a subnet group in a new virtual private cloud
+      - (VPC).
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - PreferredMaintenanceWindow:
+      - Specifies the weekly time range during which system maintenance can occur,
+        in Universal
+      - Coordinated Time (UTC).
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    - Tags:
+      - An arbitrary set of tags (key-value pairs) for this DB instance.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbinstance.html
+- DBParameterGroup:
+    Properties:
+      Description: String
+      Family: String
+      Name: String
+      Parameters: Json
+      Tags:
+      - Tag
+    Type: AWS::Neptune::DBParameterGroup
+  MetaData:
+    description: ' AWS::Neptune::DBParameterGroup creates a new DB parameter group.
+      This type can be declared in a template and referenced in the DBParameterGroupName
+      parameter of AWS::Neptune::DBInstance. '
+    name: AWS::Neptune::DBParameterGroup
+    properties:
+    - Description:
+      - Provides the customer-specified description for this DB parameter group.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - Family:
+      - Must be neptune1.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - Name:
+      - Provides the name of the DB parameter group.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - Parameters:
+      - The parameters to set for this DB parameter group.
+      - The parameters are expressed as a JSON object consisting of key-value pairs.
+      - Changes to dynamic parameters are applied immediately. During an update, if
+      - you have static parameters (whether they were changed or not), it triggers
+        AWS
+      - CloudFormation to reboot the associated DB instance without failover.
+      - 'Required: Yes'
+      - 'Type: Json'
+      - 'Update requires: No interruption'
+    - Tags:
+      - The tags that you want to attach to this parameter group.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbparametergroup.html
+- DBSubnetGroup:
+    Properties:
+      DBSubnetGroupDescription: String
+      DBSubnetGroupName: String
+      SubnetIds:
+      - String
+      Tags:
+      - Tag
+    Type: AWS::Neptune::DBSubnetGroup
+  MetaData:
+    description: 'The AWS::Neptune::DBSubnetGroup type creates an Amazon Neptune DB
+      subnet group. Subnet groups must contain at least two subnets in two different
+      Availability Zones in the same AWS Region. '
+    name: AWS::Neptune::DBSubnetGroup
+    properties:
+    - DBSubnetGroupDescription:
+      - Provides the description of the DB subnet group.
+      - 'Required: Yes'
+      - 'Type: String'
+      - 'Update requires: No interruption'
+    - DBSubnetGroupName:
+      - The name of the DB subnet group.
+      - 'Required: No'
+      - 'Type: String'
+      - 'Update requires: Replacement'
+    - SubnetIds:
+      - The Amazon EC2 subnet IDs for the DB subnet group.
+      - 'Required: Yes'
+      - 'Type: List of String'
+      - 'Update requires: No interruption'
+    - Tags:
+      - The tags that you want to attach to the DB subnet group.
+      - 'Required: No'
+      - 'Type: List of Tag'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbsubnetgroup.html

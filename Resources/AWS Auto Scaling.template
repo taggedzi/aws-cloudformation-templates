@@ -1,0 +1,25 @@
+AWS Auto Scaling:
+- MetaData:
+    description: 'The AWS::AutoScalingPlans::ScalingPlan resource defines a scaling
+      plan that AWS Auto Scaling uses to scale the following application resources: '
+    name: AWS::AutoScalingPlans::ScalingPlan
+    properties:
+    - ApplicationSource:
+      - A CloudFormation stack or a set of tags. You can create one scaling plan per
+        application
+      - source.
+      - 'Required: Yes'
+      - 'Type: ApplicationSource'
+      - 'Update requires: No interruption'
+    - ScalingInstructions:
+      - The scaling instructions.
+      - 'Required: Yes'
+      - 'Type: List of ScalingInstruction'
+      - 'Update requires: No interruption'
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscalingplans-scalingplan.html
+  ScalingPlan:
+    Properties:
+      ApplicationSource: ApplicationSource
+      ScalingInstructions:
+      - ScalingInstruction
+    Type: AWS::AutoScalingPlans::ScalingPlan
