@@ -4,10 +4,8 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import os.path
-import re
 import yaml
 import time
-from yaml import load, dump
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
 except ImportError:
@@ -15,6 +13,8 @@ except ImportError:
 from requests.exceptions import HTTPError
 import logging
 logging.basicConfig(level=logging.INFO)
+
+MAX_PAGES_TO_PULL=0
 
 
 base_url = 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide'
@@ -71,7 +71,7 @@ def get_resource_subtypes():
         }, indent=4, sort_keys=True))
 
         i += 1
-        if i > 1:
+        if MAX_PAGES_TO_PULL != 0 and i >= MAX_PAGES_TO_PULL:
             logging.warning('Reached Limit of pulled resources. Stopping process.')
             break
 
