@@ -35,475 +35,241 @@ Amazon EC2 Auto Scaling:
       - String
     Type: AWS::AutoScaling::AutoScalingGroup
   MetaData:
-    description: Defines an Amazon EC2 Auto Scaling group with the specified name
-      and attributes.
+    description: Defines an Amazon EC2 Auto Scaling group with the specified name and attributes.
     name: AWS::AutoScaling::AutoScalingGroup
     properties:
-    - AutoScalingGroupName: 'The name of the Auto Scaling group. This name must be
-        unique per Region per
-
+    - AutoScalingGroupName: 'The name of the Auto Scaling group. This name must be unique per Region per
         account.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
-    - AvailabilityZones: 'A list of Availability Zones for the group. You must specify
-        one of the following
-
+    - AvailabilityZones: 'A list of Availability Zones for the group. You must specify one of the following
         properties: VPCZoneIdentifier or AvailabilityZones.
-
-        If your account supports EC2-Classic and VPC, this property is required to
-        launch
-
+        If your account supports EC2-Classic and VPC, this property is required to launch
         instances into EC2-Classic.
-
         Required: Conditional
-
         Type: List of String
-
         Update requires: No interruption'
-    - Cooldown: 'The amount of time, in seconds, after a scaling activity completes
-        before another
-
+    - Cooldown: 'The amount of time, in seconds, after a scaling activity completes before another
         scaling
-
         activity can start. The default value is 300.
-
-        Used only when a scaling-specific cooldown is not specified and not supported
-        for
-
+        Used only when a scaling-specific cooldown is not specified and not supported for
         target
-
-        tracking scaling policies, step scaling policies, or scheduled scaling. For
-        more information,
-
+        tracking scaling policies, step scaling policies, or scheduled scaling. For more information,
         see Scaling
-
         Cooldowns in the Amazon EC2 Auto Scaling User Guide.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - DesiredCapacity: 'The number of Amazon EC2 instances that the Auto Scaling group
-        attempts to maintain.
-
+    - DesiredCapacity: 'The number of Amazon EC2 instances that the Auto Scaling group attempts to maintain.
         The
-
-        number must be greater than or equal to the minimum size of the group and
-        less than
-
+        number must be greater than or equal to the minimum size of the group and less than
         or equal
-
-        to the maximum size of the group. If you do not specify a desired capacity,
-        the default
-
+        to the maximum size of the group. If you do not specify a desired capacity, the default
         is the
-
         minimum size of the group.
-
-        If SpotPrice is not set in the LaunchConfiguration for the Auto Scaling group,
-        then Amazon EC2 Auto Scaling will
-
-        begin to launch instances based on DesiredCapacity. CloudFormation will not
-        mark
-
-        the Auto Scaling group as successful (by setting its status to CREATE_COMPLETE)
-        until
-
+        If SpotPrice is not set in the LaunchConfiguration for the Auto Scaling group, then Amazon EC2
+        Auto Scaling will
+        begin to launch instances based on DesiredCapacity. CloudFormation will not mark
+        the Auto Scaling group as successful (by setting its status to CREATE_COMPLETE) until
         the
-
         desired capacity is reached.
-
         If SpotPrice
-
         is set, then DesiredCapacity will not be used as a criteria
-
-        for success, since instances will only be started when the Spot price has
-        been matched.
-
+        for success, since instances will only be started when the Spot price has been matched.
         After
-
         the Spot price has been matched, however, Amazon EC2 Auto Scaling uses
-
         DesiredCapacity as the target capacity for the group.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - HealthCheckGracePeriod: 'The amount of time, in seconds, that Amazon EC2 Auto
-        Scaling waits before checking
-
+    - HealthCheckGracePeriod: 'The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before
+        checking
         the
-
         health status of an EC2 instance that has come into service.
-
         For more information, see Health Checks for Auto Scaling
-
         Instances in the Amazon EC2 Auto Scaling User Guide.
-
         If you are adding an ELB health check, you must specify this property.
-
         Required: Conditional
-
         Type: Integer
-
         Update requires: No interruption'
-    - HealthCheckType: 'The service to use for the health checks. The valid values
-        are EC2 (default)
-
-        and ELB. If you configure an Auto Scaling group to use ELB health checks,
-        it
-
-        considers the instance unhealthy if it fails either the EC2 status checks
-        or the load
-
+    - HealthCheckType: 'The service to use for the health checks. The valid values are EC2 (default)
+        and ELB. If you configure an Auto Scaling group to use ELB health checks, it
+        considers the instance unhealthy if it fails either the EC2 status checks or the load
         balancer
-
         health checks.
-
         For more information, see Health Checks for Auto Scaling
-
         Instances in the Amazon EC2 Auto Scaling User Guide.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 32
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
-    - InstanceId: 'The ID of the instance used to create a launch configuration for
-        the group.
-
-        When you specify an ID of an instance, Amazon EC2 Auto Scaling creates a new
-        launch
-
-        configuration and associates it with the Auto Scaling group. The new launch
-        configuration
-
+    - InstanceId: 'The ID of the instance used to create a launch configuration for the group.
+        When you specify an ID of an instance, Amazon EC2 Auto Scaling creates a new launch
+        configuration and associates it with the Auto Scaling group. The new launch configuration
         derives all its properties from the instance, with the exception of
-
         BlockDeviceMapping and AssociatePublicIpAddress.
-
         For more information, see Create an Auto Scaling Group
-
         Using an EC2 Instance in the Amazon EC2 Auto Scaling User
-
         Guide.
-
-        When you create an Auto Scaling group, you must specify one of the following
-        properties
-
+        When you create an Auto Scaling group, you must specify one of the following properties
         in
-
         your request: LaunchConfigurationName, LaunchTemplate,
-
         InstanceId, or MixedInstancesPolicy.
-
         Required: Conditional
-
         Type: String
-
         Update requires: Replacement'
-    - LaunchConfigurationName: 'The name of the LaunchConfiguration to use to launch
-        instances.
-
-        If this resource has a public IP address and is also in a VPC that is defined
-        in the
-
+    - LaunchConfigurationName: 'The name of the LaunchConfiguration to use to launch instances.
+        If this resource has a public IP address and is also in a VPC that is defined in the
         same
-
         template, you must use the DependsOn
-
         attribute to declare a dependency on the VPC-gateway attachment.
-
-        When you create an Auto Scaling group, you must specify one of the following
-        properties
-
+        When you create an Auto Scaling group, you must specify one of the following properties
         in
-
         your request: LaunchConfigurationName, LaunchTemplate,
-
         InstanceId, or MixedInstancesPolicy.
-
         Note
-
         When you update LaunchConfigurationName, existing Amazon EC2 instances
-
-        continue to run with the configuration that they were originally launched
-        with. To
-
+        continue to run with the configuration that they were originally launched with. To
         update
-
         existing instances, specify an UpdatePolicy
-
         attribute for the Auto Scaling group.
-
         Required: Conditional
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
     - LaunchTemplate: 'The LaunchTemplate to use to launch instances.
-
-        When you create an Auto Scaling group, you must specify one of the following
-        properties
-
+        When you create an Auto Scaling group, you must specify one of the following properties
         in
-
         your request: LaunchConfigurationName, LaunchTemplate,
-
         InstanceId, or MixedInstancesPolicy.
-
         Note
-
         When you update LaunchTemplate, existing Amazon EC2 instances continue to
-
-        run with the configuration that they were originally launched with. To update
-        existing
-
+        run with the configuration that they were originally launched with. To update existing
         instances, specify an UpdatePolicy
-
         attribute for the Auto Scaling group.
-
         Required: Conditional
-
         Type: LaunchTemplateSpecification
-
         Update requires: No interruption'
-    - LifecycleHookSpecificationList: 'The lifecycle hooks for the group, which specify
-        actions to perform when Amazon EC2
-
+    - LifecycleHookSpecificationList: 'The lifecycle hooks for the group, which specify actions to perform
+        when Amazon EC2
         Auto
-
         Scaling launches or terminates instances.
-
         Required: No
-
         Type: List of LifecycleHookSpecification
-
         Update requires: No interruption'
-    - LoadBalancerNames: 'A list of Classic Load Balancers associated with this Auto
-        Scaling group. For Application
-
-        Load Balancers and Network Load Balancers, specify a list of target groups
-        using the
-
+    - LoadBalancerNames: 'A list of Classic Load Balancers associated with this Auto Scaling group. For
+        Application
+        Load Balancers and Network Load Balancers, specify a list of target groups using the
         TargetGroupARNs property instead.
-
         For more information, see Using a Load Balancer with an
-
         Auto Scaling Group in the Amazon EC2 Auto Scaling User Guide.
-
         Required: No
-
         Type: List of String
-
         Update requires: No interruption'
     - MaxSize: 'The maximum number of Amazon EC2 instances in the Auto Scaling group.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - MetricsCollection: 'Enables the monitoring of group metrics of an Auto Scaling
-        group. By default, these
-
+    - MetricsCollection: 'Enables the monitoring of group metrics of an Auto Scaling group. By default,
+        these
         metrics are disabled.
-
         Required: No
-
         Type: List of MetricsCollection
-
         Update requires: No interruption'
     - MinSize: 'The minimum number of Amazon EC2 instances in the Auto Scaling group.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - MixedInstancesPolicy: "An embedded object that specifies a mixed instances policy.\nThe
-        policy includes properties that not only define the distribution of On-Demand\nInstances
-        and Spot Instances, the maximum price to pay for Spot instances, and how\nthe
-        Auto\nScaling group allocates instance types to fulfill On-Demand and Spot
-        capacity, but\nalso the\nproperties that specify the instance configuration
-        informationâ\x80\x94the launch template\nand\ninstance types.\nFor more information,
-        see Auto Scaling Groups with Multiple\nInstance Types and Purchase Options
-        in the Amazon EC2 Auto Scaling User\nGuide.\nWhen you create an Auto Scaling
-        group, you must specify one of the following properties\nin\nyour request:
-        LaunchConfigurationName, LaunchTemplate,\nInstanceId, or MixedInstancesPolicy.\nRequired:
+    - MixedInstancesPolicy: "An embedded object that specifies a mixed instances policy.\nThe policy includes
+        properties that not only define the distribution of On-Demand\nInstances and Spot Instances, the
+        maximum price to pay for Spot instances, and how\nthe Auto\nScaling group allocates instance types
+        to fulfill On-Demand and Spot capacity, but\nalso the\nproperties that specify the instance configuration
+        informationâ\x80\x94the launch template\nand\ninstance types.\nFor more information, see Auto
+        Scaling Groups with Multiple\nInstance Types and Purchase Options in the Amazon EC2 Auto Scaling
+        User\nGuide.\nWhen you create an Auto Scaling group, you must specify one of the following properties\nin\nyour
+        request: LaunchConfigurationName, LaunchTemplate,\nInstanceId, or MixedInstancesPolicy.\nRequired:
         Conditional\nType: MixedInstancesPolicy\nUpdate requires: No interruption"
-    - NotificationConfigurations: 'Configures an Auto Scaling group to send notifications
-        when specified events take
-
+    - NotificationConfigurations: 'Configures an Auto Scaling group to send notifications when specified
+        events take
         place.
-
         Required: No
-
         Type: List of NotificationConfiguration
-
         Update requires: No interruption'
-    - PlacementGroup: 'The name of an existing cluster placement group into which
-        you want to launch your
-
-        instances. A placement group is a logical grouping of instances within a single
-        Availability
-
+    - PlacementGroup: 'The name of an existing cluster placement group into which you want to launch your
+        instances. A placement group is a logical grouping of instances within a single Availability
         Zone. You cannot specify multiple Availability Zones and a placement group.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
-    - ServiceLinkedRoleARN: 'The Amazon Resource Name (ARN) of the service-linked
-        role that the Auto Scaling group
-
+    - ServiceLinkedRoleARN: 'The Amazon Resource Name (ARN) of the service-linked role that the Auto Scaling
+        group
         uses
-
-        to call other AWS services on your behalf. By default, Amazon EC2 Auto Scaling
-        uses
-
+        to call other AWS services on your behalf. By default, Amazon EC2 Auto Scaling uses
         a
-
-        service-linked role named AWSServiceRoleForAutoScaling, which it creates if
-        it does
-
+        service-linked role named AWSServiceRoleForAutoScaling, which it creates if it does
         not exist.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 1600
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
     - Tags: 'The tags for the group.
-
         Required: No
-
         Type: List of TagProperty
-
         Update requires: No interruption'
-    - TargetGroupARNs: 'A list of Amazon Resource Names (ARN) of target groups to
-        associate with the Auto
-
+    - TargetGroupARNs: 'A list of Amazon Resource Names (ARN) of target groups to associate with the Auto
         Scaling
-
-        group. Instances are registered as targets in a target group, and traffic
-        is routed
-
+        group. Instances are registered as targets in a target group, and traffic is routed
         to the
-
         target group.
-
         For more information, see Using a Load Balancer with an
-
         Auto Scaling Group in the Amazon EC2 Auto Scaling User Guide.
-
         Required: No
-
         Type: List of String
-
         Update requires: No interruption'
-    - TerminationPolicies: 'A policy or a list of policies that are used to select
-        the instances to terminate.
-
+    - TerminationPolicies: 'A policy or a list of policies that are used to select the instances to terminate.
         The
-
-        policies are executed in the order that you list them. The termination policies
-        supported
-
+        policies are executed in the order that you list them. The termination policies supported
         by
-
         Amazon EC2 Auto Scaling: OldestInstance, OldestLaunchConfiguration,
-
         NewestInstance, ClosestToNextInstanceHour, Default,
-
         OldestLaunchTemplate, and AllocationStrategy.
-
         For more information, see Controlling Which Auto Scaling
-
         Instances Terminate During Scale In in the Amazon EC2 Auto Scaling User
-
         Guide.
-
         Required: No
-
         Type: List of String
-
         Update requires: No interruption'
-    - VPCZoneIdentifier: 'A list of subnet IDs for a virtual private cloud (VPC).
-        You must specify one of the
-
+    - VPCZoneIdentifier: 'A list of subnet IDs for a virtual private cloud (VPC). You must specify one
+        of the
         following properties: VPCZoneIdentifier or AvailabilityZones. If you
-
         specify VPCZoneIdentifier with AvailabilityZones, the subnets that
-
         you specify for this property must reside in those Availability Zones.
-
-        If your account supports EC2-Classic and VPC, this property is required to
-        launch
-
+        If your account supports EC2-Classic and VPC, this property is required to launch
         instances into a VPC.
-
         Note
-
         When you update VPCZoneIdentifier, this retains the same Auto Scaling group
-
-        and replaces old instances with new ones, according to the specified subnets.
-        You
-
+        and replaces old instances with new ones, according to the specified subnets. You
         can
-
         specify how AWS CloudFormation handles these updates by using an UpdatePolicy
-
         attribute.
-
         Required: Conditional
-
         Type: List of String
-
         Minimum: 1
-
         Maximum: 2047
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html
 - LaunchConfiguration:
@@ -531,425 +297,217 @@ Amazon EC2 Auto Scaling:
       UserData: String
     Type: AWS::AutoScaling::LaunchConfiguration
   MetaData:
-    description: 'Specifies an Amazon EC2 Auto Scaling launch configuration that can
-      be used by an Auto Scaling group to configure Amazon EC2 instances. '
+    description: 'Specifies an Amazon EC2 Auto Scaling launch configuration that can be used by an Auto
+      Scaling group to configure Amazon EC2 instances. '
     name: AWS::AutoScaling::LaunchConfiguration
     properties:
-    - AssociatePublicIpAddress: 'Used for groups that launch instances into a virtual
-        private cloud (VPC). Specifies
-
-        whether to assign a public IP address to each instance. If you specify true,
-        each
-
+    - AssociatePublicIpAddress: 'Used for groups that launch instances into a virtual private cloud (VPC).
+        Specifies
+        whether to assign a public IP address to each instance. If you specify true, each
         instance in the Auto Scaling group receives a unique public IP address.
-
         For more information, see Launching Auto Scaling Instances in a
-
         VPC in the Amazon EC2 Auto Scaling User Guide.
-
-        Default: If the instance is launched into a default subnet, the default is
-        to assign
-
+        Default: If the instance is launched into a default subnet, the default is to assign
         a
-
-        public IP address. If the instance is launched into a nondefault subnet, the
-        default
-
+        public IP address. If the instance is launched into a nondefault subnet, the default
         is not to
-
         assign a public IP address.
-
         Note
-
-        If this resource has a public IP address and is also in a VPC that is defined
-        in the
-
+        If this resource has a public IP address and is also in a VPC that is defined in the
         same template, you must use the DependsOn
-
         attribute to declare a dependency on the VPC-gateway attachment.
-
         Required: No
-
         Type: Boolean
-
         Update requires: Replacement'
-    - BlockDeviceMappings: 'Specifies how block devices are exposed to the instance.
-        You can specify virtual devices
-
+    - BlockDeviceMappings: 'Specifies how block devices are exposed to the instance. You can specify virtual
+        devices
         and EBS volumes.
-
         Required: No
-
         Type: List of BlockDeviceMapping
-
         Update requires: Replacement'
-    - ClassicLinkVPCId: 'The ID of a ClassicLink-enabled VPC to link your EC2-Classic
-        instances to.
-
+    - ClassicLinkVPCId: 'The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to.
         For more information, see ClassicLink in the
-
         Amazon EC2 User Guide for Linux Instances and Linking
-
         EC2-Classic Instances to a VPC in the Amazon EC2 Auto Scaling User
-
         Guide.
-
         This property can only be used if you are launching EC2-Classic instances.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
-    - ClassicLinkVPCSecurityGroups: 'The IDs of one or more security groups for the
-        VPC that you specified in the
-
+    - ClassicLinkVPCSecurityGroups: 'The IDs of one or more security groups for the VPC that you specified
+        in the
         ClassicLinkVPCId property.
-
         If you specify the ClassicLinkVPCId property, you must specify this property.
-
         Required: Conditional
-
         Type: List of String
-
         Update requires: Replacement'
-    - EbsOptimized: 'Specifies whether the launch configuration is optimized for EBS
-        I/O (true) or
-
-        not (false). This optimization provides dedicated throughput to Amazon EBS
-        and an
-
-        optimized configuration stack to provide optimal EBS I/O performance. Additional
-        fees
-
+    - EbsOptimized: 'Specifies whether the launch configuration is optimized for EBS I/O (true) or
+        not (false). This optimization provides dedicated throughput to Amazon EBS and an
+        optimized configuration stack to provide optimal EBS I/O performance. Additional fees
         are
-
-        incurred when you enable EBS optimization for an instance type that is not
-        EBS-optimized
-
+        incurred when you enable EBS optimization for an instance type that is not EBS-optimized
         by
-
         default. For more information, see EBS-Optimized Instances in the
-
         Amazon EC2 User Guide for Linux Instances.
-
         The default value is false.
-
         Required: No
-
         Type: Boolean
-
         Update requires: Replacement'
-    - IamInstanceProfile: 'Provides the name or the Amazon Resource Name (ARN) of
-        the instance profile associated
-
-        with the IAM role for the instance. The instance profile contains the IAM
-        role.
-
+    - IamInstanceProfile: 'Provides the name or the Amazon Resource Name (ARN) of the instance profile
+        associated
+        with the IAM role for the instance. The instance profile contains the IAM role.
         For more information, see IAM Role for Applications that Run on
-
         Amazon EC2 Instances in the Amazon EC2 Auto Scaling User Guide.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 1600
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
-    - ImageId: 'Provides the unique ID of the Amazon Machine Image (AMI) that was
-        assigned during
-
+    - ImageId: 'Provides the unique ID of the Amazon Machine Image (AMI) that was assigned during
         registration. For more information, see Finding an AMI in the
-
         Amazon EC2 User Guide for Linux Instances.
-
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
-    - InstanceId: 'The ID of the Amazon EC2 instance you want to use to create the
-        launch configuration.
-
+    - InstanceId: 'The ID of the Amazon EC2 instance you want to use to create the launch configuration.
         Use
-
-        this property if you want the launch configuration to use settings from an
-        existing
-
+        this property if you want the launch configuration to use settings from an existing
         Amazon EC2
-
         instance.
-
-        When you use an instance to create a launch configuration, all properties
-        are derived
-
+        When you use an instance to create a launch configuration, all properties are derived
         from
-
         the instance with the exception of BlockDeviceMapping and
-
-        AssociatePublicIpAddress. You can override any properties from the instance
-        by
-
+        AssociatePublicIpAddress. You can override any properties from the instance by
         specifying them in the launch configuration.
-
         Required: No
-
         Type: String
-
         Update requires: Replacement'
-    - InstanceMonitoring: 'Controls whether instances in this group are launched with
-        detailed (true) or
-
+    - InstanceMonitoring: 'Controls whether instances in this group are launched with detailed (true)
+        or
         basic (false) monitoring. The default value is true (enabled).
-
         Important
-
-        When detailed monitoring is enabled, Amazon CloudWatch generates metrics every
-        minute
-
+        When detailed monitoring is enabled, Amazon CloudWatch generates metrics every minute
         and your account is charged a fee. When you disable detailed monitoring, CloudWatch
-
-        generates metrics every 5 minutes. For more information, see Configure Monitoring
-        for Auto Scaling Instances in the Amazon EC2 Auto
-
+        generates metrics every 5 minutes. For more information, see Configure Monitoring for Auto Scaling
+        Instances in the Amazon EC2 Auto
         Scaling User Guide.
-
         Required: No
-
         Type: Boolean
-
         Update requires: Replacement'
-    - InstanceType: 'Specifies the instance type of the EC2 instance. For information
-        about available instance
-
+    - InstanceType: 'Specifies the instance type of the EC2 instance. For information about available
+        instance
         types, see Available Instance
-
         Types in the Amazon EC2 User Guide for Linux Instances.
-
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
     - KernelId: 'Provides the ID of the kernel associated with the EC2 AMI.
-
         Note
-
         We recommend that you use PV-GRUB instead of kernels and RAM disks. For more
-
         information, see User Provided Kernels in
-
         the Amazon EC2 User Guide for Linux Instances.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
     - KeyName: 'Provides the name of the EC2 key pair.
-
         Important
-
-        If you do not specify a key pair, you can''t connect to the instance unless
-        you choose
-
+        If you do not specify a key pair, you cant connect to the instance unless you choose
         an
-
-        AMI that is configured to allow users another way to log in. For information
-        on creating
-
+        AMI that is configured to allow users another way to log in. For information on creating
         a
-
         key pair, see Amazon EC2 Key Pairs in the Amazon EC2 User Guide for Linux
-
         Instances.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
-    - LaunchConfigurationName: 'The name of the launch configuration. This name must
-        be unique per Region per
-
+    - LaunchConfigurationName: 'The name of the launch configuration. This name must be unique per Region
+        per
         account.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
-    - PlacementTenancy: 'The tenancy of the instance, either default or dedicated.
-        An
-
-        instance with dedicated tenancy runs in an isolated, single-tenant hardware
-        and
-
+    - PlacementTenancy: 'The tenancy of the instance, either default or dedicated. An
+        instance with dedicated tenancy runs in an isolated, single-tenant hardware and
         can only be launched into a VPC. You must set the value of this property to
-
-        dedicated if want to launch dedicated instances in a shared tenancy VPC (a
-        VPC
-
+        dedicated if want to launch dedicated instances in a shared tenancy VPC (a VPC
         with the instance placement tenancy attribute set to default).
-
         If you specify this property, you must specify at least one subnet in the
-
         VPCZoneIdentifier property of the AutoScalingGroup resource.
-
         For more information, see Instance Placement
-
         Tenancy in the Amazon EC2 Auto Scaling User Guide.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 64
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
     - RamDiskId: 'The ID of the RAM disk to select.
-
         Note
-
         We recommend that you use PV-GRUB instead of kernels and RAM disks. For more
-
         information, see User Provided Kernels in
-
         the Amazon EC2 User Guide for Linux Instances.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
-    - SecurityGroups: 'A list that contains the security groups to assign to the instances
-        in the Auto Scaling
-
-        group. The list can contain either the IDs of existing security groups or
-        references
-
+    - SecurityGroups: 'A list that contains the security groups to assign to the instances in the Auto
+        Scaling
+        group. The list can contain either the IDs of existing security groups or references
         to SecurityGroup resources created in the template, but not both.
-
         For more information, see Security Groups for Your
-
         VPC in the Amazon Virtual Private Cloud User Guide.
-
         Required: No
-
         Type: List of String
-
         Update requires: Replacement'
-    - SpotPrice: 'The maximum hourly price to be paid for any Spot Instance launched
-        to fulfill the
-
+    - SpotPrice: 'The maximum hourly price to be paid for any Spot Instance launched to fulfill the
         request.
-
-        Spot Instances are launched when the price you specify exceeds the current
-        Spot market
-
+        Spot Instances are launched when the price you specify exceeds the current Spot market
         price.
-
         For more information, see Launching Spot Instances in
-
         your Auto Scaling Group in the Amazon EC2 Auto Scaling User
-
         Guide.
-
-        If a Spot price is set, then the Auto Scaling group will only launch when
-        the Spot
-
+        If a Spot price is set, then the Auto Scaling group will only launch when the Spot
         price
-
-        has been met, regardless of the setting in the Auto Scaling group''s
-
+        has been met, regardless of the setting in the Auto Scaling groups
         DesiredCapacity.
-
         Note
-
         When you change your Spot price by creating a new launch configuration, running
-
-        instances will continue to run as long as the Spot price for those running
-        instances
-
+        instances will continue to run as long as the Spot price for those running instances
         is
-
         higher than the current Spot market price.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Update requires: Replacement'
-    - UserData: 'The Base64-encoded user data to make available to the launched EC2
-        instances.
-
+    - UserData: 'The Base64-encoded user data to make available to the launched EC2 instances.
         For more information, see Instance Metadata and User
-
         Data in the Amazon EC2 User Guide for Linux Instances.
-
         Required: No
-
         Type: String
-
         Maximum: 21847
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html
 - LifecycleHook:
@@ -964,366 +522,194 @@ Amazon EC2 Auto Scaling:
       RoleARN: String
     Type: AWS::AutoScaling::LifecycleHook
   MetaData:
-    description: 'Defines lifecycle hooks for an Amazon EC2 Auto Scaling group. Lifecycle
-      hooks specify actions to perform when Amazon EC2 Auto Scaling launches or terminates
-      instances. When you use a lifecycle hook, the Auto Scaling group pauses the
-      instance either after it is launched (before it is put into service) or as it
-      is terminated (before it is fully terminated).  '
+    description: 'Defines lifecycle hooks for an Amazon EC2 Auto Scaling group. Lifecycle hooks specify
+      actions to perform when Amazon EC2 Auto Scaling launches or terminates instances. When you use a
+      lifecycle hook, the Auto Scaling group pauses the instance either after it is launched (before it
+      is put into service) or as it is terminated (before it is fully terminated).  '
     name: AWS::AutoScaling::LifecycleHook
     properties:
-    - AutoScalingGroupName: 'The name of the Auto Scaling group for the lifecycle
-        hook.
-
+    - AutoScalingGroupName: 'The name of the Auto Scaling group for the lifecycle hook.
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 1600
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: Replacement'
-    - DefaultResult: 'The action the Auto Scaling group takes when the lifecycle hook
-        timeout elapses or
-
+    - DefaultResult: 'The action the Auto Scaling group takes when the lifecycle hook timeout elapses
+        or
         if an
-
         unexpected failure occurs. The valid values are CONTINUE and ABANDON
-
         (default).
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - HeartbeatTimeout: 'The amount of time, in seconds, that can elapse before the
-        lifecycle hook times out.
-
+    - HeartbeatTimeout: 'The amount of time, in seconds, that can elapse before the lifecycle hook times
+        out.
         If
-
-        the lifecycle hook times out, Amazon EC2 Auto Scaling performs the action
-        that you
-
+        the lifecycle hook times out, Amazon EC2 Auto Scaling performs the action that you
         specified
-
         in the DefaultResult property.
-
         Required: No
-
         Type: Integer
-
         Update requires: No interruption'
     - LifecycleHookName: 'The name of the lifecycle hook.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [A-Za-z0-9\-_\/]+
-
         Update requires: Replacement'
-    - LifecycleTransition: 'The instance state to which you want to attach the lifecycle
-        hook. The valid values
-
+    - LifecycleTransition: 'The instance state to which you want to attach the lifecycle hook. The valid
+        values
         are:
-
         autoscaling:EC2_INSTANCE_LAUNCHING
-
         autoscaling:EC2_INSTANCE_TERMINATING
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - NotificationMetadata: 'Additional information that is included any time Amazon
-        EC2 Auto Scaling sends a message
-
+    - NotificationMetadata: 'Additional information that is included any time Amazon EC2 Auto Scaling
+        sends a message
         to the notification target.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 1023
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
-    - NotificationTargetARN: 'The Amazon Resource Name (ARN) of the notification target
-        that Amazon EC2 Auto Scaling
-
-        uses to notify you when an instance is in the transition state for the lifecycle
-        hook.
-
+    - NotificationTargetARN: 'The Amazon Resource Name (ARN) of the notification target that Amazon EC2
+        Auto Scaling
+        uses to notify you when an instance is in the transition state for the lifecycle hook.
         You can
-
-        specify an Amazon SQS queue or an Amazon SNS topic. The notification message
-        includes
-
+        specify an Amazon SQS queue or an Amazon SNS topic. The notification message includes
         the
-
-        following information: lifecycle action token, user account ID, Auto Scaling
-        group
-
+        following information: lifecycle action token, user account ID, Auto Scaling group
         name,
-
         lifecycle hook name, instance ID, lifecycle transition, and notification metadata.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 1600
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
-    - RoleARN: 'The ARN of the IAM role that allows the Auto Scaling group to publish
-        to the specified
-
-        notification target, for example, an Amazon SNS topic or an Amazon SQS queue.
-        For
-
+    - RoleARN: 'The ARN of the IAM role that allows the Auto Scaling group to publish to the specified
+        notification target, for example, an Amazon SNS topic or an Amazon SQS queue. For
         information
-
         about creating this role, see Preparing
-
         for Notifications in the Amazon EC2 Auto Scaling User
-
         Guide.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 1600
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-lifecyclehook.html
 - MetaData:
     description: Specifies a scaling policy for an Amazon EC2 Auto Scaling group.
     name: AWS::AutoScaling::ScalingPolicy
     properties:
-    - AdjustmentType: 'Specifies whether the ScalingAdjustment property is an absolute
-        number or a
-
+    - AdjustmentType: 'Specifies whether the ScalingAdjustment property is an absolute number or a
         percentage of the current capacity. The valid values are ChangeInCapacity,
-
         ExactCapacity, and PercentChangeInCapacity.
-
         Valid only if the policy type is StepScaling or SimpleScaling.
-
         For more information, see Scaling
-
         Adjustment Types in the Amazon EC2 Auto Scaling User
-
         Guide.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
-    - AutoScalingGroupName: 'The name or Amazon Resource Name (ARN) of the Auto Scaling
-        group that you want to
-
+    - AutoScalingGroupName: 'The name or Amazon Resource Name (ARN) of the Auto Scaling group that you
+        want to
         attach
-
         the policy to.
-
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 255
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
-    - Cooldown: 'The amount of time, in seconds, after a scaling activity completes
-        before any further
-
-        dynamic scaling activities can start. If this property is not specified, the
-        default
-
+    - Cooldown: 'The amount of time, in seconds, after a scaling activity completes before any further
+        dynamic scaling activities can start. If this property is not specified, the default
         cooldown
-
         period for the group applies.
-
         Valid only if the policy type is SimpleScaling. For more information, see
-
         Scaling
-
         Cooldowns in the Amazon EC2 Auto Scaling User Guide.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - EstimatedInstanceWarmup: 'The estimated time, in seconds, until a newly launched
-        instance can contribute to
-
+    - EstimatedInstanceWarmup: 'The estimated time, in seconds, until a newly launched instance can contribute
+        to
         the
-
-        CloudWatch metrics. The default is to use the value specified for the default
-        cooldown
-
+        CloudWatch metrics. The default is to use the value specified for the default cooldown
         period
-
         for the group.
-
         Valid only if the policy type is StepScaling or
-
         TargetTrackingScaling.
-
         Required: No
-
         Type: Integer
-
         Update requires: No interruption'
-    - MetricAggregationType: 'The aggregation type for the CloudWatch metrics. The
-        valid values are
-
+    - MetricAggregationType: 'The aggregation type for the CloudWatch metrics. The valid values are
         Minimum, Maximum, and Average. By default, AWS
-
         CloudFormation specifies Average.
-
         Valid only if the policy type is StepScaling.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 32
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
-    - MinAdjustmentMagnitude: 'The minimum number of instances to scale. If the value
-        of AdjustmentType is
-
+    - MinAdjustmentMagnitude: 'The minimum number of instances to scale. If the value of AdjustmentType
+        is
         PercentChangeInCapacity, the scaling policy changes the
-
-        DesiredCapacity of the Auto Scaling group by at least this many instances.
-        This
-
+        DesiredCapacity of the Auto Scaling group by at least this many instances. This
         property replaces the MinAdjustmentStep property.
-
-        For example, suppose that you create a step scaling policy to scale out an
-        Auto Scaling
-
-        group by 25 percent and you specify a MinAdjustmentMagnitude of 2. If the
-        group
-
-        has 4 instances and the scaling policy is performed, 25 percent of 4 is 1.
-        However,
-
+        For example, suppose that you create a step scaling policy to scale out an Auto Scaling
+        group by 25 percent and you specify a MinAdjustmentMagnitude of 2. If the group
+        has 4 instances and the scaling policy is performed, 25 percent of 4 is 1. However,
         because
-
-        you specified a MinAdjustmentMagnitude of 2, Amazon EC2 Auto Scaling scales
-        out
-
+        you specified a MinAdjustmentMagnitude of 2, Amazon EC2 Auto Scaling scales out
         the group by 2 instances.
-
         Valid only if the policy type is StepScaling or SimpleScaling.
-
         Required: No
-
         Type: Integer
-
         Update requires: No interruption'
     - PolicyType: 'The policy type. The valid values are SimpleScaling,
-
         StepScaling, and TargetTrackingScaling. By default, AWS
-
         CloudFormation specifies SimpleScaling.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 64
-
         Pattern: [\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
-
         Update requires: No interruption'
-    - ScalingAdjustment: 'The amount by which a simple scaling policy scales the Auto
-        Scaling group in response
-
+    - ScalingAdjustment: 'The amount by which a simple scaling policy scales the Auto Scaling group in
+        response
         to
-
-        an alarm breach. The adjustment is based on the value that you specified in
-        the
-
+        an alarm breach. The adjustment is based on the value that you specified in the
         AdjustmentType property (either an absolute number or a percentage). A positive
-
-        value adds to the current capacity and a negative value subtracts from the
-        current
-
+        value adds to the current capacity and a negative value subtracts from the current
         capacity.
-
         For exact capacity, you must specify a positive value.
-
         If you specify SimpleScaling for the policy type, you must specify this
-
         property. (Not used with any other policy type.)
-
         Required: Conditional
-
         Type: Integer
-
         Update requires: No interruption'
-    - StepAdjustments: 'A set of adjustments that enable you to scale based on the
-        size of the alarm breach.
-
+    - StepAdjustments: 'A set of adjustments that enable you to scale based on the size of the alarm breach.
         If you specify StepScaling for the policy type, you must specify this
-
         property. (Not used with any other policy type.)
-
         Required: Conditional
-
         Type: List of StepAdjustment
-
         Update requires: No interruption'
     - TargetTrackingConfiguration: 'Configures a target tracking scaling policy.
-
         If you specify TargetTrackingScaling for the policy type, you must specify
-
         this property. (Not used with any other policy type.)
-
         Required: Conditional
-
         Type: TargetTrackingConfiguration
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-policy.html
   ScalingPolicy:
@@ -1341,88 +727,50 @@ Amazon EC2 Auto Scaling:
       TargetTrackingConfiguration: TargetTrackingConfiguration
     Type: AWS::AutoScaling::ScalingPolicy
 - MetaData:
-    description: 'Specifies a scheduled scaling action for an Amazon EC2 Auto Scaling
-      group, changing the number of servers available for your application in response
-      to predictable load changes.  '
+    description: 'Specifies a scheduled scaling action for an Amazon EC2 Auto Scaling group, changing
+      the number of servers available for your application in response to predictable load changes.  '
     name: AWS::AutoScaling::ScheduledAction
     properties:
-    - AutoScalingGroupName: 'The name or Amazon Resource Name (ARN) of the Auto Scaling
-        group.
-
+    - AutoScalingGroupName: 'The name or Amazon Resource Name (ARN) of the Auto Scaling group.
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
-    - DesiredCapacity: 'The number of Amazon EC2 instances that should be running
-        in the Auto Scaling
-
+    - DesiredCapacity: 'The number of Amazon EC2 instances that should be running in the Auto Scaling
         group.
-
         You must specify at least one of the following properties: MaxSize,
-
         MinSize, or DesiredCapacity.
-
         Required: Conditional
-
         Type: Integer
-
         Update requires: No interruption'
     - EndTime: 'The date and time in UTC for the recurring schedule to end. For example,
-
         "2019-06-01T00:00:00Z".
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - MaxSize: 'The maximum number of Amazon EC2 instances in the Auto Scaling group.
-
         You must specify at least one of the following properties: MaxSize,
-
         MinSize, or DesiredCapacity.
-
         Required: Conditional
-
         Type: Integer
-
         Update requires: No interruption'
     - MinSize: 'The minimum number of Amazon EC2 instances in the Auto Scaling group.
-
         You must specify at least one of the following properties: MaxSize,
-
         MinSize, or DesiredCapacity.
-
         Required: Conditional
-
         Type: Integer
-
         Update requires: No interruption'
-    - Recurrence: 'The recurring schedule for this action, in Unix cron syntax format.
-        For more information
-
+    - Recurrence: 'The recurring schedule for this action, in Unix cron syntax format. For more information
         about cron syntax, see Crontab.
-
         Specifying the StartTime and EndTime properties with
-
         Recurrence property forms the start and stop boundaries of the recurring
-
         action.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - StartTime: 'The date and time in UTC for this action to start. For example,
-
         "2019-06-01T00:00:00Z".
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-scheduledaction.html
   ScheduledAction:

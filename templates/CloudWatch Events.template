@@ -8,215 +8,115 @@ CloudWatch Events:
       StatementId: String
     Type: AWS::Events::EventBusPolicy
   MetaData:
-    description: 'The AWS::Events::EventBusPolicy resource creates an event bus policy
-      for Amazon CloudWatch Events. An event bus policy enables your account to receive
-      events from other AWS accounts. These events can trigger CloudWatch Events rules
-      created in your account. For more information, see Sending and Receiving Events
-      Between AWS Accounts in the Amazon CloudWatch Events User Guide. '
+    description: 'The AWS::Events::EventBusPolicy resource creates an event bus policy for Amazon CloudWatch
+      Events. An event bus policy enables your account to receive events from other AWS accounts. These
+      events can trigger CloudWatch Events rules created in your account. For more information, see Sending
+      and Receiving Events Between AWS Accounts in the Amazon CloudWatch Events User Guide. '
     name: AWS::Events::EventBusPolicy
     properties:
-    - Action: 'The action that you''re enabling the other account to perform. Currently,
-        this must
-
+    - Action: 'The action that youre enabling the other account to perform. Currently, this must
         be events:PutEvents.
-
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 64
-
         Pattern: events:[a-zA-Z]+
-
         Update requires: No interruption'
-    - Condition: 'Condition is a JSON string that you can use to limit the event bus
-        permissions that you''re
-
+    - Condition: 'Condition is a JSON string that you can use to limit the event bus permissions that
+        youre
         granting only to accounts that fulfill the condition.
-
         Currently, the only supported condition is membership in a certain AWS organization.
-
         For more information about AWS Organizations,
-
         see What Is AWS Organizations? in the
-
         AWS Organizations User Guide.
-
         Condition is a property of the
-
         AWS::Events::EventBusPolicy resource type.
-
-        If you specify Condition with an AWS organization ID and specify "*" as the
-        value
-
+        If you specify Condition with an AWS organization ID and specify "*" as the value
         for Principal, you grant permission to all the accounts in the named organization.
-
         Required: No
-
         Type: Condition
-
         Update requires: No interruption'
-    - Principal: 'The 12-digit AWS account ID that you are permitting to put events
-        to your default
-
-        event bus. Specify "*" to permit any account to put events to your default
-        event bus.
-
+    - Principal: 'The 12-digit AWS account ID that you are permitting to put events to your default
+        event bus. Specify "*" to permit any account to put events to your default event bus.
         If you specify "*" without specifying Condition, avoid creating rules
-
-        that might match undesirable events. To create more secure rules, make sure
-        that the
-
+        that might match undesirable events. To create more secure rules, make sure that the
         event pattern for each rule contains an account field with a specific
-
-        account ID to receive events from. Rules with an account field don''t match
-        any events
-
+        account ID to receive events from. Rules with an account field dont match any events
         sent from other accounts.
-
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 12
-
         Pattern: (\d{12}|\*)
-
         Update requires: No interruption'
-    - StatementId: 'An identifier string for the external account that you''re granting
-        permissions to.
-
+    - StatementId: 'An identifier string for the external account that youre granting permissions to.
         If you later want to revoke
-
         the permission for this external account, you must specify this StatementId.
-
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 64
-
         Pattern: [a-zA-Z0-9-_]+
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbuspolicy.html
 - MetaData:
-    description: 'The AWS::Events::Rule resource creates a rule that matches incoming
-      events and routes them to one or more targets for processing. For more information,
-      see What Is Amazon CloudWatch Events?.   '
+    description: 'The AWS::Events::Rule resource creates a rule that matches incoming events and routes
+      them to one or more targets for processing. For more information, see What Is Amazon CloudWatch
+      Events?.   '
     name: AWS::Events::Rule
     properties:
     - Description: 'The description of the rule.
-
         Required: No
-
         Type: String
-
         Maximum: 512
-
         Update requires: No interruption'
-    - EventPattern: 'Describes which events CloudWatch Events routes to the specified
-        target. For more
-
+    - EventPattern: 'Describes which events CloudWatch Events routes to the specified target. For more
         information, see Event Patterns in CloudWatch Events in the
-
         Amazon CloudWatch Events User Guide.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
-    - Name: 'The name of the rule. If you don''t specify a name, AWS CloudFormation
-        generates a
-
+    - Name: 'The name of the rule. If you dont specify a name, AWS CloudFormation generates a
         unique physical
-
         ID and uses that ID for the rule name.
-
         Important
-
-        If you specify a name, you can''t perform updates
-
+        If you specify a name, you cant perform updates
         that require replacement of this resource. You can perform updates
-
         that require no or some interruption. If you must replace the resource,
-
         specify a new name.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 64
-
         Pattern: [\.\-_A-Za-z0-9]+
-
         Update requires: Replacement'
-    - RoleArn: 'The Amazon Resource Name (ARN) of the role that is used for target
-        invocation.
-
+    - RoleArn: 'The Amazon Resource Name (ARN) of the role that is used for target invocation.
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 1600
-
         Update requires: No interruption'
-    - ScheduleExpression: 'The scheduling expression that determines when and how
-        often the rule runs.
-
+    - ScheduleExpression: 'The scheduling expression that determines when and how often the rule runs.
         For more information, see Schedule Expressions for Rules.
-
         Required: No
-
         Type: String
-
         Maximum: 256
-
         Update requires: No interruption'
     - State: 'Indicates whether the rule is enabled.
-
         Required: No
-
         Type: String
-
         Allowed Values: DISABLED | ENABLED
-
         Update requires: No interruption'
-    - Targets: 'The resources that CloudWatch Events routes events to and invokes
-        when the rule is
-
+    - Targets: 'The resources that CloudWatch Events routes events to and invokes when the rule is
         triggered.
-
         For information about valid targets, see PutTargets.
-
-        If you''re setting the event bus of another account as the target and
-
-        that account granted permission to your account through an organization instead
-        of
-
+        If youre setting the event bus of another account as the target and
+        that account granted permission to your account through an organization instead of
         directly by the account ID, you must specify a RoleArn with proper
-
         permissions in the Target structure. For more information, see
-
-        Sending and Receiving Events Between AWS Accounts in the Amazon CloudWatch
-        Events User Guide.
-
+        Sending and Receiving Events Between AWS Accounts in the Amazon CloudWatch Events User Guide.
         Required: No
-
         Type: List of Target
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html
   Rule:

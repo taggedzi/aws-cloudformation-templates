@@ -9,64 +9,38 @@ Amazon Kinesis Data Analytics V2:
       ServiceExecutionRole: String
     Type: AWS::KinesisAnalyticsV2::Application
   MetaData:
-    description: 'Creates an Amazon Kinesis Data Analytics application. For information
-      about creating a Kinesis Data Analytics application, see Creating an Application.  '
+    description: 'Creates an Amazon Kinesis Data Analytics application. For information about creating
+      a Kinesis Data Analytics application, see Creating an Application.  '
     name: AWS::KinesisAnalyticsV2::Application
     properties:
     - ApplicationConfiguration: 'Use this parameter to configure the application.
-
         Required: No
-
         Type: ApplicationConfiguration
-
         Update requires: No interruption'
     - ApplicationDescription: 'The description of the application.
-
         Required: No
-
         Type: String
-
         Minimum: 0
-
         Maximum: 1024
-
         Update requires: No interruption'
     - ApplicationName: 'The name of the application.
-
         Required: No
-
         Type: String
-
         Minimum: 1
-
         Maximum: 128
-
         Pattern: [a-zA-Z0-9_.-]+
-
         Update requires: Replacement'
-    - RuntimeEnvironment: 'The runtime environment for the application (SQL-1.0 or
-        FLINK-1_6).
-
+    - RuntimeEnvironment: 'The runtime environment for the application (SQL-1.0 or FLINK-1_6).
         Required: Yes
-
         Type: String
-
         Allowed Values: FLINK-1_6 | SQL-1_0
-
         Update requires: Replacement'
-    - ServiceExecutionRole: 'Specifies the IAM role that the application uses to access
-        external resources.
-
+    - ServiceExecutionRole: 'Specifies the IAM role that the application uses to access external resources.
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 2048
-
         Pattern: arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-application.html
 - ApplicationCloudWatchLoggingOption:
@@ -75,32 +49,21 @@ Amazon Kinesis Data Analytics V2:
       CloudWatchLoggingOption: CloudWatchLoggingOption
     Type: AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption
   MetaData:
-    description: Adds an Amazon CloudWatch log stream to monitor application configuration
-      errors.
+    description: Adds an Amazon CloudWatch log stream to monitor application configuration errors.
     name: AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption
     properties:
     - ApplicationName: 'The name of the application.
-
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 128
-
         Pattern: [a-zA-Z0-9_.-]+
-
         Update requires: Replacement'
-    - CloudWatchLoggingOption: 'Provides a description of Amazon CloudWatch logging
-        options, including the log stream
-
+    - CloudWatchLoggingOption: 'Provides a description of Amazon CloudWatch logging options, including
+        the log stream
         Amazon Resource Name (ARN).
-
         Required: Yes
-
         Type: CloudWatchLoggingOption
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-applicationcloudwatchloggingoption.html
 - ApplicationOutput:
@@ -109,40 +72,23 @@ Amazon Kinesis Data Analytics V2:
       Output: Output
     Type: AWS::KinesisAnalyticsV2::ApplicationOutput
   MetaData:
-    description: Adds an external destination to your SQL-based Amazon Kinesis Data
-      Analytics application.
+    description: Adds an external destination to your SQL-based Amazon Kinesis Data Analytics application.
     name: AWS::KinesisAnalyticsV2::ApplicationOutput
     properties:
     - ApplicationName: 'The name of the application.
-
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 128
-
         Pattern: [a-zA-Z0-9_.-]+
-
         Update requires: Replacement'
-    - Output: 'Describes an SQL-based Amazon Kinesis Data Analytics application''s
-        output configuration,
-
-        in which you identify an in-application stream and a destination where you
-        want the
-
-        in-application stream data to be written. The destination can be a Kinesis
-        data stream
-
+    - Output: 'Describes an SQL-based Amazon Kinesis Data Analytics applications output configuration,
+        in which you identify an in-application stream and a destination where you want the
+        in-application stream data to be written. The destination can be a Kinesis data stream
         or a
-
         Kinesis Data Firehose delivery stream.
-
         Required: Yes
-
         Type: Output
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-applicationoutput.html
 - ApplicationReferenceDataSource:
@@ -151,44 +97,27 @@ Amazon Kinesis Data Analytics V2:
       ReferenceDataSource: ReferenceDataSource
     Type: AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource
   MetaData:
-    description: 'Adds a reference data source to an existing SQL-based Amazon Kinesis
-      Data Analytics application. '
+    description: 'Adds a reference data source to an existing SQL-based Amazon Kinesis Data Analytics
+      application. '
     name: AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource
     properties:
     - ApplicationName: 'The name of the application.
-
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 128
-
         Pattern: [a-zA-Z0-9_.-]+
-
         Update requires: Replacement'
-    - ReferenceDataSource: 'For an SQL-based Amazon Kinesis Data Analytics application,
-        describes the reference
-
+    - ReferenceDataSource: 'For an SQL-based Amazon Kinesis Data Analytics application, describes the
+        reference
         data
-
-        source by providing the source information (Amazon S3 bucket name and object
-        key name),
-
+        source by providing the source information (Amazon S3 bucket name and object key name),
         the
-
-        resulting in-application table name that is created, and the necessary schema
-        to map
-
+        resulting in-application table name that is created, and the necessary schema to map
         the data
-
         elements in the Amazon S3 object to the in-application table.
-
         Required: Yes
-
         Type: ReferenceDataSource
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-applicationreferencedatasource.html
 ...

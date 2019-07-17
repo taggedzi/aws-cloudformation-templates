@@ -5,19 +5,14 @@ API Gateway:
       CloudWatchRoleArn: String
     Type: AWS::ApiGateway::Account
   MetaData:
-    description: 'The AWS::ApiGateway::Account resource specifies the IAM role that
-      Amazon API Gateway uses to write API logs to Amazon CloudWatch Logs. '
+    description: 'The AWS::ApiGateway::Account resource specifies the IAM role that Amazon API Gateway
+      uses to write API logs to Amazon CloudWatch Logs. '
     name: AWS::ApiGateway::Account
     properties:
-    - CloudWatchRoleArn: 'The Amazon Resource Name (ARN) of an IAM role that has write
-        access to CloudWatch
-
+    - CloudWatchRoleArn: 'The Amazon Resource Name (ARN) of an IAM role that has write access to CloudWatch
         Logs in your account.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-account.html
 - ApiKey:
@@ -32,78 +27,45 @@ API Gateway:
       Value: String
     Type: AWS::ApiGateway::ApiKey
   MetaData:
-    description: 'The AWS::ApiGateway::ApiKey resource creates a unique key that you
-      can distribute to clients who are executing API Gateway Method resources that
-      require an API key. To specify which API key clients must use, map the API key
-      with the RestApi and Stage resources that include the methods that require a
-      key. '
+    description: 'The AWS::ApiGateway::ApiKey resource creates a unique key that you can distribute to
+      clients who are executing API Gateway Method resources that require an API key. To specify which
+      API key clients must use, map the API key with the RestApi and Stage resources that include the
+      methods that require a key. '
     name: AWS::ApiGateway::ApiKey
     properties:
-    - CustomerId: 'An AWS Marketplace customer identifier to use when integrating
-        with the AWS SaaS Marketplace.
-
+    - CustomerId: 'An AWS Marketplace customer identifier to use when integrating with the AWS SaaS Marketplace.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Description: 'A description of the purpose of the API key.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Enabled: 'Indicates whether the API key can be used by clients.
-
         Required: No
-
         Type: Boolean
-
         Update requires: No interruption'
-    - GenerateDistinctId: 'Specifies whether the key identifier is distinct from the
-        created API key value.
-
+    - GenerateDistinctId: 'Specifies whether the key identifier is distinct from the created API key value.
         Required: No
-
         Type: Boolean
-
         Update requires: Replacement'
-    - Name: 'A name for the API key. If you don''t specify a name, AWS CloudFormation
-        generates
-
+    - Name: 'A name for the API key. If you dont specify a name, AWS CloudFormation generates
         a unique physical ID and uses that ID for the API key name. For more information,
-
         see Name Type.
-
         Important
-
-        If you specify a name, you cannot perform updates that require replacement
-        of this
-
-        resource. You can perform updates that require no or some interruption. If
-        you must
-
+        If you specify a name, you cannot perform updates that require replacement of this
+        resource. You can perform updates that require no or some interruption. If you must
         replace the resource, specify a new name.
-
         Required: No
-
         Type: String
-
         Update requires: Replacement'
     - StageKeys: 'A list of stages to associate with this API key.
-
         Required: No
-
         Type: List of StageKey
-
         Update requires: No interruption'
     - Value: 'The value of the API key. Must be at least 20 characters long.
-
         Required: No
-
         Type: String
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html
 - Authorizer:
@@ -121,135 +83,79 @@ API Gateway:
       Type: String
     Type: AWS::ApiGateway::Authorizer
   MetaData:
-    description: 'The AWS::ApiGateway::Authorizer resource creates an authorization
-      layer that API Gateway activates for methods that have authorization enabled.
-      API Gateway activates the authorizer when a client calls those methods. '
+    description: 'The AWS::ApiGateway::Authorizer resource creates an authorization layer that API Gateway
+      activates for methods that have authorization enabled. API Gateway activates the authorizer when
+      a client calls those methods. '
     name: AWS::ApiGateway::Authorizer
     properties:
-    - AuthorizerCredentials: 'The credentials that are required for the authorizer.
-        To specify an IAM role that
-
-        API Gateway assumes, specify the role''s Amazon Resource Name (ARN). To use
-        resource-based
-
+    - AuthorizerCredentials: 'The credentials that are required for the authorizer. To specify an IAM
+        role that
+        API Gateway assumes, specify the roles Amazon Resource Name (ARN). To use resource-based
         permissions on the Lambda function, specify null.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - AuthorizerResultTtlInSeconds: 'The time-to-live (TTL) period, in seconds, that
-        specifies how long API Gateway caches
-
-        authorizer results. If you specify a value greater than 0, API Gateway caches
-        the
-
-        authorizer responses. By default, API Gateway sets this property to 300. The
-        maximum
-
+    - AuthorizerResultTtlInSeconds: 'The time-to-live (TTL) period, in seconds, that specifies how long
+        API Gateway caches
+        authorizer results. If you specify a value greater than 0, API Gateway caches the
+        authorizer responses. By default, API Gateway sets this property to 300. The maximum
         value is 3600, or 1 hour.
-
         Required: No
-
         Type: Integer
-
         Update requires: No interruption'
-    - AuthorizerUri: 'The authorizer''s Uniform Resource Identifier (URI). If you
-        specify TOKEN for the authorizer''s Type property, specify a Lambda function
-        URI that has the form arn:aws:apigateway:region:lambda:path/path. The path
-        usually has the form /2015-03-31/functions/LambdaFunctionARN/invocations.
-
+    - AuthorizerUri: 'The authorizers Uniform Resource Identifier (URI). If you specify TOKEN for the
+        authorizers Type property, specify a Lambda function URI that has the form arn:aws:apigateway:region:lambda:path/path.
+        The path usually has the form /2015-03-31/functions/LambdaFunctionARN/invocations.
         Required: Conditional
-
         Type: String
-
         Update requires: No interruption'
-    - AuthType: 'An optional customer-defined field that''s used in OpenApi imports
-        and exports without
-
+    - AuthType: 'An optional customer-defined field thats used in OpenApi imports and exports without
         functional impact.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - IdentitySource: 'The source of the identity in an incoming request.
-
-        If you specify TOKEN or COGNITO_USER_POOLS for the Type property, specify
-        a header mapping expression using the form method.request.header.name, where
-        name is the name of a custom authorization header that clients submit as part
-        of their
-
+        If you specify TOKEN or COGNITO_USER_POOLS for the Type property, specify a header mapping expression
+        using the form method.request.header.name, where name is the name of a custom authorization header
+        that clients submit as part of their
         requests.
-
-        If you specify REQUEST for the Type property, specify a comma-separated string
-        of one or more mapping expressions of
-
-        the specified request parameter using the form method.request.parameter.name.
-        For supported parameter types, see Configure Lambda Authorizer Using the API
-        Gateway Console in the API Gateway Developer Guide.
-
+        If you specify REQUEST for the Type property, specify a comma-separated string of one or more
+        mapping expressions of
+        the specified request parameter using the form method.request.parameter.name. For supported parameter
+        types, see Configure Lambda Authorizer Using the API Gateway Console in the API Gateway Developer
+        Guide.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - IdentityValidationExpression: 'A validation expression for the incoming identity.
-        If you specify TOKEN for the authorizer''s Type property, specify a regular
-        expression. API Gateway uses the expression to attempt
-
-        to match the incoming client token, and proceeds if the token matches. If
-        the token
-
-        doesn''t match, API Gateway responds with a 401 (unauthorized request) error
-        code.
-
+    - IdentityValidationExpression: 'A validation expression for the incoming identity. If you specify
+        TOKEN for the authorizers Type property, specify a regular expression. API Gateway uses the
+        expression to attempt
+        to match the incoming client token, and proceeds if the token matches. If the token
+        doesnt match, API Gateway responds with a 401 (unauthorized request) error code.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Name: 'The name of the authorizer.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - ProviderARNs: 'A list of the Amazon Cognito user pool Amazon Resource Names
-        (ARNs) to associate with
-
-        this authorizer. For more information, see Use Amazon Cognito User Pools in
-        the API Gateway Developer Guide.
-
+    - ProviderARNs: 'A list of the Amazon Cognito user pool Amazon Resource Names (ARNs) to associate
+        with
+        this authorizer. For more information, see Use Amazon Cognito User Pools in the API Gateway Developer
+        Guide.
         Required: No
-
         Type: List of String
-
         Update requires: No interruption'
-    - RestApiId: 'The ID of the RestApi resource that API Gateway creates the authorizer
-        in.
-
+    - RestApiId: 'The ID of the RestApi resource that API Gateway creates the authorizer in.
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - Type: 'The type of authorizer. Valid values include:
-
         TOKEN: A custom authorizer that uses a Lambda function.
-
         COGNITO_USER_POOLS: An authorizer that uses Amazon Cognito user pools.
-
-        REQUEST: An authorizer that uses a Lambda function using incoming request
-        parameters.
-
+        REQUEST: An authorizer that uses a Lambda function using incoming request parameters.
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html
 - BasePathMapping:
@@ -260,40 +166,26 @@ API Gateway:
       Stage: String
     Type: AWS::ApiGateway::BasePathMapping
   MetaData:
-    description: 'The AWS::ApiGateway::BasePathMapping resource creates a base path
-      that clients who call your API must use in the invocation URL. '
+    description: 'The AWS::ApiGateway::BasePathMapping resource creates a base path that clients who call
+      your API must use in the invocation URL. '
     name: AWS::ApiGateway::BasePathMapping
     properties:
-    - BasePath: 'The base path name that callers of the API must provide in the URL
-        after the domain
-
-        name. If you specify this property, it can''t be an empty string.
-
+    - BasePath: 'The base path name that callers of the API must provide in the URL after the domain
+        name. If you specify this property, it cant be an empty string.
         Required: No
-
         Type: String
-
         Update requires: Replacement'
     - DomainName: 'The DomainName of an AWS::ApiGateway::DomainName resource.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - RestApiId: 'The name of the API.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - Stage: 'The name of the API''s stage.
-
+    - Stage: 'The name of the APIs stage.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html
 - ClientCertificate:
@@ -301,17 +193,14 @@ API Gateway:
       Description: String
     Type: AWS::ApiGateway::ClientCertificate
   MetaData:
-    description: 'The AWS::ApiGateway::ClientCertificate resource creates a client
-      certificate that API Gateway uses to configure client-side SSL authentication
-      for sending requests to the integration endpoint. '
+    description: 'The AWS::ApiGateway::ClientCertificate resource creates a client certificate that API
+      Gateway uses to configure client-side SSL authentication for sending requests to the integration
+      endpoint. '
     name: AWS::ApiGateway::ClientCertificate
     properties:
     - Description: 'A description of the client certificate.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-clientcertificate.html
 - Deployment:
@@ -323,48 +212,30 @@ API Gateway:
       StageName: String
     Type: AWS::ApiGateway::Deployment
   MetaData:
-    description: 'The AWS::ApiGateway::Deployment resource deploys an API Gateway
-      RestApi resource to a stage so that clients can call the API over the internet.
-      The stage acts as an environment. '
+    description: 'The AWS::ApiGateway::Deployment resource deploys an API Gateway RestApi resource to
+      a stage so that clients can call the API over the internet. The stage acts as an environment. '
     name: AWS::ApiGateway::Deployment
     properties:
     - DeploymentCanarySettings: 'Specifies settings for the canary deployment.
-
         Required: No
-
         Type: DeploymentCanarySettings
-
         Update requires: Replacement'
     - Description: 'A description of the purpose of the API Gateway deployment.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - RestApiId: 'The ID of the RestApi resource to deploy.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - StageDescription: 'Configures the stage that API Gateway creates with this deployment.
-
         Required: No
-
         Type: StageDescription
-
         Update requires: No interruption'
-    - StageName: 'A name for the stage that API Gateway creates with this deployment.
-        Use only alphanumeric
-
+    - StageName: 'A name for the stage that API Gateway creates with this deployment. Use only alphanumeric
         characters.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html
 - DocumentationPart:
@@ -374,31 +245,22 @@ API Gateway:
       RestApiId: String
     Type: AWS::ApiGateway::DocumentationPart
   MetaData:
-    description: 'The AWS::ApiGateway::DocumentationPart resource creates a documentation
-      part for an API. For more information, see Representation of API Documentation
-      in API Gateway in the API Gateway Developer Guide. '
+    description: 'The AWS::ApiGateway::DocumentationPart resource creates a documentation part for an
+      API. For more information, see Representation of API Documentation in API Gateway in the API Gateway
+      Developer Guide. '
     name: AWS::ApiGateway::DocumentationPart
     properties:
     - Location: 'The location of the API entity that the documentation applies to.
-
         Required: Yes
-
         Type: Location
-
         Update requires: Replacement'
     - Properties: 'The documentation content map of the targeted API entity.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     - RestApiId: 'The identifier of the targeted API entity.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationpart.html
 - DocumentationVersion:
@@ -408,31 +270,22 @@ API Gateway:
       RestApiId: String
     Type: AWS::ApiGateway::DocumentationVersion
   MetaData:
-    description: 'The AWS::ApiGateway::DocumentationVersion resource creates a snapshot
-      of the documentation for an API. For more information, see Representation of
-      API Documentation in API Gateway in the API Gateway Developer Guide. '
+    description: 'The AWS::ApiGateway::DocumentationVersion resource creates a snapshot of the documentation
+      for an API. For more information, see Representation of API Documentation in API Gateway in the
+      API Gateway Developer Guide. '
     name: AWS::ApiGateway::DocumentationVersion
     properties:
     - Description: 'The description of the API documentation snapshot.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - DocumentationVersion: 'The version identifier of the API documentation snapshot.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - RestApiId: 'The identifier of the API.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationversion.html
 - DomainName:
@@ -443,48 +296,30 @@ API Gateway:
       RegionalCertificateArn: String
     Type: AWS::ApiGateway::DomainName
   MetaData:
-    description: 'The AWS::ApiGateway::DomainName resource specifies a custom domain
-      name for your API in API Gateway. '
+    description: 'The AWS::ApiGateway::DomainName resource specifies a custom domain name for your API
+      in API Gateway. '
     name: AWS::ApiGateway::DomainName
     properties:
-    - CertificateArn: 'The reference to an AWS-managed certificate for use by the
-        edge-optimized endpoint
-
-        for this domain name. AWS Certificate Manager is the only supported source.
-        For requirements
-
-        and additional information about setting up certificates, see Get Certificates
-        Ready in AWS Certificate Manager in the API Gateway Developer Guide.
-
+    - CertificateArn: 'The reference to an AWS-managed certificate for use by the edge-optimized endpoint
+        for this domain name. AWS Certificate Manager is the only supported source. For requirements
+        and additional information about setting up certificates, see Get Certificates Ready in AWS Certificate
+        Manager in the API Gateway Developer Guide.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - DomainName: 'The custom domain name for your API. Uppercase letters are not
-        supported.
-
+    - DomainName: 'The custom domain name for your API. Uppercase letters are not supported.
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - EndpointConfiguration: 'A list of the endpoint types of the domain name.
-
         Required: No
-
         Type: EndpointConfiguration
-
         Update requires: No interruption'
-    - RegionalCertificateArn: 'The reference to an AWS-managed certificate for use
-        by the regional endpoint for the
-
+    - RegionalCertificateArn: 'The reference to an AWS-managed certificate for use by the regional endpoint
+        for the
         domain name. AWS Certificate Manager is the only supported source.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html
 - GatewayResponse:
@@ -498,194 +333,111 @@ API Gateway:
       StatusCode: String
     Type: AWS::ApiGateway::GatewayResponse
   MetaData:
-    description: 'The AWS::ApiGateway::GatewayResponse resource creates a gateway
-      response for your API. For more information, see API Gateway Responses in the
-      API Gateway Developer Guide. '
+    description: 'The AWS::ApiGateway::GatewayResponse resource creates a gateway response for your API.
+      For more information, see API Gateway Responses in the API Gateway Developer Guide. '
     name: AWS::ApiGateway::GatewayResponse
     properties:
-    - ResponseParameters: 'The response parameters (paths, query strings, and headers)
-        for the response. Duplicates
-
+    - ResponseParameters: 'The response parameters (paths, query strings, and headers) for the response.
+        Duplicates
         not allowed.
-
         Required: No
-
         Type: Map of String
-
         Update requires: No interruption'
-    - ResponseTemplates: 'The response templates for the response. Duplicates not
-        allowed.
-
+    - ResponseTemplates: 'The response templates for the response. Duplicates not allowed.
         Required: No
-
         Type: Map of String
-
         Update requires: No interruption'
-    - ResponseType: 'The response type. For valid values, see GatewayResponse in the
-        API Gateway API Reference.
-
+    - ResponseType: 'The response type. For valid values, see GatewayResponse in the API Gateway API Reference.
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - RestApiId: 'The identifier of the API.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - StatusCode: 'The HTTP status code for the response.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html
 - MetaData:
-    description: 'The AWS::ApiGateway::Method resource creates API Gateway methods
-      that define the parameters and body that clients must send in their requests. '
+    description: 'The AWS::ApiGateway::Method resource creates API Gateway methods that define the parameters
+      and body that clients must send in their requests. '
     name: AWS::ApiGateway::Method
     properties:
-    - ApiKeyRequired: 'Indicates whether the method requires clients to submit a valid
-        API key.
-
+    - ApiKeyRequired: 'Indicates whether the method requires clients to submit a valid API key.
         Required: No
-
         Type: Boolean
-
         Update requires: No interruption'
-    - AuthorizationScopes: 'A list of authorization scopes configured on the method.
-        The scopes are used with
-
-        a COGNITO_USER_POOLS authorizer to authorize the method invocation. The authorization
-        works by matching
-
+    - AuthorizationScopes: 'A list of authorization scopes configured on the method. The scopes are used
+        with
+        a COGNITO_USER_POOLS authorizer to authorize the method invocation. The authorization works by
+        matching
         the method scopes against the scopes parsed from the access token in the incoming
-
-        request. The method invocation is authorized if any method scopes match a
-        claimed
-
-        scope in the access token. Otherwise, the invocation is not authorized. When
-        the method
-
-        scope is configured, the client must provide an access token instead of an
-        identity
-
+        request. The method invocation is authorized if any method scopes match a claimed
+        scope in the access token. Otherwise, the invocation is not authorized. When the method
+        scope is configured, the client must provide an access token instead of an identity
         token for authorization purposes.
-
         Required: No
-
         Type: List of String
-
         Update requires: No interruption'
-    - AuthorizationType: 'The method''s authorization type. This parameter is required.
-        For valid values, see
-
+    - AuthorizationType: 'The methods authorization type. This parameter is required. For valid values,
+        see
         Method in the API Gateway API Reference.
-
         Note
-
         If you specify the AuthorizerId property, specify CUSTOM for this property.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - AuthorizerId: 'The identifier of the authorizer to use on this method. If you
-        specify this property, specify CUSTOM for the AuthorizationType property.
-
+    - AuthorizerId: 'The identifier of the authorizer to use on this method. If you specify this property,
+        specify CUSTOM for the AuthorizationType property.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - HttpMethod: 'The HTTP method that clients use to call this method.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     - Integration: 'The backend system that the method calls when it receives a request.
-
         Required: No
-
         Type: Integration
-
         Update requires: No interruption'
-    - MethodResponses: 'The responses that can be sent to the client who calls the
-        method.
-
+    - MethodResponses: 'The responses that can be sent to the client who calls the method.
         Required: No
-
         Type: List of MethodResponse
-
         Update requires: No interruption'
-    - OperationName: 'A friendly operation name for the method. For example, you can
-        assign the OperationName of ListPets for the GET /pets method.
-
+    - OperationName: 'A friendly operation name for the method. For example, you can assign the OperationName
+        of ListPets for the GET /pets method.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - RequestModels: 'The resources that are used for the request''s content type.
-        Specify request models
-
-        as key-value pairs (string-to-string mapping), with a content type as the
-        key and
-
+    - RequestModels: 'The resources that are used for the requests content type. Specify request models
+        as key-value pairs (string-to-string mapping), with a content type as the key and
         a Model resource name as the value.
-
         Required: No
-
         Type: Map of String
-
         Update requires: No interruption'
-    - RequestParameters: 'The request parameters that API Gateway accepts. Specify
-        request parameters as key-value
-
-        pairs (string-to-Boolean mapping), with a source as the key and a Boolean
-        as the value.
-
-        The Boolean specifies whether a parameter is required. A source must match
-        the format
-
-        method.request.location.name, where the location is query string, path, or
-        header, and name is a valid, unique parameter name.
-
+    - RequestParameters: 'The request parameters that API Gateway accepts. Specify request parameters
+        as key-value
+        pairs (string-to-Boolean mapping), with a source as the key and a Boolean as the value.
+        The Boolean specifies whether a parameter is required. A source must match the format
+        method.request.location.name, where the location is query string, path, or header, and name is
+        a valid, unique parameter name.
         Required: No
-
         Type: Map of Boolean
-
         Update requires: No interruption'
     - RequestValidatorId: 'The ID of the associated request validator.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - ResourceId: 'The ID of an API Gateway resource. For root resource methods, specify
-        the RestApi root resource ID, such as { "Fn::GetAtt": ["MyRestApi", "RootResourceId"]
-        }.
-
+    - ResourceId: 'The ID of an API Gateway resource. For root resource methods, specify the RestApi root
+        resource ID, such as { "Fn::GetAtt": ["MyRestApi", "RootResourceId"] }.
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - RestApiId: 'The ID of the RestApi resource in which API Gateway creates the
-        method.
-
+    - RestApiId: 'The ID of the RestApi resource in which API Gateway creates the method.
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html
   Method:
@@ -709,61 +461,36 @@ API Gateway:
       RestApiId: String
     Type: AWS::ApiGateway::Method
 - MetaData:
-    description: 'The AWS::ApiGateway::Model resource defines the structure of a request
-      or response payload for an API method. '
+    description: 'The AWS::ApiGateway::Model resource defines the structure of a request or response payload
+      for an API method. '
     name: AWS::ApiGateway::Model
     properties:
     - ContentType: 'The content type for the model.
-
         Required: No
-
         Type: String
-
         Update requires: Replacement'
     - Description: 'A description that identifies this model.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - Name: 'A name for the model. If you don''t specify a name, AWS CloudFormation
-        generates a
-
-        unique physical ID and uses that ID for the model name. For more information,
-        see
-
+    - Name: 'A name for the model. If you dont specify a name, AWS CloudFormation generates a
+        unique physical ID and uses that ID for the model name. For more information, see
         Name Type.
-
         Important
-
-        If you specify a name, you cannot perform updates that require replacement
-        of this
-
-        resource. You can perform updates that require no or some interruption. If
-        you must
-
+        If you specify a name, you cannot perform updates that require replacement of this
+        resource. You can perform updates that require no or some interruption. If you must
         replace the resource, specify a new name.
-
         Required: No
-
         Type: String
-
         Update requires: Replacement'
     - RestApiId: 'The ID of a REST API with which to associate this model.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
-    - Schema: 'The schema to use to transform data to one or more output formats.
-        Specify null ({}) if you don''t want to specify a schema.
-
+    - Schema: 'The schema to use to transform data to one or more output formats. Specify null ({}) if
+        you dont want to specify a schema.
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-model.html
   Model:
@@ -775,41 +502,28 @@ API Gateway:
       Schema: Json
     Type: AWS::ApiGateway::Model
 - MetaData:
-    description: 'The AWS::ApiGateway::RequestValidator resource sets up basic validation
-      rules for incoming requests to your API. For more information, see Enable Basic
-      Request Validation for an API in API Gateway in the API Gateway Developer Guide. '
+    description: 'The AWS::ApiGateway::RequestValidator resource sets up basic validation rules for incoming
+      requests to your API. For more information, see Enable Basic Request Validation for an API in API
+      Gateway in the API Gateway Developer Guide. '
     name: AWS::ApiGateway::RequestValidator
     properties:
     - Name: 'The name of this request validator.
-
         Required: No
-
         Type: String
-
         Update requires: Replacement'
     - RestApiId: 'The identifier of the targeted API entity.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
-    - ValidateRequestBody: 'Indicates whether to validate the request body according
-        to the configured schema
-
+    - ValidateRequestBody: 'Indicates whether to validate the request body according to the configured
+        schema
         for the targeted API and method.
-
         Required: No
-
         Type: Boolean
-
         Update requires: No interruption'
     - ValidateRequestParameters: 'Indicates whether to validate request parameters.
-
         Required: No
-
         Type: Boolean
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-requestvalidator.html
   RequestValidator:
@@ -820,35 +534,22 @@ API Gateway:
       ValidateRequestParameters: Boolean
     Type: AWS::ApiGateway::RequestValidator
 - MetaData:
-    description: 'The AWS::ApiGateway::Resource resource creates a resource in an
-      API. '
+    description: 'The AWS::ApiGateway::Resource resource creates a resource in an API. '
     name: AWS::ApiGateway::Resource
     properties:
-    - ParentId: 'If you want to create a child resource, the ID of the parent resource.
-        For resources
-
-        without a parent, specify the RestApi root resource ID, such as { "Fn::GetAtt":
-        ["MyRestApi", "RootResourceId"] }.
-
+    - ParentId: 'If you want to create a child resource, the ID of the parent resource. For resources
+        without a parent, specify the RestApi root resource ID, such as { "Fn::GetAtt": ["MyRestApi",
+        "RootResourceId"] }.
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - PathPart: 'A path name for the resource.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
-    - RestApiId: 'The ID of the RestApi resource in which you want to create this
-        resource.
-
+    - RestApiId: 'The ID of the RestApi resource in which you want to create this resource.
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html
   Resource:
@@ -858,134 +559,79 @@ API Gateway:
       RestApiId: String
     Type: AWS::ApiGateway::Resource
 - MetaData:
-    description: 'The AWS::ApiGateway::RestApi resource creates a REST API. For more
-      information, see restapi:create in the Amazon API Gateway REST API Reference. '
+    description: 'The AWS::ApiGateway::RestApi resource creates a REST API. For more information, see
+      restapi:create in the Amazon API Gateway REST API Reference. '
     name: AWS::ApiGateway::RestApi
     properties:
-    - ApiKeySourceType: 'The source of the API key for metering requests according
-        to a usage plan. Valid values
-
+    - ApiKeySourceType: 'The source of the API key for metering requests according to a usage plan. Valid
+        values
         are:
-
         HEADER to read the API key from the X-API-Key header of a request.
-
         AUTHORIZER to read the API key from the UsageIdentifierKey from a Lambda authorizer.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - BinaryMediaTypes: 'The list of binary media types that are supported by the
-        RestApi resource, such as image/png or application/octet-stream. By default,
-        RestApi supports only UTF-8-encoded text payloads. Duplicates are not allowed.
-        Slashes must
-
-        be escaped with ~1. For example, image/png would be image~1png in the BinaryMediaTypes
-        list. For more information, see Enable Support for Binary Payloads in API
-        Gateway in the API Gateway Developer Guide.
-
+    - BinaryMediaTypes: 'The list of binary media types that are supported by the RestApi resource, such
+        as image/png or application/octet-stream. By default, RestApi supports only UTF-8-encoded text
+        payloads. Duplicates are not allowed. Slashes must
+        be escaped with ~1. For example, image/png would be image~1png in the BinaryMediaTypes list. For
+        more information, see Enable Support for Binary Payloads in API Gateway in the API Gateway Developer
+        Guide.
         Required: No
-
         Type: List of String
-
         Update requires: No interruption'
-    - Body: 'An OpenAPI specification that defines a set of RESTful APIs in JSON format.
-        For YAML
-
+    - Body: 'An OpenAPI specification that defines a set of RESTful APIs in JSON format. For YAML
         templates, you can also provide the specification in YAML format.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
-    - BodyS3Location: 'The Amazon Simple Storage Service (Amazon S3) location that
-        points to an OpenAPI file,
-
+    - BodyS3Location: 'The Amazon Simple Storage Service (Amazon S3) location that points to an OpenAPI
+        file,
         which defines a set of RESTful APIs in JSON or YAML format.
-
         Required: No
-
         Type: S3Location
-
         Update requires: No interruption'
     - CloneFrom: 'The ID of the RestApi resource that you want to clone.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Description: 'A description of the RestApi resource.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - EndpointConfiguration: 'A list of the endpoint types of the API. Use this property
-        when creating an API. When
-
-        importing an existing API, specify the endpoint configuration types using
-        the Parameters property.
-
+    - EndpointConfiguration: 'A list of the endpoint types of the API. Use this property when creating
+        an API. When
+        importing an existing API, specify the endpoint configuration types using the Parameters property.
         Required: No
-
         Type: EndpointConfiguration
-
         Update requires: No interruption'
-    - FailOnWarnings: 'Indicates whether to roll back the resource if a warning occurs
-        while API Gateway
-
+    - FailOnWarnings: 'Indicates whether to roll back the resource if a warning occurs while API Gateway
         is creating the RestApi resource.
-
         Required: No
-
         Type: Boolean
-
         Update requires: No interruption'
-    - MinimumCompressionSize: 'A nullable integer that is used to enable compression
-        (with non-negative between 0
-
-        and 10485760 (10M) bytes, inclusive) or disable compression (with a null value)
-        on
-
-        an API. When compression is enabled, compression or decompression is not applied
-        on
-
-        the payload if the payload size is smaller than this value. Setting it to
-        zero allows
-
+    - MinimumCompressionSize: 'A nullable integer that is used to enable compression (with non-negative
+        between 0
+        and 10485760 (10M) bytes, inclusive) or disable compression (with a null value) on
+        an API. When compression is enabled, compression or decompression is not applied on
+        the payload if the payload size is smaller than this value. Setting it to zero allows
         compression for any payload size.
-
         Required: No
-
         Type: Integer
-
         Update requires: No interruption'
     - Name: 'A name for the RestApi resource.
-
         Required: Conditional
-
         Type: String
-
         Update requires: No interruption'
     - Parameters: 'Custom header parameters for the request.
-
         Required: No
-
         Type: Map of String
-
         Update requires: No interruption'
-    - Policy: 'A policy document that contains the permissions for the RestApi resource,
-        in JSON format. To set the ARN for the policy, use the !Join intrinsic function
-        with "" as delimiter and values of "execute-api:/" and "*".
-
+    - Policy: 'A policy document that contains the permissions for the RestApi resource, in JSON format.
+        To set the ARN for the policy, use the !Join intrinsic function with "" as delimiter and values
+        of "execute-api:/" and "*".
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html
   RestApi:
@@ -1010,122 +656,67 @@ API Gateway:
     name: AWS::ApiGateway::Stage
     properties:
     - AccessLogSetting: 'Specifies settings for logging access in this stage.
-
         Required: No
-
         Type: AccessLogSetting
-
         Update requires: No interruption'
-    - CacheClusterEnabled: 'Indicates whether cache clustering is enabled for the
-        stage.
-
+    - CacheClusterEnabled: 'Indicates whether cache clustering is enabled for the stage.
         Required: No
-
         Type: Boolean
-
         Update requires: No interruption'
-    - CacheClusterSize: 'The stage''s cache cluster size.
-
+    - CacheClusterSize: 'The stages cache cluster size.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - CanarySetting: 'Specifies settings for the canary deployment in this stage.
-
         Required: No
-
         Type: CanarySetting
-
         Update requires: No interruption'
-    - ClientCertificateId: 'The ID of the client certificate that API Gateway uses
-        to call your integration endpoints
-
+    - ClientCertificateId: 'The ID of the client certificate that API Gateway uses to call your integration
+        endpoints
         in the stage.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - DeploymentId: 'The ID of the deployment that the stage is associated with. This
-        parameter is required.
-
+    - DeploymentId: 'The ID of the deployment that the stage is associated with. This parameter is required.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Description: 'A description of the stage.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - DocumentationVersion: 'The version ID of the API documentation snapshot.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - MethodSettings: 'Settings for all methods in the stage.
-
         Required: No
-
         Type: List of MethodSetting
-
         Update requires: No interruption'
-    - RestApiId: 'The ID of the RestApi resource that you''re deploying with this
-        stage.
-
+    - RestApiId: 'The ID of the RestApi resource that youre deploying with this stage.
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
-    - StageName: 'The name of the stage, which API Gateway uses as the first path
-        segment in the invoked
-
+    - StageName: 'The name of the stage, which API Gateway uses as the first path segment in the invoked
         Uniform Resource Identifier (URI).
-
         Required: No
-
         Type: String
-
         Update requires: Replacement'
     - Tags: 'An array of arbitrary tags (key-value pairs) to associate with the stage.
-
         Required: No
-
         Type: List of Tag
-
         Update requires: No interruption'
-    - TracingEnabled: 'Specifies whether active X-Ray tracing is enabled for this
-        stage.
-
-        For more information, see Trace API Gateway API Execution with AWS X-Ray in
-        the API Gateway Developer Guide.
-
+    - TracingEnabled: 'Specifies whether active X-Ray tracing is enabled for this stage.
+        For more information, see Trace API Gateway API Execution with AWS X-Ray in the API Gateway Developer
+        Guide.
         Required: No
-
         Type: Boolean
-
         Update requires: No interruption'
-    - Variables: 'A map (string-to-string map) that defines the stage variables, where
-        the variable
-
-        name is the key and the variable value is the value. Variable names are limited
-        to
-
-        alphanumeric characters. Values must match the following regular expression:
-        [A-Za-z0-9-._~:/?#&=,]+.
-
+    - Variables: 'A map (string-to-string map) that defines the stage variables, where the variable
+        name is the key and the variable value is the value. Variable names are limited to
+        alphanumeric characters. Values must match the following regular expression: [A-Za-z0-9-._~:/?#&=,]+.
         Required: No
-
         Type: Map of String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html
   Stage:
@@ -1149,48 +740,30 @@ API Gateway:
         Key: Value
     Type: AWS::ApiGateway::Stage
 - MetaData:
-    description: 'The AWS::ApiGateway::UsagePlan resource creates a usage plan for
-      deployed APIs. A usage plan enforces throttling and quota limits on individual
-      client API keys. For more information, see Creating and Using API Usage Plans
-      in Amazon API Gateway in the API Gateway Developer Guide. '
+    description: 'The AWS::ApiGateway::UsagePlan resource creates a usage plan for deployed APIs. A usage
+      plan enforces throttling and quota limits on individual client API keys. For more information, see
+      Creating and Using API Usage Plans in Amazon API Gateway in the API Gateway Developer Guide. '
     name: AWS::ApiGateway::UsagePlan
     properties:
     - ApiStages: 'The API stages to associate with this usage plan.
-
         Required: No
-
         Type: List of ApiStage
-
         Update requires: No interruption'
     - Description: 'A description of the usage plan.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - Quota: 'Configures the number of requests that users can make within a given
-        interval.
-
+    - Quota: 'Configures the number of requests that users can make within a given interval.
         Required: No
-
         Type: QuotaSettings
-
         Update requires: No interruption'
-    - Throttle: 'Configures the overall request rate (average requests per second)
-        and burst capacity.
-
+    - Throttle: 'Configures the overall request rate (average requests per second) and burst capacity.
         Required: No
-
         Type: ThrottleSettings
-
         Update requires: No interruption'
     - UsagePlanName: 'A name for the usage plan.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html
   UsagePlan:
@@ -1203,32 +776,21 @@ API Gateway:
       UsagePlanName: String
     Type: AWS::ApiGateway::UsagePlan
 - MetaData:
-    description: 'The AWS::ApiGateway::UsagePlanKey resource associates an API key
-      with a usage plan. This association determines which users the usage plan is
-      applied to. '
+    description: 'The AWS::ApiGateway::UsagePlanKey resource associates an API key with a usage plan.
+      This association determines which users the usage plan is applied to. '
     name: AWS::ApiGateway::UsagePlanKey
     properties:
     - KeyId: 'The ID of the usage plan key.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
-    - KeyType: 'The type of usage plan key. Currently, the only valid key type is
-        API_KEY.
-
+    - KeyType: 'The type of usage plan key. Currently, the only valid key type is API_KEY.
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - UsagePlanId: 'The value of the usage plan key.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplankey.html
   UsagePlanKey:
@@ -1238,35 +800,23 @@ API Gateway:
       UsagePlanId: String
     Type: AWS::ApiGateway::UsagePlanKey
 - MetaData:
-    description: 'The AWS::ApiGateway::VpcLink resource creates an API Gateway VPC
-      link for a REST API to access resources in an Amazon Virtual Private Cloud (VPC).
-      For more information, see vpclink:create in the Amazon API Gateway REST API
-      Reference. '
+    description: 'The AWS::ApiGateway::VpcLink resource creates an API Gateway VPC link for a REST API
+      to access resources in an Amazon Virtual Private Cloud (VPC). For more information, see vpclink:create
+      in the Amazon API Gateway REST API Reference. '
     name: AWS::ApiGateway::VpcLink
     properties:
     - Description: 'A description of the VPC link.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Name: 'A name for the VPC link.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - TargetArns: 'The ARNs of network load balancers of the VPC targeted by the VPC
-        link. The network
-
+    - TargetArns: 'The ARNs of network load balancers of the VPC targeted by the VPC link. The network
         load balancers must be owned by the same AWS account of the API owner.
-
         Required: Yes
-
         Type: List of String
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-vpclink.html
   VpcLink:

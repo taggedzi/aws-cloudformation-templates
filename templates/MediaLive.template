@@ -15,92 +15,52 @@ MediaLive:
       Tags: Json
     Type: AWS::MediaLive::Channel
   MetaData:
-    description: 'The AWS::MediaLive::Channel resource is a MediaLive resource type
-      that creates a channel. '
+    description: 'The AWS::MediaLive::Channel resource is a MediaLive resource type that creates a channel. '
     name: AWS::MediaLive::Channel
     properties:
-    - ChannelClass: 'The class for this channel. For a channel with two pipelines,
-        the class is STANDARD.
-
+    - ChannelClass: 'The class for this channel. For a channel with two pipelines, the class is STANDARD.
         For a channel with one pipeline, the class is SINGLE_PIPELINE.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - Destinations: 'The settings that identify the destination for the outputs in
-        this MediaLive output
-
+    - Destinations: 'The settings that identify the destination for the outputs in this MediaLive output
         package.
-
         Required: No
-
         Type: List of OutputDestination
-
         Update requires: No interruption'
     - EncoderSettings: 'The encoding configuration for the output content.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     - InputAttachments: 'The list of input attachments for the channel.
-
         Required: No
-
         Type: List of InputAttachment
-
         Update requires: No interruption'
-    - InputSpecification: 'The input specification for this channel. It specifies
-        the key characteristics of
-
+    - InputSpecification: 'The input specification for this channel. It specifies the key characteristics
+        of
         the
-
         inputs for this channel: the maximum bitrate, the resolution, and the codec.
-
         Required: No
-
         Type: InputSpecification
-
         Update requires: No interruption'
-    - LogLevel: 'The verbosity for logging activity for this channel. Charges for
-        logging (which are
-
+    - LogLevel: 'The verbosity for logging activity for this channel. Charges for logging (which are
         generated through Amazon CloudWatch Logging) are higher for higher verbosities.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - Name: 'A name for this audio selector. The AudioDescription (in an output) references
-        this
-
+    - Name: 'A name for this audio selector. The AudioDescription (in an output) references this
         name in order to identify a specific input audio to include in that output.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - RoleArn: 'The IAM role for MediaLive to assume when running this channel. The
-        role is identified
-
+    - RoleArn: 'The IAM role for MediaLive to assume when running this channel. The role is identified
         by its ARN.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Tags: 'A collection of tags for this channel. Each tag is a key-value pair.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-channel.html
 - Input:
@@ -120,90 +80,51 @@ MediaLive:
       Vpc: InputVpcRequest
     Type: AWS::MediaLive::Input
   MetaData:
-    description: 'The AWS::MediaLive::Input resource is a MediaLive resource type
-      that creates an input. '
+    description: 'The AWS::MediaLive::Input resource is a MediaLive resource type that creates an input. '
     name: AWS::MediaLive::Input
     properties:
-    - Destinations: 'The destination settings for push types of inputs. If the input
-        is a pull type, these
-
-        settings don''t apply.
-
+    - Destinations: 'The destination settings for push types of inputs. If the input is a pull type, these
+        settings dont apply.
         Required: No
-
         Type: List of InputDestinationRequest
-
         Update requires: No interruption'
-    - InputSecurityGroups: 'The list of input security groups (referenced by IDs)
-        to attach to the input if the
-
+    - InputSecurityGroups: 'The list of input security groups (referenced by IDs) to attach to the input
+        if the
         input is a push type.
-
         Required: No
-
         Type: List of String
-
         Update requires: No interruption'
-    - MediaConnectFlows: 'Settings that apply only if the input is a MediaConnect
-        input.
-
+    - MediaConnectFlows: 'Settings that apply only if the input is a MediaConnect input.
         Required: No
-
         Type: List of MediaConnectFlowRequest
-
         Update requires: No interruption'
     - Name: 'A name for the input.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - RoleArn: 'The IAM role for MediaLive to assume when creating a MediaConnect
-        input or Amazon
-
+    - RoleArn: 'The IAM role for MediaLive to assume when creating a MediaConnect input or Amazon
         VPC
-
-        input. This doesn''t apply to other types of inputs. The role is identified
-        by its
-
+        input. This doesnt apply to other types of inputs. The role is identified by its
         ARN.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - Sources: 'The source settings for a pull type of input. These settings don''t
-        apply if the input
-
+    - Sources: 'The source settings for a pull type of input. These settings dont apply if the input
         is a push type.
-
         Required: No
-
         Type: List of InputSourceRequest
-
         Update requires: No interruption'
     - Tags: 'A collection of tags for this input. Each tag is a key-value pair.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     - Type: 'The type for this input.
-
         Required: No
-
         Type: String
-
         Update requires: Replacement'
     - Vpc: 'Settings that apply only if the input is an Amazon VPC input.
-
         Required: No
-
         Type: InputVpcRequest
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-input.html
 - InputSecurityGroup:
@@ -213,28 +134,19 @@ MediaLive:
       - InputWhitelistRuleCidr
     Type: AWS::MediaLive::InputSecurityGroup
   MetaData:
-    description: 'The AWS::MediaLive::InputSecurityGroup is a MediaLive resource type
-      that creates an input security group. '
+    description: 'The AWS::MediaLive::InputSecurityGroup is a MediaLive resource type that creates an
+      input security group. '
     name: AWS::MediaLive::InputSecurityGroup
     properties:
     - Tags: 'A collection of tags for this input security group. Each tag is a key-value
-
         pair.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
-    - WhitelistRules: 'The list of IPv4 CIDR addresses to include in the input security
-        group as "allowed"
-
+    - WhitelistRules: 'The list of IPv4 CIDR addresses to include in the input security group as "allowed"
         addresses.
-
         Required: No
-
         Type: List of InputWhitelistRuleCidr
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-inputsecuritygroup.html
 ...

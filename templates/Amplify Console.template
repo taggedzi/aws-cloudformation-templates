@@ -18,96 +18,57 @@ Amplify Console:
       - Tag
     Type: AWS::Amplify::App
   MetaData:
-    description: ' The AWS::Amplify::App resource creates Apps in the Amplify Console.
-      An App is a collection of branches.  '
+    description: ' The AWS::Amplify::App resource creates Apps in the Amplify Console. An App is a collection
+      of branches.  '
     name: AWS::Amplify::App
     properties:
-    - AccessToken: 'Personal Access token for 3rd party source control system for
-        an Amplify App, used
-
+    - AccessToken: 'Personal Access token for 3rd party source control system for an Amplify App, used
         to create webhook and read-only
-
         deploy key. Token is not stored.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - BasicAuthConfig: 'Credentials for Basic Authorization for an Amplify App.
-
         Required: No
-
         Type: BasicAuthConfig
-
         Update requires: No interruption'
     - BuildSpec: 'BuildSpec for an Amplify App
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - CustomRules: 'Custom rewrite / redirect rules for an Amplify App.
-
         Required: No
-
         Type: List of CustomRule
-
         Update requires: No interruption'
     - Description: 'Description for an Amplify App
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - EnvironmentVariables: 'Environment variables map for an Amplify App.
-
         Required: No
-
         Type: List of EnvironmentVariable
-
         Update requires: No interruption'
     - IAMServiceRole: 'IAM service role ARN for the Amplify App.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Name: 'Name for the Amplify App
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - OauthToken: 'OAuth token for 3rd party source control system for an Amplify
-        App, used to create
-
+    - OauthToken: 'OAuth token for 3rd party source control system for an Amplify App, used to create
         webhook and read-only
-
         deploy key. OAuth token is not stored.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Repository: 'Repository for an Amplify App
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Tags: 'Tag for an Amplify App
-
         Required: No
-
         Type: List of Tag
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-app.html
 - Branch:
@@ -124,66 +85,40 @@ Amplify Console:
       - Tag
     Type: AWS::Amplify::Branch
   MetaData:
-    description: ' The AWS::Amplify::Branch resource creates a new branch within an
-      app.  '
+    description: ' The AWS::Amplify::Branch resource creates a new branch within an app.  '
     name: AWS::Amplify::Branch
     properties:
     - AppId: 'Unique Id for an Amplify App.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
-    - BasicAuthConfig: 'Basic Authorization credentials for a branch, part of an Amplify
-        App.
-
+    - BasicAuthConfig: 'Basic Authorization credentials for a branch, part of an Amplify App.
         Required: No
-
         Type: BasicAuthConfig
-
         Update requires: No interruption'
     - BranchName: 'Name for the branch.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - BuildSpec: 'BuildSpec for the branch.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Description: 'Description for the branch.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - EnvironmentVariables: 'Environment Variables for the branch.
-
         Required: No
-
         Type: List of EnvironmentVariable
-
         Update requires: No interruption'
     - Stage: 'Stage for the branch.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Tags: 'Tag for the branch.
-
         Required: No
-
         Type: List of Tag
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html
 - Domain:
@@ -194,30 +129,20 @@ Amplify Console:
       - SubDomainSetting
     Type: AWS::Amplify::Domain
   MetaData:
-    description: ' The AWS::Amplify::Domain resource allows you to connect a custom
-      domain to your app.  '
+    description: ' The AWS::Amplify::Domain resource allows you to connect a custom domain to your app.  '
     name: AWS::Amplify::Domain
     properties:
     - AppId: 'Unique Id for an Amplify App.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - DomainName: 'Domain name for the Domain Association.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - SubDomainSettings: 'Setting structure for the Subdomain.
-
         Required: Yes
-
         Type: List of SubDomainSetting
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-domain.html
 ...

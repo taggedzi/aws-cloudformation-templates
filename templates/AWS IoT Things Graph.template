@@ -6,29 +6,21 @@ AWS IoT Things Graph:
       Definition: DefinitionDocument
     Type: AWS::IoTThingsGraph::FlowTemplate
   MetaData:
-    description: 'Represents a workflow template. Workflows can be created only in
-      the user''s namespace. (The public namespace contains only entities.) The workflow
-      can contain only entities in the specified namespace. The workflow is validated
-      against the entities in the latest version of the user''s namespace unless another
-      namespace version is specified in the request. '
+    description: 'Represents a workflow template. Workflows can be created only in the users namespace.
+      (The public namespace contains only entities.) The workflow can contain only entities in the specified
+      namespace. The workflow is validated against the entities in the latest version of the users namespace
+      unless another namespace version is specified in the request. '
     name: AWS::IoTThingsGraph::FlowTemplate
     properties:
-    - CompatibleNamespaceVersion: 'The version of the user''s namespace against which
-        the workflow was validated. Use
-
+    - CompatibleNamespaceVersion: 'The version of the users namespace against which the workflow was
+        validated. Use
         this value in your system instance.
-
         Required: No
-
         Type: Double
-
         Update requires: No interruption'
-    - Definition: 'A workflow''s definition document.
-
+    - Definition: 'A workflows definition document.
         Required: Yes
-
         Type: DefinitionDocument
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotthingsgraph-flowtemplate.html
 ...

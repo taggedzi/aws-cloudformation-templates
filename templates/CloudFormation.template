@@ -5,29 +5,19 @@ CloudFormation:
       ServiceToken: String
     Type: AWS::CloudFormation::CustomResource
   MetaData:
-    description: 'In a CloudFormation template, you use the AWS::CloudFormation::CustomResource
-      or Custom::String resource type to specify custom resources. '
+    description: 'In a CloudFormation template, you use the AWS::CloudFormation::CustomResource or Custom::String
+      resource type to specify custom resources. '
     name: AWS::CloudFormation::CustomResource
     properties:
     - ServiceToken: 'Note
-
-        Only one property is defined by AWS for a custom resource: ServiceToken. All
-        other properties are defined by the service provider.
-
-        The service token that was given to the template developer by the service
-        provider
-
-        to access the service, such as an Amazon SNS topic ARN or Lambda function
-        ARN. The
-
+        Only one property is defined by AWS for a custom resource: ServiceToken. All other properties
+        are defined by the service provider.
+        The service token that was given to the template developer by the service provider
+        to access the service, such as an Amazon SNS topic ARN or Lambda function ARN. The
         service token must be from the same region in which you are creating the stack.
-
         Updates are not supported.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html
 - Macro:
@@ -39,183 +29,96 @@ CloudFormation:
       Name: String
     Type: AWS::CloudFormation::Macro
   MetaData:
-    description: 'The AWS::CloudFormation::Macro resource is an CloudFormation resource
-      type that creates an CloudFormation macro to perform custom processing on CloudFormation
-      templates. For more information, see Using AWS CloudFormation Macros to Perform
-      Custom Processing on Templates. '
+    description: 'The AWS::CloudFormation::Macro resource is an CloudFormation resource type that creates
+      an CloudFormation macro to perform custom processing on CloudFormation templates. For more information,
+      see Using AWS CloudFormation Macros to Perform Custom Processing on Templates. '
     name: AWS::CloudFormation::Macro
     properties:
     - Description: 'A description of the macro.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - FunctionName: 'The Amazon Resource Name (ARN) of the underlying AWS Lambda function
-        that you want
-
+    - FunctionName: 'The Amazon Resource Name (ARN) of the underlying AWS Lambda function that you want
         AWS CloudFormation to invoke when the macro is run.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - LogGroupName: 'The Amazon CloudWatch log group to which AWS CloudFormation sends
-        error logging information
-
-        when invoking the macro''s underlying AWS Lambda function.
-
+    - LogGroupName: 'The Amazon CloudWatch log group to which AWS CloudFormation sends error logging information
+        when invoking the macros underlying AWS Lambda function.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - LogRoleARN: 'The ARN of the role AWS CloudFormation should assume when sending
-        log entries to CloudWatch
-
+    - LogRoleARN: 'The ARN of the role AWS CloudFormation should assume when sending log entries to CloudWatch
         logs.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - Name: 'The name of the macro. The name of the macro must be unique across all
-        macros in the
-
+    - Name: 'The name of the macro. The name of the macro must be unique across all macros in the
         account.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-macro.html
 - MetaData:
-    description: 'The AWS::CloudFormation::Stack type nests a stack as a resource
-      in a top-level template. '
+    description: 'The AWS::CloudFormation::Stack type nests a stack as a resource in a top-level template. '
     name: AWS::CloudFormation::Stack
     properties:
-    - NotificationARNs: 'The Simple Notification Service (SNS) topic ARNs to publish
-        stack related events.
-
+    - NotificationARNs: 'The Simple Notification Service (SNS) topic ARNs to publish stack related events.
         You
-
         can find your SNS topic ARNs using the SNS console or your Command Line Interface
-
         (CLI).
-
         Required: No
-
         Type: List of String
-
         Maximum: 5
-
         Update requires: No interruption'
-    - Parameters: 'The set value pairs that represent the parameters passed to CloudFormation
-        when this
-
-        nested stack is created. Each parameter has a name corresponding to a parameter
-        defined
-
-        in the embedded template and a value representing the value that you want
-        to set for
-
+    - Parameters: 'The set value pairs that represent the parameters passed to CloudFormation when this
+        nested stack is created. Each parameter has a name corresponding to a parameter defined
+        in the embedded template and a value representing the value that you want to set for
         the parameter.
-
         Note
-
         If you use the Ref function to pass a parameter value to a
-
         nested stack, comma-delimited list parameters must be of type
-
         String. In other words, you cannot pass values that are of type
-
         CommaDelimitedList to nested stacks.
-
         Conditional. Required if the nested stack
-
         requires input parameters.
-
         Whether an update causes interruptions
-
-        depends on the resources that are being updated. An update never causes a
-        nested
-
+        depends on the resources that are being updated. An update never causes a nested
         stack to be replaced.
-
         Required: Conditional
-
         Type: Map of String
-
         Update requires: No interruption'
-    - Tags: 'Key-value pairs to associate with this stack. AWS CloudFormation also
-        propagates
-
-        these tags to the resources created in the stack. A maximum number of 50 tags
-        can
-
+    - Tags: 'Key-value pairs to associate with this stack. AWS CloudFormation also propagates
+        these tags to the resources created in the stack. A maximum number of 50 tags can
         be
-
         specified.
-
         Required: No
-
         Type: List of Tag
-
         Maximum: 50
-
         Update requires: No interruption'
-    - TemplateURL: 'Location of file containing the template body. The URL must point
-        to a template (max
-
+    - TemplateURL: 'Location of file containing the template body. The URL must point to a template (max
         size: 460,800 bytes) that is located in an Amazon S3 bucket. For more information,
-
         see Template Anatomy.
-
-        Whether an update causes interruptions depends on the resources that are being
-        updated.
-
+        Whether an update causes interruptions depends on the resources that are being updated.
         An update never causes a nested stack to be replaced.
-
         Required: Yes
-
         Type: String
-
         Minimum: 1
-
         Maximum: 1024
-
         Update requires: No interruption'
-    - TimeoutInMinutes: 'The length of time, in minutes, that CloudFormation waits
-        for the nested stack to
-
+    - TimeoutInMinutes: 'The length of time, in minutes, that CloudFormation waits for the nested stack
+        to
         reach
-
-        the CREATE_COMPLETE state. The default is no timeout. When CloudFormation
-        detects that the
-
+        the CREATE_COMPLETE state. The default is no timeout. When CloudFormation detects that the
         nested stack has reached the CREATE_COMPLETE state, it marks the nested stack
-
         resource as CREATE_COMPLETE in the parent stack and resumes creating the parent
-
         stack. If the timeout period expires before the nested stack reaches
-
-        CREATE_COMPLETE, CloudFormation marks the nested stack as failed and rolls
-        back both the
-
+        CREATE_COMPLETE, CloudFormation marks the nested stack as failed and rolls back both the
         nested stack and parent stack.
-
         Updates are not supported.
-
         Required: No
-
         Type: Integer
-
         Minimum: 1
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html
   Stack:
@@ -233,68 +136,37 @@ CloudFormation:
     description: Important
     name: AWS::CloudFormation::WaitCondition
     properties:
-    - Count: 'The number of success signals that CloudFormation must receive before
-        it continues
-
+    - Count: 'The number of success signals that CloudFormation must receive before it continues
         the stack creation process. When the wait condition receives the requisite
-
-        number of success signals, CloudFormation resumes the creation of the stack.
-        If the
-
+        number of success signals, CloudFormation resumes the creation of the stack. If the
         wait condition does not receive the specified number of success signals
-
         before the Timeout period expires, CloudFormation assumes that the wait condition
-
         has
-
         failed and rolls the stack back.
-
         Updates are not supported.
-
         Required: No
-
         Type: Integer
-
         Update requires: No interruption'
     - Handle: 'A reference to the wait condition handle used to signal this wait
-
         condition. Use the Ref intrinsic function to specify an AWS::CloudFormation::WaitConditionHandle
         resource.
-
         Anytime you add a WaitCondition resource during a stack update, you must
-
         associate the wait condition with a new WaitConditionHandle resource. Do not
-
         reuse an old wait condition handle that has already been defined in the
-
         template. If you reuse a wait condition handle, the wait condition might
-
         evaluate old signals from a previous create or update stack command.
-
         Updates are not supported.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - Timeout: 'The length of time (in seconds) to wait for the number of signals
-        that the
-
+    - Timeout: 'The length of time (in seconds) to wait for the number of signals that the
         Count property specifies. Timeout is a
-
         minimum-bound property, meaning the timeout occurs no sooner than the time
-
         you specify, but can occur shortly thereafter. The maximum time that can be
-
         specified for this property is 12 hours (43200 seconds).
-
         Updates are not supported.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitcondition.html
   WaitCondition:

@@ -12,99 +12,56 @@ AWS Cloud9:
       SubnetId: String
     Type: AWS::Cloud9::EnvironmentEC2
   MetaData:
-    description: 'The AWS::Cloud9::EnvironmentEC2 resource creates an Amazon EC2 development
-      environment in AWS Cloud9. For more information, see Creating an Environment
-      in the AWS Cloud9 User Guide. '
+    description: 'The AWS::Cloud9::EnvironmentEC2 resource creates an Amazon EC2 development environment
+      in AWS Cloud9. For more information, see Creating an Environment in the AWS Cloud9 User Guide. '
     name: AWS::Cloud9::EnvironmentEC2
     properties:
-    - AutomaticStopTimeMinutes: 'The number of minutes until the running instance
-        is shut down after the environment
-
+    - AutomaticStopTimeMinutes: 'The number of minutes until the running instance is shut down after the
+        environment
         was
-
         last used.
-
         Required: No
-
         Type: Integer
-
         Maximum: 20160
-
         Update requires: Replacement'
     - Description: 'The description of the environment to create.
-
         Required: No
-
         Type: String
-
         Maximum: 200
-
         Update requires: Replacement'
     - InstanceType: 'The type of instance to connect to the environment (for example,
-
         t2.micro).
-
         Required: Yes
-
         Type: String
-
         Minimum: 5
-
         Maximum: 20
-
         Pattern: ^[a-z][1-9][.][a-z0-9]+$
-
         Update requires: Replacement'
     - Name: 'The name of the environment.
-
         Required: No
-
         Type: String
-
         Update requires: Replacement'
-    - OwnerArn: 'The Amazon Resource Name (ARN) of the environment owner. This ARN
-        can be the ARN of
-
+    - OwnerArn: 'The Amazon Resource Name (ARN) of the environment owner. This ARN can be the ARN of
         any
-
         AWS Identity and Access Management (IAM) principal. If this value is not specified,
-
-        the ARN defaults to this environment''s
-
+        the ARN defaults to this environments
         creator.
-
         Required: No
-
         Type: String
-
         Pattern: arn:aws:(iam|sts)::\d+:(root|user|federated-user|assumed-role)\/?\S*
-
         Update requires: Replacement'
-    - Repositories: 'Any AWS CodeCommit source code repositories to be cloned into
-        the development
-
+    - Repositories: 'Any AWS CodeCommit source code repositories to be cloned into the development
         environment.
-
         Required: No
-
         Type: List of Repository
-
         Update requires: Replacement'
-    - SubnetId: 'The ID of the subnet in Amazon Virtual Private Cloud (Amazon VPC)
-        that AWS Cloud9
-
+    - SubnetId: 'The ID of the subnet in Amazon Virtual Private Cloud (Amazon VPC) that AWS Cloud9
         will use to communicate with the
-
         Amazon Elastic Compute Cloud (Amazon EC2) instance.
-
         Required: No
-
         Type: String
-
         Minimum: 5
-
         Maximum: 30
-
         Update requires: Replacement'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html
 ...

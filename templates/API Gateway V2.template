@@ -12,67 +12,42 @@ API Gateway V2:
       Version: String
     Type: AWS::ApiGatewayV2::Api
   MetaData:
-    description: 'The AWS::ApiGatewayV2::Api resource creates an API. Currently only
-      WebSocket APIs are supported. For more information about WebSocket APIs, see
-      About WebSocket APIs in API Gateway in the API Gateway Developer Guide. '
+    description: 'The AWS::ApiGatewayV2::Api resource creates an API. Currently only WebSocket APIs are
+      supported. For more information about WebSocket APIs, see About WebSocket APIs in API Gateway in
+      the API Gateway Developer Guide. '
     name: AWS::ApiGatewayV2::Api
     properties:
-    - ApiKeySelectionExpression: 'An API key selection expression. See API Key Selection
-        Expressions.
-
+    - ApiKeySelectionExpression: 'An API key selection expression. See API Key Selection Expressions.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Description: 'The description of the API.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - DisableSchemaValidation: 'Avoid validating models when creating a deployment.
-
         Required: No
-
         Type: Boolean
-
         Update requires: No interruption'
     - Name: 'The name of the API.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     - ProtocolType: 'The API protocol: Currently only WEBSOCKET is supported.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - RouteSelectionExpression: 'The route selection expression for the API.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     - Tags: 'The collection of tags. Each tag element is associated with a given resource.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     - Version: 'A version identifier for the API.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-api.html
 - ApiMapping:
@@ -83,38 +58,25 @@ API Gateway V2:
       Stage: String
     Type: AWS::ApiGatewayV2::ApiMapping
   MetaData:
-    description: 'The AWS::ApiGatewayV2::ApiMapping resource contains an API mapping.
-      For more information, see CreateApiMapping in the Amazon API Gateway V2 API
-      Reference. '
+    description: 'The AWS::ApiGatewayV2::ApiMapping resource contains an API mapping. For more information,
+      see CreateApiMapping in the Amazon API Gateway V2 API Reference. '
     name: AWS::ApiGatewayV2::ApiMapping
     properties:
     - ApiId: 'The identifier of the API.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - ApiMappingKey: 'The API mapping key.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - DomainName: 'The domain name.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - Stage: 'The API stage.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-apimapping.html
 - Authorizer:
@@ -130,131 +92,73 @@ API Gateway V2:
       Name: String
     Type: AWS::ApiGatewayV2::Authorizer
   MetaData:
-    description: 'The AWS::ApiGatewayV2::Authorizer resource updates a Lambda authorizer
-      function. For more information about Lambda authorizer functions for WebSocket
-      APIs, see Create a Lambda REQUEST Authorizer Function in the API Gateway Developer
-      Guide. '
+    description: 'The AWS::ApiGatewayV2::Authorizer resource updates a Lambda authorizer function. For
+      more information about Lambda authorizer functions for WebSocket APIs, see Create a Lambda REQUEST
+      Authorizer Function in the API Gateway Developer Guide. '
     name: AWS::ApiGatewayV2::Authorizer
     properties:
     - ApiId: 'The API identifier.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
-    - AuthorizerCredentialsArn: 'Specifies the required credentials as an IAM role
-        for API Gateway to invoke the authorizer.
-
-        To specify an IAM role for API Gateway to assume, use the role''s Amazon Resource
-        Name
-
+    - AuthorizerCredentialsArn: 'Specifies the required credentials as an IAM role for API Gateway to
+        invoke the authorizer.
+        To specify an IAM role for API Gateway to assume, use the roles Amazon Resource Name
         (ARN). To use resource-based permissions on the Lambda function, specify null.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - AuthorizerResultTtlInSeconds: 'The time to live (TTL), in seconds, of cached
-        authorizer results. If it is zero, authorization
-
+    - AuthorizerResultTtlInSeconds: 'The time to live (TTL), in seconds, of cached authorizer results.
+        If it is zero, authorization
         caching is disabled. If it is greater than zero, API Gateway will cache authorizer
-
-        responses. If this field is not set, the default value is 300. The maximum
-        value is
-
+        responses. If this field is not set, the default value is 300. The maximum value is
         3600, or 1 hour.
-
         Required: No
-
         Type: Integer
-
         Update requires: No interruption'
-    - AuthorizerType: 'The authorizer type. Currently the only valid value is REQUEST,
-        for a Lambda function using incoming request parameters.
-
+    - AuthorizerType: 'The authorizer type. Currently the only valid value is REQUEST, for a Lambda function
+        using incoming request parameters.
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - AuthorizerUri: 'The authorizer''s Uniform Resource Identifier (URI). For REQUEST
-
+    - AuthorizerUri: 'The authorizers Uniform Resource Identifier (URI). For REQUEST
         authorizers, this must be a well-formed Lambda function URI, for example,
-
         arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations.
-
         In general, the URI has this form:
-
         arn:aws:apigateway:{region}:lambda:path/{service_api}
-
         , where {region} is the same as the region hosting the
-
-        Lambda function, path indicates that the remaining substring in the URI should
-        be
-
+        Lambda function, path indicates that the remaining substring in the URI should be
         treated as the path to the resource, including the initial /. For
-
         Lambda functions, this is usually of the form
-
         /2015-03-31/functions/[FunctionARN]/invocations.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     - IdentitySource: 'The identity source for which authorization is requested.
-
-        For the REQUEST authorizer, this is required when authorization caching is
-        enabled. The value is
-
-        a comma-separated string of one or more mapping expressions of the specified
-        request
-
-        parameters. For example, if an Auth header, a Name query string parameter
-        are defined
-
+        For the REQUEST authorizer, this is required when authorization caching is enabled. The value
+        is
+        a comma-separated string of one or more mapping expressions of the specified request
+        parameters. For example, if an Auth header, a Name query string parameter are defined
         as identity sources, this value is $method.request.header.Auth, $method.request.querystring.Name.
-        These parameters will be used to derive the authorization caching key and
-        to perform
-
-        runtime validation of the REQUEST authorizer by verifying all of the identity-related
-        request parameters are present,
-
-        not null and non-empty. Only when this is true does the authorizer invoke
-        the authorizer
-
-        Lambda function, otherwise, it returns a 401 Unauthorized response without
-        calling the Lambda function. The valid value is a string of comma-separated
-
-        mapping expressions of the specified request parameters. When the authorization
-        caching
-
+        These parameters will be used to derive the authorization caching key and to perform
+        runtime validation of the REQUEST authorizer by verifying all of the identity-related request
+        parameters are present,
+        not null and non-empty. Only when this is true does the authorizer invoke the authorizer
+        Lambda function, otherwise, it returns a 401 Unauthorized response without calling the Lambda
+        function. The valid value is a string of comma-separated
+        mapping expressions of the specified request parameters. When the authorization caching
         is not enabled, this property is
-
         optional.
-
         Required: Yes
-
         Type: List of String
-
         Update requires: No interruption'
-    - IdentityValidationExpression: 'The validation expression does not apply to the
-        REQUEST authorizer.
-
+    - IdentityValidationExpression: 'The validation expression does not apply to the REQUEST authorizer.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Name: 'The name of the authorizer.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-authorizer.html
 - Deployment:
@@ -264,31 +168,21 @@ API Gateway V2:
       StageName: String
     Type: AWS::ApiGatewayV2::Deployment
   MetaData:
-    description: 'The AWS::ApiGatewayV2::Deployment resource creates a deployment
-      for an API. For more information, see Deploy a WebSocket API in API Gateway
-      in the API Gateway Developer Guide. '
+    description: 'The AWS::ApiGatewayV2::Deployment resource creates a deployment for an API. For more
+      information, see Deploy a WebSocket API in API Gateway in the API Gateway Developer Guide. '
     name: AWS::ApiGatewayV2::Deployment
     properties:
     - ApiId: 'The API identifier.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - Description: 'The description for the deployment resource.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - StageName: 'The name of the Stage resource for the Deployment resource to create.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-deployment.html
 - DomainName:
@@ -299,33 +193,22 @@ API Gateway V2:
       Tags: Json
     Type: AWS::ApiGatewayV2::DomainName
   MetaData:
-    description: 'The AWS::ApiGatewayV2::DomainName resource specifies a custom domain
-      name for your API in Amazon API Gateway (API Gateway). '
+    description: 'The AWS::ApiGatewayV2::DomainName resource specifies a custom domain name for your API
+      in Amazon API Gateway (API Gateway). '
     name: AWS::ApiGatewayV2::DomainName
     properties:
-    - DomainName: 'The custom domain name for your API in Amazon API Gateway. Uppercase
-        letters are
-
+    - DomainName: 'The custom domain name for your API in Amazon API Gateway. Uppercase letters are
         not supported.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - DomainNameConfigurations: 'The domain name configurations.
-
         Required: No
-
         Type: List of DomainNameConfiguration
-
         Update requires: No interruption'
     - Tags: 'The collection of tags associated with a domain name.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-domainname.html
 - Integration:
@@ -345,220 +228,113 @@ API Gateway V2:
       TimeoutInMillis: Integer
     Type: AWS::ApiGatewayV2::Integration
   MetaData:
-    description: 'The AWS::ApiGatewayV2::Integration resource creates an integration
-      for an API. For more information, see Set up a WebSocket API Integration Request
-      in API Gateway in the API Gateway Developer Guide. '
+    description: 'The AWS::ApiGatewayV2::Integration resource creates an integration for an API. For more
+      information, see Set up a WebSocket API Integration Request in API Gateway in the API Gateway Developer
+      Guide. '
     name: AWS::ApiGatewayV2::Integration
     properties:
     - ApiId: 'The API identifier.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
-    - ConnectionType: 'The type of the network connection to the integration endpoint.
-        Currently the only
-
+    - ConnectionType: 'The type of the network connection to the integration endpoint. Currently the only
         valid value is INTERNET, for connections through the public routable internet.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - ContentHandlingStrategy: 'Specifies how to handle response payload content type
-        conversions. Supported values
-
+    - ContentHandlingStrategy: 'Specifies how to handle response payload content type conversions. Supported
+        values
         are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:
-
-        CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string
-        to the corresponding binary
-
+        CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding
+        binary
         blob.
-
-        CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded
-        string.
-
-        If this property is not defined, the response payload will be passed through
-        from
-
-        the integration response to the route response or method response without
-        modification.
-
+        CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.
+        If this property is not defined, the response payload will be passed through from
+        the integration response to the route response or method response without modification.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - CredentialsArn: 'Specifies the credentials required for the integration, if
-        any. For AWS integrations,
-
-        three options are available. To specify an IAM Role for API Gateway to assume,
-        use
-
-        the role''s Amazon Resource Name (ARN). To require that the caller''s identity
-        be passed
-
-        through from the request, specify the string arn:aws:iam::*:user/*. To use
-        resource-based permissions on supported AWS services, specify null.
-
+    - CredentialsArn: 'Specifies the credentials required for the integration, if any. For AWS integrations,
+        three options are available. To specify an IAM Role for API Gateway to assume, use
+        the roles Amazon Resource Name (ARN). To require that the callers identity be passed
+        through from the request, specify the string arn:aws:iam::*:user/*. To use resource-based permissions
+        on supported AWS services, specify null.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Description: 'The description of the integration.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - IntegrationMethod: 'Specifies the integration''s HTTP method type.
-
+    - IntegrationMethod: 'Specifies the integrations HTTP method type.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - IntegrationType: 'The integration type of an integration. One of the following:
-
-        AWS: for integrating the route or method request with an AWS service action,
-        including
-
-        the Lambda function-invoking action. With the Lambda function-invoking action,
-        this
-
-        is referred to as the Lambda custom integration. With any other AWS service
-        action,
-
+        AWS: for integrating the route or method request with an AWS service action, including
+        the Lambda function-invoking action. With the Lambda function-invoking action, this
+        is referred to as the Lambda custom integration. With any other AWS service action,
         this is known as AWS integration.
-
-        AWS_PROXY: for integrating the route or method request with the Lambda function-invoking
-        action
-
-        with the client request passed through as-is. This integration is also referred
-        to
-
+        AWS_PROXY: for integrating the route or method request with the Lambda function-invoking action
+        with the client request passed through as-is. This integration is also referred to
         as Lambda proxy integration.
-
-        HTTP: for integrating the route or method request with an HTTP endpoint. This
-        integration
-
+        HTTP: for integrating the route or method request with an HTTP endpoint. This integration
         is also referred to as HTTP custom integration.
-
-        HTTP_PROXY: for integrating route or method request with an HTTP endpoint,
-        with the client request
-
+        HTTP_PROXY: for integrating route or method request with an HTTP endpoint, with the client request
         passed through as-is. This is also referred to as HTTP proxy integration.
-
-        MOCK: for integrating the route or method request with API Gateway as a "loopback"
-        endpoint
-
+        MOCK: for integrating the route or method request with API Gateway as a "loopback" endpoint
         without invoking any backend.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - IntegrationUri: 'For a Lambda proxy integration, this is the URI of the Lambda
-        function.
-
+    - IntegrationUri: 'For a Lambda proxy integration, this is the URI of the Lambda function.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - PassthroughBehavior: 'Specifies the pass-through behavior for incoming requests
-        based on the Content-Type header in the request, and the available mapping
-        templates specified as the requestTemplates property on the Integration resource.
-        There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and NEVER.
-
-        WHEN_NO_MATCH passes the request body for unmapped content types through to
-        the integration backend
-
+    - PassthroughBehavior: 'Specifies the pass-through behavior for incoming requests based on the Content-Type
+        header in the request, and the available mapping templates specified as the requestTemplates property
+        on the Integration resource. There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and
+        NEVER.
+        WHEN_NO_MATCH passes the request body for unmapped content types through to the integration backend
         without transformation.
-
-        NEVER rejects unmapped content types with an HTTP 415 Unsupported Media Type
-        response.
-
-        WHEN_NO_TEMPLATES allows pass-through when the integration has no content
-        types mapped to templates.
-
-        However, if there is at least one content type defined, unmapped content types
-        will
-
+        NEVER rejects unmapped content types with an HTTP 415 Unsupported Media Type response.
+        WHEN_NO_TEMPLATES allows pass-through when the integration has no content types mapped to templates.
+        However, if there is at least one content type defined, unmapped content types will
         be rejected with the same HTTP 415 Unsupported Media Type response.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - RequestParameters: 'A key-value map specifying request parameters that are passed
-        from the method
-
-        request to the backend. The key is an integration request parameter name and
-        the
-
-        associated value is a method request parameter value or static value that
-        must be
-
-        enclosed within single quotes and pre-encoded as required by the backend.
-        The
-
+    - RequestParameters: 'A key-value map specifying request parameters that are passed from the method
+        request to the backend. The key is an integration request parameter name and the
+        associated value is a method request parameter value or static value that must be
+        enclosed within single quotes and pre-encoded as required by the backend. The
         method request parameter value must match the pattern of
-
         method.request.{location}.{name}
-
         , where
-
         {location}
-
         is querystring, path, or header;
-
         and
-
         {name}
-
         must be a valid and unique method request parameter name.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
-    - RequestTemplates: 'Represents a map of Velocity templates that are applied on
-        the request payload based
-
-        on the value of the Content-Type header sent by the client. The content type
-        value
-
+    - RequestTemplates: 'Represents a map of Velocity templates that are applied on the request payload
+        based
+        on the value of the Content-Type header sent by the client. The content type value
         is the key in this map, and the template (as a String) is the value.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     - TemplateSelectionExpression: 'The template selection expression for the integration.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - TimeoutInMillis: 'Custom timeout between 50 and 29,000 milliseconds. The default
-        value is 29,000 milliseconds
-
+    - TimeoutInMillis: 'Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000
+        milliseconds
         or 29 seconds.
-
         Required: No
-
         Type: Integer
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integration.html
 - IntegrationResponse:
@@ -572,159 +348,89 @@ API Gateway V2:
       TemplateSelectionExpression: String
     Type: AWS::ApiGatewayV2::IntegrationResponse
   MetaData:
-    description: 'The AWS::ApiGatewayV2::IntegrationResponse resource updates an integration
-      response for an API. For more information, see Set up WebSocket API Integration
-      Responses in API Gateway in the API Gateway Developer Guide. '
+    description: 'The AWS::ApiGatewayV2::IntegrationResponse resource updates an integration response
+      for an API. For more information, see Set up WebSocket API Integration Responses in API Gateway
+      in the API Gateway Developer Guide. '
     name: AWS::ApiGatewayV2::IntegrationResponse
     properties:
     - ApiId: 'The API identifier.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - ContentHandlingStrategy: 'Specifies how to handle response payload content type
-        conversions. Supported values
-
+    - ContentHandlingStrategy: 'Specifies how to handle response payload content type conversions. Supported
+        values
         are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:
-
-        CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string
-        to the corresponding binary
-
+        CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding
+        binary
         blob.
-
-        CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded
-        string.
-
-        If this property is not defined, the response payload will be passed through
-        from
-
-        the integration response to the route response or method response without
-        modification.
-
+        CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.
+        If this property is not defined, the response payload will be passed through from
+        the integration response to the route response or method response without modification.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - IntegrationId: 'The integration ID.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     - IntegrationResponseKey: 'The integration response key.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - ResponseParameters: 'A key-value map specifying response parameters that are
-        passed to the method
-
-        response from the backend. The key is a method response header parameter name
-        and
-
+    - ResponseParameters: 'A key-value map specifying response parameters that are passed to the method
+        response from the backend. The key is a method response header parameter name and
         the mapped value is an integration response header value, a static value enclosed
-
-        within a pair of single quotes, or a JSON expression from the integration
-        response
-
+        within a pair of single quotes, or a JSON expression from the integration response
         body. The mapping key must match the pattern of
-
         method.response.header.{name}
-
         , where name is a valid and unique header name. The mapped non-static value
-
         must match the pattern of
-
         integration.response.header.{name}
-
         or integration.response.body.{JSON-expression}
-
         , where
-
         {name}
-
         is a valid and unique response header name and
-
         {JSON-expression}
-
         is a valid JSON expression without the $ prefix.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
-    - ResponseTemplates: 'The collection of response templates for the integration
-        response as a string-to-string
-
-        map of key-value pairs. Response templates are represented as a key/value
-        map, with
-
+    - ResponseTemplates: 'The collection of response templates for the integration response as a string-to-string
+        map of key-value pairs. Response templates are represented as a key/value map, with
         a content-type as the key and a template as the value.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
-    - TemplateSelectionExpression: 'The template selection expression for the integration
-        response.
-
+    - TemplateSelectionExpression: 'The template selection expression for the integration response.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integrationresponse.html
 - MetaData:
-    description: 'The AWS::ApiGatewayV2::Model resource updates data model for a WebSocket
-      API. For more information, see Model Selection Expressions in the API Gateway
-      Developer Guide. '
+    description: 'The AWS::ApiGatewayV2::Model resource updates data model for a WebSocket API. For more
+      information, see Model Selection Expressions in the API Gateway Developer Guide. '
     name: AWS::ApiGatewayV2::Model
     properties:
     - ApiId: 'The API identifier.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - ContentType: 'The content-type for the model, for example, "application/json".
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Description: 'The description of the model.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Name: 'The name of the model.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - Schema: 'The schema for the model. For application/json models, this should
-        be JSON schema
-
+    - Schema: 'The schema for the model. For application/json models, this should be JSON schema
         draft 4 model.
-
         Required: Yes
-
         Type: Json
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-model.html
   Model:
@@ -736,101 +442,60 @@ API Gateway V2:
       Schema: Json
     Type: AWS::ApiGatewayV2::Model
 - MetaData:
-    description: 'The AWS::ApiGatewayV2::Route resource creates a route for a WebSocket
-      API. For more information, see Set up Routes for a WebSocket API in API Gateway
-      in the API Gateway Developer Guide. '
+    description: 'The AWS::ApiGatewayV2::Route resource creates a route for a WebSocket API. For more
+      information, see Set up Routes for a WebSocket API in API Gateway in the API Gateway Developer Guide. '
     name: AWS::ApiGatewayV2::Route
     properties:
     - ApiId: 'The API identifier.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - ApiKeyRequired: 'Specifies whether an API key is required for the route.
-
         Required: No
-
         Type: Boolean
-
         Update requires: No interruption'
     - AuthorizationScopes: 'The authorization scopes supported by this route.
-
         Required: No
-
         Type: List of String
-
         Update requires: No interruption'
-    - AuthorizationType: 'The authorization type for the route. Valid values are NONE
-        for open access, AWS_IAM for using AWS IAM permissions, and CUSTOM for using
-        a Lambda authorizer.
-
+    - AuthorizationType: 'The authorization type for the route. Valid values are NONE for open access,
+        AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
-    - AuthorizerId: 'The identifier of the Authorizer resource to be associated with
-        this route, if the authorizationType is CUSTOM
-
-        . The authorizer identifier is generated by API Gateway when you created the
-        authorizer.
-
+    - AuthorizerId: 'The identifier of the Authorizer resource to be associated with this route, if the
+        authorizationType is CUSTOM
+        . The authorizer identifier is generated by API Gateway when you created the authorizer.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - ModelSelectionExpression: 'The model selection expression for the route.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - OperationName: 'The operation name for the route.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - RequestModels: 'The request models for the route.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     - RequestParameters: 'The request parameters for the route.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     - RouteKey: 'The route key for the route.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
-    - RouteResponseSelectionExpression: 'The route response selection expression for
-        the route.
-
+    - RouteResponseSelectionExpression: 'The route response selection expression for the route.
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - Target: 'The target for the route.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-route.html
   Route:
@@ -850,52 +515,34 @@ API Gateway V2:
       Target: String
     Type: AWS::ApiGatewayV2::Route
 - MetaData:
-    description: 'The AWS::ApiGatewayV2::RouteResponse resource creates a route response
-      for a WebSocket API. For more information, see Set up Route Responses for a
-      WebSocket API in API Gateway in the API Gateway Developer Guide. '
+    description: 'The AWS::ApiGatewayV2::RouteResponse resource creates a route response for a WebSocket
+      API. For more information, see Set up Route Responses for a WebSocket API in API Gateway in the
+      API Gateway Developer Guide. '
     name: AWS::ApiGatewayV2::RouteResponse
     properties:
     - ApiId: 'The API identifier.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - ModelSelectionExpression: 'The model selection expression for the route response.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - ResponseModels: 'The response models for the route response.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     - ResponseParameters: 'The route response parameters.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     - RouteId: 'The route ID.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - RouteResponseKey: 'The route response key.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-routeresponse.html
   RouteResponse:
@@ -908,86 +555,52 @@ API Gateway V2:
       RouteResponseKey: String
     Type: AWS::ApiGatewayV2::RouteResponse
 - MetaData:
-    description: 'The AWS::ApiGatewayV2::Stage resource updates a stage for a WebSocket
-      API. For more information, see Deploy a WebSocket API in API Gateway in the
-      API Gateway Developer Guide. '
+    description: 'The AWS::ApiGatewayV2::Stage resource updates a stage for a WebSocket API. For more
+      information, see Deploy a WebSocket API in API Gateway in the API Gateway Developer Guide. '
     name: AWS::ApiGatewayV2::Stage
     properties:
     - AccessLogSettings: 'Settings for logging access in this stage.
-
         Required: No
-
         Type: AccessLogSettings
-
         Update requires: No interruption'
     - ApiId: 'The API identifier.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
     - ClientCertificateId: 'The identifier of a client certificate for a Stage.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - DefaultRouteSettings: 'The default route settings for the stage.
-
         Required: No
-
         Type: RouteSettings
-
         Update requires: No interruption'
     - DeploymentId: 'The deployment identifier for the API stage.
-
         Required: Yes
-
         Type: String
-
         Update requires: No interruption'
     - Description: 'The description for the API stage.
-
         Required: No
-
         Type: String
-
         Update requires: No interruption'
     - RouteSettings: 'Route settings for the stage.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
-    - StageName: 'The stage name. Stage names can only contain alphanumeric characters,
-        hyphens, and
-
+    - StageName: 'The stage name. Stage names can only contain alphanumeric characters, hyphens, and
         underscores. Maximum length is 128 characters.
-
         Required: Yes
-
         Type: String
-
         Update requires: Replacement'
-    - StageVariables: 'A map that defines the stage variables for a Stage. Variable
-        names can have alphanumeric and underscore characters, and the values must
-
+    - StageVariables: 'A map that defines the stage variables for a Stage. Variable names can have alphanumeric
+        and underscore characters, and the values must
         match [A-Za-z0-9-._~:/?#&=,]+.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     - Tags: 'The collection of tags. Each tag element is associated with a given resource.
-
         Required: No
-
         Type: Json
-
         Update requires: No interruption'
     url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-stage.html
   Stage:

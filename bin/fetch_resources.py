@@ -159,7 +159,7 @@ def collect_subtypes_for_resource():
                                 default_flow_style=False,
                                 line_break="+++",
                                 allow_unicode=True,
-                                width=80,
+                                width=100,
                                 Dumper=Dumper)
         logging.debug(yaml_output)
         save_page(f'templates/{resource_name}.template', yaml_output)
@@ -171,6 +171,26 @@ def save_page(name=None, content=None):
             file.write(content)
     else:
         raise Exception('Invalid file name or content.')
+
+
+def remove_empty_lines(filename):
+    if not os.path.isfile(filename):
+        print("{} does not exist ".format(filename))
+        return
+    with open(filename) as filehandle:
+        lines = filehandle.readlines()
+
+    with open(filename, 'w') as filehandle:
+        lines = filter(lambda x: x.strip(), lines)
+        lines = [i.replace("''", '') for i in lines]
+        filehandle.writelines(lines)
+
+
+def cleanup_files():
+    rootDir = './templates'
+    for dirName, subdirList, fileList in os.walk(rootDir):
+        for fname in fileList:
+            remove_empty_lines(f'{rootDir}/{fname}')
 
 
 def get_page(url=None):
@@ -203,3 +223,4 @@ def get_page(url=None):
 get_resource_pages()
 get_resource_subtypes()
 collect_subtypes_for_resource()
+cleanup_files()
