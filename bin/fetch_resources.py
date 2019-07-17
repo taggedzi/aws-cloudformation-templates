@@ -115,20 +115,18 @@ def collect_subtypes_for_resource():
             subtype_yaml = yaml.load(subtype_yaml_out, Loader=Loader)
             logging.debug(subtype_yaml)
 
-            try:
-                subtype_variables = subtype_content.find('div', class_='variablelist').find('dl')
-            except AttributeError as aErr:
-                logging.exception(f'There has been an error processing: {resource_type}.')
-                logging.exception(f'aErr')
-                continue
-
             terms = []
             definitions = []
             subtype_properties = []
-            for dts in subtype_variables.find_all('dt'):
-                terms.append(dts.get_text())
-            for dds in subtype_variables.find_all('dd'):
-                definitions.append(dds.get_text())
+            try:
+                subtype_variables = subtype_content.find('div', class_='variablelist').find('dl')
+                for dts in subtype_variables.find_all('dt'):
+                    terms.append(dts.get_text())
+                for dds in subtype_variables.find_all('dd'):
+                    definitions.append(dds.get_text())
+            except AttributeError as aErr:
+                logging.exception(f'There has been an error processing: {resource_type}.')
+                logging.exception(f'aErr')
 
             for i in range(0, len(terms)):
                 def_list = [j.strip() for j in definitions[i].splitlines()]

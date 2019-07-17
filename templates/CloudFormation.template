@@ -175,4 +175,12 @@ CloudFormation:
       Handle: String
       Timeout: String
     Type: AWS::CloudFormation::WaitCondition
+- MetaData:
+    description: Important
+    name: AWS::CloudFormation::WaitConditionHandle
+    properties: []
+    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitconditionhandle.html
+  WaitConditionHandle:
+    Properties: null
+    Type: AWS::CloudFormation::WaitConditionHandle
 ...
