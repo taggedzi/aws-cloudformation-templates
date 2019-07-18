@@ -1,73 +1,71 @@
 ---
-Amazon SageMaker:
-- CodeRepository:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Amazon SageMaker
+Resources:
+  CodeRepositoryLogicalName:
+    MetaData:
+      Description: 'Creates a Git repository as a resource in your Amazon SageMaker account. You can associate
+        the repository with notebook instances so that you can use Git source control for the notebooks
+        you create. The Git repository is a resource in your Amazon SageMaker account, so it can be associated
+        with more than one notebook instance, and it persists independently from the lifecycle of any
+        notebook instances it is associated with. '
+      Name: AWS::SageMaker::CodeRepository
+      Properties:
+      - CodeRepositoryName: 'The name of the Git repository.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 63
+          Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*$
+          Update requires: Replacement'
+      - GitConfig: 'Configuration details for the Git repository, including the URL where it is located
+          and the ARN of the AWS Secrets Manager secret that contains the credentials used to
+          access the repository.
+          Required: Yes
+          Type: GitConfig
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-coderepository.html
     Properties:
       CodeRepositoryName: String
       GitConfig: GitConfig
     Type: AWS::SageMaker::CodeRepository
-  MetaData:
-    description: 'Creates a Git repository as a resource in your Amazon SageMaker account. You can associate
-      the repository with notebook instances so that you can use Git source control for the notebooks
-      you create. The Git repository is a resource in your Amazon SageMaker account, so it can be associated
-      with more than one notebook instance, and it persists independently from the lifecycle of any notebook
-      instances it is associated with. '
-    name: AWS::SageMaker::CodeRepository
-    properties:
-    - CodeRepositoryName: 'The name of the Git repository.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 63
-        Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*$
-        Update requires: Replacement'
-    - GitConfig: 'Configuration details for the Git repository, including the URL where it is located
-        and the ARN of the AWS Secrets Manager secret that contains the credentials used to
-        access the repository.
-        Required: Yes
-        Type: GitConfig
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-coderepository.html
-- Endpoint:
-    Properties:
-      EndpointConfigName: String
-      EndpointName: String
-      Tags:
-      - Tag
-    Type: AWS::SageMaker::Endpoint
-  MetaData:
-    description: 'Use the AWS::SageMaker::Endpoint resource to create an endpoint using the specified
-      configuration in the request. Amazon SageMaker uses the endpoint to provision resources and deploy
-      models. You create the endpoint configuration with the AWS::SageMaker::EndpointConfig resource.
-      For more information, see Deploy a Model on Amazon SageMaker Hosting Services in the Amazon SageMaker
-      Developer Guide. '
-    name: AWS::SageMaker::Endpoint
-    properties:
-    - EndpointConfigName: 'The name of the AWS::SageMaker::EndpointConfig resource that specifies the
-        configuration
-        for the endpoint. For more information, see CreateEndpointConfig.
-        Required: Yes
-        Type: String
-        Maximum: 63
-        Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
-        Update requires: No interruption'
-    - EndpointName: 'The name of the endpoint. The name must be unique within an AWS Region in your AWS
-        account.
-        Required: No
-        Type: String
-        Maximum: 63
-        Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
-        Update requires: Replacement'
-    - Tags: 'A list of key-value pairs to apply to this resource.
-        For more information, see Resource
-        Tag and Using
-        Cost Allocation Tags in the  AWS Billing and Cost Management User
-        Guide.
-        Required: No
-        Type: List of Tag
-        Maximum: 50
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpoint.html
-- EndpointConfig:
+  EndpointConfigLogicalName:
+    MetaData:
+      Description: 'The AWS::SageMaker::EndpointConfig resource creates a configuration for an Amazon
+        SageMaker endpoint. For more information, see CreateEndpointConfig in the SageMaker Developer
+        Guide. '
+      Name: AWS::SageMaker::EndpointConfig
+      Properties:
+      - EndpointConfigName: 'The name of the endpoint configuration. You specify this name in a CreateEndpoint
+          request.
+          Required: No
+          Type: String
+          Maximum: 63
+          Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
+          Update requires: Replacement'
+      - KmsKeyId: 'The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker
+          uses to encrypt data on
+          the storage volume attached to the ML compute instance that hosts the
+          endpoint.
+          Required: No
+          Type: String
+          Maximum: 2048
+          Pattern: .*
+          Update requires: Replacement'
+      - ProductionVariants: 'A list of ProductionVariant objects, one for each model that you want
+          to host at this endpoint.
+          Required: Yes
+          Type: List of ProductionVariant
+          Update requires: Replacement'
+      - Tags: 'A list of key-value pairs to apply to this resource.
+          For more information, see Resource
+          Tag and Using
+          Cost Allocation Tags.
+          Required: No
+          Type: List of Tag
+          Maximum: 50
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpointconfig.html
     Properties:
       EndpointConfigName: String
       KmsKeyId: String
@@ -76,102 +74,108 @@ Amazon SageMaker:
       Tags:
       - Tag
     Type: AWS::SageMaker::EndpointConfig
-  MetaData:
-    description: 'The AWS::SageMaker::EndpointConfig resource creates a configuration for an Amazon SageMaker
-      endpoint. For more information, see CreateEndpointConfig in the SageMaker Developer Guide. '
-    name: AWS::SageMaker::EndpointConfig
-    properties:
-    - EndpointConfigName: 'The name of the endpoint configuration. You specify this name in a CreateEndpoint
-        request.
-        Required: No
-        Type: String
-        Maximum: 63
-        Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
-        Update requires: Replacement'
-    - KmsKeyId: 'The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker
-        uses to encrypt data on
-        the storage volume attached to the ML compute instance that hosts the
-        endpoint.
-        Required: No
-        Type: String
-        Maximum: 2048
-        Pattern: .*
-        Update requires: Replacement'
-    - ProductionVariants: 'A list of ProductionVariant objects, one for each model that you want
-        to host at this endpoint.
-        Required: Yes
-        Type: List of ProductionVariant
-        Update requires: Replacement'
-    - Tags: 'A list of key-value pairs to apply to this resource.
-        For more information, see Resource
-        Tag and Using
-        Cost Allocation Tags.
-        Required: No
-        Type: List of Tag
-        Maximum: 50
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpointconfig.html
-- MetaData:
-    description: 'The AWS::SageMaker::Model resource to create a model to host at an Amazon SageMaker
-      endpoint. For more information, see Deploying a Model on Amazon SageMaker Hosting Services in the
-      Amazon SageMaker Developer Guide. '
-    name: AWS::SageMaker::Model
-    properties:
-    - Containers: 'Specifies the containers in the inference pipeline.
-        Required: No
-        Type: List of ContainerDefinition
-        Maximum: 5
-        Update requires: Replacement'
-    - ExecutionRoleArn: 'The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker can assume
-        to
-        access model
-        artifacts and docker image for deployment on ML compute instances or for batch transform
-        jobs. Deploying on ML compute instances is part of model hosting. For more information,
-        see Amazon SageMaker
-        Roles.
-        Note
-        To be able to pass this role to Amazon SageMaker, the caller of this API must have
-        the
-        iam:PassRole permission.
-        Required: Yes
-        Type: String
-        Minimum: 20
-        Maximum: 2048
-        Pattern: ^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$
-        Update requires: Replacement'
-    - ModelName: 'The name of the new model.
-        Required: No
-        Type: String
-        Maximum: 63
-        Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
-        Update requires: Replacement'
-    - PrimaryContainer: 'The location of the primary docker image containing inference code, associated
-        artifacts, and custom environment map that the inference code uses when the model
-        is
-        deployed for predictions.
-        Required: No
-        Type: ContainerDefinition
-        Update requires: Replacement'
-    - Tags: 'A list of key-value pairs to apply to this resource.
-        For more information, see Resource
-        Tag and Using
-        Cost Allocation Tags in the AWS Billing and Cost Management User
-        Guide.
-        Required: No
-        Type: List of Tag
-        Maximum: 50
-        Update requires: No interruption'
-    - VpcConfig: 'A VpcConfig object that specifies the VPC that you want your model to connect
-        to. Control access to and from your model container by configuring the VPC.
-        VpcConfig is used in hosting services and in batch transform. For more
-        information, see Protect Endpoints by Using an Amazon Virtual Private Cloud and Protect Data in
-        Batch
-        Transform Jobs by Using an Amazon Virtual Private Cloud.
-        Required: No
-        Type: VpcConfig
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-model.html
-  Model:
+  EndpointLogicalName:
+    MetaData:
+      Description: 'Use the AWS::SageMaker::Endpoint resource to create an endpoint using the specified
+        configuration in the request. Amazon SageMaker uses the endpoint to provision resources and deploy
+        models. You create the endpoint configuration with the AWS::SageMaker::EndpointConfig resource.
+        For more information, see Deploy a Model on Amazon SageMaker Hosting Services in the Amazon SageMaker
+        Developer Guide. '
+      Name: AWS::SageMaker::Endpoint
+      Properties:
+      - EndpointConfigName: 'The name of the AWS::SageMaker::EndpointConfig resource that specifies the
+          configuration
+          for the endpoint. For more information, see CreateEndpointConfig.
+          Required: Yes
+          Type: String
+          Maximum: 63
+          Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
+          Update requires: No interruption'
+      - EndpointName: 'The name of the endpoint. The name must be unique within an AWS Region in your
+          AWS
+          account.
+          Required: No
+          Type: String
+          Maximum: 63
+          Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
+          Update requires: Replacement'
+      - Tags: 'A list of key-value pairs to apply to this resource.
+          For more information, see Resource
+          Tag and Using
+          Cost Allocation Tags in the  AWS Billing and Cost Management User
+          Guide.
+          Required: No
+          Type: List of Tag
+          Maximum: 50
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpoint.html
+    Properties:
+      EndpointConfigName: String
+      EndpointName: String
+      Tags:
+      - Tag
+    Type: AWS::SageMaker::Endpoint
+  ModelLogicalName:
+    MetaData:
+      Description: 'The AWS::SageMaker::Model resource to create a model to host at an Amazon SageMaker
+        endpoint. For more information, see Deploying a Model on Amazon SageMaker Hosting Services in
+        the Amazon SageMaker Developer Guide. '
+      Name: AWS::SageMaker::Model
+      Properties:
+      - Containers: 'Specifies the containers in the inference pipeline.
+          Required: No
+          Type: List of ContainerDefinition
+          Maximum: 5
+          Update requires: Replacement'
+      - ExecutionRoleArn: 'The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker can assume
+          to
+          access model
+          artifacts and docker image for deployment on ML compute instances or for batch transform
+          jobs. Deploying on ML compute instances is part of model hosting. For more information,
+          see Amazon SageMaker
+          Roles.
+          Note
+          To be able to pass this role to Amazon SageMaker, the caller of this API must have
+          the
+          iam:PassRole permission.
+          Required: Yes
+          Type: String
+          Minimum: 20
+          Maximum: 2048
+          Pattern: ^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$
+          Update requires: Replacement'
+      - ModelName: 'The name of the new model.
+          Required: No
+          Type: String
+          Maximum: 63
+          Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
+          Update requires: Replacement'
+      - PrimaryContainer: 'The location of the primary docker image containing inference code, associated
+          artifacts, and custom environment map that the inference code uses when the model
+          is
+          deployed for predictions.
+          Required: No
+          Type: ContainerDefinition
+          Update requires: Replacement'
+      - Tags: 'A list of key-value pairs to apply to this resource.
+          For more information, see Resource
+          Tag and Using
+          Cost Allocation Tags in the AWS Billing and Cost Management User
+          Guide.
+          Required: No
+          Type: List of Tag
+          Maximum: 50
+          Update requires: No interruption'
+      - VpcConfig: 'A VpcConfig object that specifies the VPC that you want your model to connect
+          to. Control access to and from your model container by configuring the VPC.
+          VpcConfig is used in hosting services and in batch transform. For more
+          information, see Protect Endpoints by Using an Amazon Virtual Private Cloud and Protect Data
+          in Batch
+          Transform Jobs by Using an Amazon Virtual Private Cloud.
+          Required: No
+          Type: VpcConfig
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-model.html
     Properties:
       Containers:
       - ContainerDefinition
@@ -182,166 +186,202 @@ Amazon SageMaker:
       - Tag
       VpcConfig: VpcConfig
     Type: AWS::SageMaker::Model
-- MetaData:
-    description: 'The AWS::SageMaker::NotebookInstance resource creates an Amazon SageMaker notebook instance.
-      A notebook instance is a machine learning (ML) compute instance running on a Jupyter notebook. For
-      more information, see Use Notebook Instances. '
-    name: AWS::SageMaker::NotebookInstance
-    properties:
-    - AcceleratorTypes: 'A list of Elastic Inference (EI) instance types to associate with this notebook
-        instance. Currently, only one instance type can be associated with a notebook instance.
-        For more information, see Using Elastic Inference in Amazon SageMaker.
-        Required: No
-        Type: List of String
-        Update requires: No interruption'
-    - AdditionalCodeRepositories: 'An array of up to three
-        Git
-        repositories associated with the notebook instance. These can be either the names
-        of
-        Git
-        repositories stored as resources in your account, or the URL of
-        Git
-        repositories in AWS CodeCommit or in any other
-        Git
-        repository. These repositories are cloned at the same level as the default repository
-        of
-        your notebook instance. For more information, see Associating Git
-        Repositories with Amazon SageMaker Notebook Instances.
-        Required: No
-        Type: List of String
-        Maximum: 3
-        Update requires: No interruption'
-    - DefaultCodeRepository: 'The
-        Git
-        repository associated with the notebook instance as its default code repository. This
-        can be either the name of a
-        Git
-        repository stored as a resource in your account, or the URL of a
-        Git
-        repository in AWS CodeCommit or in any other
-        Git
-        repository. When you open a notebook instance, it opens in the directory that contains
-        this repository. For more information, see Associating Git
-        Repositories with Amazon SageMaker Notebook Instances.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 1024
-        Pattern: ^https://([^/]+)/?(.*)$|^[a-zA-Z0-9](-*[a-zA-Z0-9])*
-        Update requires: No interruption'
-    - DirectInternetAccess: 'Sets whether Amazon SageMaker provides internet access to the notebook instance.
-        If
-        you set this
-        to Disabled this notebook instance will be able to access resources only in
-        your VPC, and will not be able to connect to Amazon SageMaker training and endpoint
-        services unless
-        your configure a NAT Gateway in your VPC.
-        For more information, see Notebook Instances Are Internet-Enabled by Default. You can set the
-        value
-        of this parameter to Disabled only if you set a value for the
-        SubnetId parameter.
-        Required: No
-        Type: String
-        Allowed Values: Disabled | Enabled
-        Update requires: Replacement'
-    - InstanceType: 'The type of ML compute instance to launch for the notebook instance.
-        Required: Yes
-        Type: String
-        Allowed Values: ml.c4.2xlarge | ml.c4.4xlarge | ml.c4.8xlarge | ml.c4.xlarge | ml.c5.18xlarge
-        | ml.c5.2xlarge
-        | ml.c5.4xlarge | ml.c5.9xlarge | ml.c5.xlarge | ml.c5d.18xlarge | ml.c5d.2xlarge
-        | ml.c5d.4xlarge | ml.c5d.9xlarge | ml.c5d.xlarge | ml.m4.10xlarge | ml.m4.16xlarge
-        | ml.m4.2xlarge | ml.m4.4xlarge | ml.m4.xlarge | ml.m5.12xlarge | ml.m5.24xlarge |
-        ml.m5.2xlarge | ml.m5.4xlarge | ml.m5.xlarge | ml.p2.16xlarge | ml.p2.8xlarge | ml.p2.xlarge
-        | ml.p3.16xlarge | ml.p3.2xlarge | ml.p3.8xlarge | ml.t2.2xlarge | ml.t2.large | ml.t2.medium
-        | ml.t2.xlarge | ml.t3.2xlarge | ml.t3.large | ml.t3.medium | ml.t3.xlarge
-        Update requires: No interruption'
-    - KmsKeyId: 'The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker
-        uses to encrypt data on
-        the storage volume attached to your notebook instance. The KMS key you provide must
-        be
-        enabled. For information, see Enabling and
-        Disabling Keys in the AWS Key Management Service Developer Guide.
-        Required: No
-        Type: String
-        Maximum: 2048
-        Pattern: .*
-        Update requires: Replacement'
-    - LifecycleConfigName: 'The name of a lifecycle configuration to associate with the notebook instance.
-        For
-        information about lifestyle configurations, see Customize a Notebook
-        Instance in the Amazon SageMaker Developer
-        Guide.
-        Required: No
-        Type: String
-        Maximum: 63
-        Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
-        Update requires: No interruption'
-    - NotebookInstanceName: 'The name of the new notebook instance.
-        Required: No
-        Type: String
-        Maximum: 63
-        Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
-        Update requires: Replacement'
-    - RoleArn: 'When you send any requests to AWS resources from the notebook instance, Amazon SageMaker
-        assumes this role to perform tasks on your behalf. You must grant this role necessary
-        permissions so Amazon SageMaker can perform these tasks. The policy must allow the
-        Amazon SageMaker service
-        principal (sagemaker.amazonaws.com) permissions to assume this role. For more
-        information, see Amazon SageMaker Roles.
-        Note
-        To be able to pass this role to Amazon SageMaker, the caller of this API must have
-        the
-        iam:PassRole permission.
-        Required: Yes
-        Type: String
-        Minimum: 20
-        Maximum: 2048
-        Pattern: ^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$
-        Update requires: No interruption'
-    - RootAccess: 'Whether root access is enabled or disabled for users of the notebook instance. The
-        default value is Enabled.
-        Note
-        Lifecycle configurations need root access to be able to set up a notebook
-        instance. Because of this, lifecycle configurations associated with a notebook
-        instance always run with root access even if you disable root access for
-        users.
-        Required: No
-        Type: String
-        Allowed Values: Disabled | Enabled
-        Update requires: No interruption'
-    - SecurityGroupIds: 'The VPC security group IDs, in the form sg-xxxxxxxx. The security groups must
-        be
-        for the same VPC as specified in the subnet.
-        Required: No
-        Type: List of String
-        Maximum: 5
-        Update requires: Replacement'
-    - SubnetId: 'The ID of the subnet in a VPC to which you would like to have a connectivity from
-        your ML compute instance.
-        Required: No
-        Type: String
-        Maximum: 32
-        Pattern: [-0-9a-zA-Z]+
-        Update requires: Replacement'
-    - Tags: 'A list of key-value pairs to apply to this resource.
-        For more information, see Resource
-        Tag and Using
-        Cost Allocation Tags.
-        You can add tags later by using the CreateTags API.
-        Required: No
-        Type: List of Tag
-        Maximum: 50
-        Update requires: No interruption'
-    - VolumeSizeInGB: 'The size, in GB, of the ML storage volume to attach to the notebook instance. The
-        default value is 5 GB.
-        Required: No
-        Type: Integer
-        Minimum: 5
-        Maximum: 16384
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstance.html
-  NotebookInstance:
+  NotebookInstanceLifecycleConfigLogicalName:
+    MetaData:
+      Description: 'The AWS::SageMaker::NotebookInstanceLifecycleConfig resource creates shell scripts
+        that run when you create and/or start a notebook instance. For information about notebook instance
+        lifestyle configurations, see Customize a Notebook Instance in the Amazon SageMaker Developer
+        Guide. '
+      Name: AWS::SageMaker::NotebookInstanceLifecycleConfig
+      Properties:
+      - NotebookInstanceLifecycleConfigName: 'The name of the lifecycle configuration.
+          Required: No
+          Type: String
+          Maximum: 63
+          Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
+          Update requires: Replacement'
+      - OnCreate: 'A shell script that runs only once, when you create a notebook instance. The shell
+          script must be a base64-encoded string.
+          Required: No
+          Type: List of NotebookInstanceLifecycleHook
+          Maximum: 1
+          Update requires: No interruption'
+      - OnStart: 'A shell script that runs every time you start a notebook instance, including when
+          you
+          create the notebook instance. The shell script must be a base64-encoded string.
+          Required: No
+          Type: List of NotebookInstanceLifecycleHook
+          Maximum: 1
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstancelifecycleconfig.html
+    Properties:
+      NotebookInstanceLifecycleConfigName: String
+      OnCreate:
+      - NotebookInstanceLifecycleHook
+      OnStart:
+      - NotebookInstanceLifecycleHook
+    Type: AWS::SageMaker::NotebookInstanceLifecycleConfig
+  NotebookInstanceLogicalName:
+    MetaData:
+      Description: 'The AWS::SageMaker::NotebookInstance resource creates an Amazon SageMaker notebook
+        instance. A notebook instance is a machine learning (ML) compute instance running on a Jupyter
+        notebook. For more information, see Use Notebook Instances. '
+      Name: AWS::SageMaker::NotebookInstance
+      Properties:
+      - AcceleratorTypes: 'A list of Elastic Inference (EI) instance types to associate with this notebook
+          instance. Currently, only one instance type can be associated with a notebook instance.
+          For more information, see Using Elastic Inference in Amazon SageMaker.
+          Required: No
+          Type: List of String
+          Update requires: No interruption'
+      - AdditionalCodeRepositories: 'An array of up to three
+          Git
+          repositories associated with the notebook instance. These can be either the names
+          of
+          Git
+          repositories stored as resources in your account, or the URL of
+          Git
+          repositories in AWS CodeCommit or in any other
+          Git
+          repository. These repositories are cloned at the same level as the default repository
+          of
+          your notebook instance. For more information, see Associating Git
+          Repositories with Amazon SageMaker Notebook Instances.
+          Required: No
+          Type: List of String
+          Maximum: 3
+          Update requires: No interruption'
+      - DefaultCodeRepository: 'The
+          Git
+          repository associated with the notebook instance as its default code repository. This
+          can be either the name of a
+          Git
+          repository stored as a resource in your account, or the URL of a
+          Git
+          repository in AWS CodeCommit or in any other
+          Git
+          repository. When you open a notebook instance, it opens in the directory that contains
+          this repository. For more information, see Associating Git
+          Repositories with Amazon SageMaker Notebook Instances.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 1024
+          Pattern: ^https://([^/]+)/?(.*)$|^[a-zA-Z0-9](-*[a-zA-Z0-9])*
+          Update requires: No interruption'
+      - DirectInternetAccess: 'Sets whether Amazon SageMaker provides internet access to the notebook
+          instance. If
+          you set this
+          to Disabled this notebook instance will be able to access resources only in
+          your VPC, and will not be able to connect to Amazon SageMaker training and endpoint
+          services unless
+          your configure a NAT Gateway in your VPC.
+          For more information, see Notebook Instances Are Internet-Enabled by Default. You can set the
+          value
+          of this parameter to Disabled only if you set a value for the
+          SubnetId parameter.
+          Required: No
+          Type: String
+          Allowed Values: Disabled | Enabled
+          Update requires: Replacement'
+      - InstanceType: 'The type of ML compute instance to launch for the notebook instance.
+          Required: Yes
+          Type: String
+          Allowed Values: ml.c4.2xlarge | ml.c4.4xlarge | ml.c4.8xlarge | ml.c4.xlarge | ml.c5.18xlarge
+          | ml.c5.2xlarge
+          | ml.c5.4xlarge | ml.c5.9xlarge | ml.c5.xlarge | ml.c5d.18xlarge | ml.c5d.2xlarge
+          | ml.c5d.4xlarge | ml.c5d.9xlarge | ml.c5d.xlarge | ml.m4.10xlarge | ml.m4.16xlarge
+          | ml.m4.2xlarge | ml.m4.4xlarge | ml.m4.xlarge | ml.m5.12xlarge | ml.m5.24xlarge |
+          ml.m5.2xlarge | ml.m5.4xlarge | ml.m5.xlarge | ml.p2.16xlarge | ml.p2.8xlarge | ml.p2.xlarge
+          | ml.p3.16xlarge | ml.p3.2xlarge | ml.p3.8xlarge | ml.t2.2xlarge | ml.t2.large | ml.t2.medium
+          | ml.t2.xlarge | ml.t3.2xlarge | ml.t3.large | ml.t3.medium | ml.t3.xlarge
+          Update requires: No interruption'
+      - KmsKeyId: 'The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker
+          uses to encrypt data on
+          the storage volume attached to your notebook instance. The KMS key you provide must
+          be
+          enabled. For information, see Enabling and
+          Disabling Keys in the AWS Key Management Service Developer Guide.
+          Required: No
+          Type: String
+          Maximum: 2048
+          Pattern: .*
+          Update requires: Replacement'
+      - LifecycleConfigName: 'The name of a lifecycle configuration to associate with the notebook instance.
+          For
+          information about lifestyle configurations, see Customize a Notebook
+          Instance in the Amazon SageMaker Developer
+          Guide.
+          Required: No
+          Type: String
+          Maximum: 63
+          Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
+          Update requires: No interruption'
+      - NotebookInstanceName: 'The name of the new notebook instance.
+          Required: No
+          Type: String
+          Maximum: 63
+          Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
+          Update requires: Replacement'
+      - RoleArn: 'When you send any requests to AWS resources from the notebook instance, Amazon SageMaker
+          assumes this role to perform tasks on your behalf. You must grant this role necessary
+          permissions so Amazon SageMaker can perform these tasks. The policy must allow the
+          Amazon SageMaker service
+          principal (sagemaker.amazonaws.com) permissions to assume this role. For more
+          information, see Amazon SageMaker Roles.
+          Note
+          To be able to pass this role to Amazon SageMaker, the caller of this API must have
+          the
+          iam:PassRole permission.
+          Required: Yes
+          Type: String
+          Minimum: 20
+          Maximum: 2048
+          Pattern: ^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$
+          Update requires: No interruption'
+      - RootAccess: 'Whether root access is enabled or disabled for users of the notebook instance. The
+          default value is Enabled.
+          Note
+          Lifecycle configurations need root access to be able to set up a notebook
+          instance. Because of this, lifecycle configurations associated with a notebook
+          instance always run with root access even if you disable root access for
+          users.
+          Required: No
+          Type: String
+          Allowed Values: Disabled | Enabled
+          Update requires: No interruption'
+      - SecurityGroupIds: 'The VPC security group IDs, in the form sg-xxxxxxxx. The security groups must
+          be
+          for the same VPC as specified in the subnet.
+          Required: No
+          Type: List of String
+          Maximum: 5
+          Update requires: Replacement'
+      - SubnetId: 'The ID of the subnet in a VPC to which you would like to have a connectivity from
+          your ML compute instance.
+          Required: No
+          Type: String
+          Maximum: 32
+          Pattern: [-0-9a-zA-Z]+
+          Update requires: Replacement'
+      - Tags: 'A list of key-value pairs to apply to this resource.
+          For more information, see Resource
+          Tag and Using
+          Cost Allocation Tags.
+          You can add tags later by using the CreateTags API.
+          Required: No
+          Type: List of Tag
+          Maximum: 50
+          Update requires: No interruption'
+      - VolumeSizeInGB: 'The size, in GB, of the ML storage volume to attach to the notebook instance.
+          The
+          default value is 5 GB.
+          Required: No
+          Type: Integer
+          Minimum: 5
+          Maximum: 16384
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstance.html
     Properties:
       AcceleratorTypes:
       - String
@@ -362,38 +402,4 @@ Amazon SageMaker:
       - Tag
       VolumeSizeInGB: Integer
     Type: AWS::SageMaker::NotebookInstance
-- MetaData:
-    description: 'The AWS::SageMaker::NotebookInstanceLifecycleConfig resource creates shell scripts that
-      run when you create and/or start a notebook instance. For information about notebook instance lifestyle
-      configurations, see Customize a Notebook Instance in the Amazon SageMaker Developer Guide. '
-    name: AWS::SageMaker::NotebookInstanceLifecycleConfig
-    properties:
-    - NotebookInstanceLifecycleConfigName: 'The name of the lifecycle configuration.
-        Required: No
-        Type: String
-        Maximum: 63
-        Pattern: ^[a-zA-Z0-9](-*[a-zA-Z0-9])*
-        Update requires: Replacement'
-    - OnCreate: 'A shell script that runs only once, when you create a notebook instance. The shell
-        script must be a base64-encoded string.
-        Required: No
-        Type: List of NotebookInstanceLifecycleHook
-        Maximum: 1
-        Update requires: No interruption'
-    - OnStart: 'A shell script that runs every time you start a notebook instance, including when
-        you
-        create the notebook instance. The shell script must be a base64-encoded string.
-        Required: No
-        Type: List of NotebookInstanceLifecycleHook
-        Maximum: 1
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstancelifecycleconfig.html
-  NotebookInstanceLifecycleConfig:
-    Properties:
-      NotebookInstanceLifecycleConfigName: String
-      OnCreate:
-      - NotebookInstanceLifecycleHook
-      OnStart:
-      - NotebookInstanceLifecycleHook
-    Type: AWS::SageMaker::NotebookInstanceLifecycleConfig
 ...

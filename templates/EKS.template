@@ -1,44 +1,46 @@
 ---
-EKS:
-- Cluster:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: EKS
+Resources:
+  ClusterLogicalName:
+    MetaData:
+      Description: Creates an Amazon EKS control plane.
+      Name: AWS::EKS::Cluster
+      Properties:
+      - Name: 'The unique name to give to your cluster.
+          Required: No
+          Type: String
+          Update requires: Replacement'
+      - ResourcesVpcConfig: 'The VPC configuration used by the cluster control plane. Amazon EKS VPC resources
+          have
+          specific requirements to work properly with Kubernetes. For more information, see
+          Cluster VPC
+          Considerations and Cluster Security Group Considerations in the
+          Amazon EKS User Guide. You must specify at least two subnets. You can specify up to five
+          security groups, but we recommend that you use a dedicated security group for your
+          cluster control plane.
+          Required: Yes
+          Type: ResourcesVpcConfig
+          Update requires: Replacement'
+      - RoleArn: 'The Amazon Resource Name (ARN) of the IAM role that provides permissions for Amazon
+          EKS to make calls
+          to other AWS API operations on your behalf. For more information, see Amazon EKS Service
+          IAM Role in the
+          Amazon EKS User Guide
+          .
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - Version: 'The desired Kubernetes version for your cluster. If you dont specify a value
+          here, the latest version available in Amazon EKS is used.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html
     Properties:
       Name: String
       ResourcesVpcConfig: ResourcesVpcConfig
       RoleArn: String
       Version: String
     Type: AWS::EKS::Cluster
-  MetaData:
-    description: Creates an Amazon EKS control plane.
-    name: AWS::EKS::Cluster
-    properties:
-    - Name: 'The unique name to give to your cluster.
-        Required: No
-        Type: String
-        Update requires: Replacement'
-    - ResourcesVpcConfig: 'The VPC configuration used by the cluster control plane. Amazon EKS VPC resources
-        have
-        specific requirements to work properly with Kubernetes. For more information, see
-        Cluster VPC
-        Considerations and Cluster Security Group Considerations in the
-        Amazon EKS User Guide. You must specify at least two subnets. You can specify up to five
-        security groups, but we recommend that you use a dedicated security group for your
-        cluster control plane.
-        Required: Yes
-        Type: ResourcesVpcConfig
-        Update requires: Replacement'
-    - RoleArn: 'The Amazon Resource Name (ARN) of the IAM role that provides permissions for Amazon
-        EKS to make calls
-        to other AWS API operations on your behalf. For more information, see Amazon EKS Service
-        IAM Role in the
-        Amazon EKS User Guide
-        .
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - Version: 'The desired Kubernetes version for your cluster. If you dont specify a value
-        here, the latest version available in Amazon EKS is used.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html
 ...

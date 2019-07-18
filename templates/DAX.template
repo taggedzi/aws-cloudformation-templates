@@ -1,6 +1,101 @@
 ---
-DAX:
-- Cluster:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: DAX
+Resources:
+  ClusterLogicalName:
+    MetaData:
+      Description: Creates a DAX cluster. All nodes in the cluster run the same DAX caching software.
+      Name: AWS::DAX::Cluster
+      Properties:
+      - AvailabilityZones: 'The Availability Zones (AZs) in which the cluster nodes will be created. All
+          nodes
+          belonging to the cluster are placed in these Availability Zones. Use this parameter
+          if you want
+          to distribute the nodes across multiple AZs.
+          Required: No
+          Type: List of String
+          Update requires: No interruption'
+      - ClusterName: 'The name of the DAX cluster.
+          Note
+          Updates are not supported for this property.
+          Required: No
+          Type: String
+          Update requires: Replacement'
+      - Description: 'The description of the cluster.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - IAMRoleARN: 'A valid Amazon Resource Name (ARN) that identifies an IAM role. At runtime, DAX
+          will assume this role and use the roles permissions to access DynamoDB on your
+          behalf.
+          Note
+          Updates are not supported for this property.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - NodeType: 'The node type for the nodes in the cluster. (All nodes in a DAX cluster are of
+          the same type.)
+          Note
+          Updates are not supported for this property.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - NotificationTopicARN: 'The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications
+          will
+          be sent.
+          Note
+          The Amazon SNS topic owner must be same as the DAX cluster owner.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - ParameterGroupName: 'The parameter group to be associated with the DAX cluster.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - PreferredMaintenanceWindow: 'A range of time when maintenance of DAX cluster software will be
+          performed. For
+          example: sun:01:00-sun:09:00. Cluster maintenance normally takes less than
+          30 minutes, and is performed automatically within the maintenance window.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - ReplicationFactor: 'The number of nodes in the DAX cluster. A replication factor of 1 will
+          create a single-node cluster, without any read replicas. For additional fault tolerance,
+          you can create a multiple node cluster with one or more read replicas. To do this,
+          set
+          ReplicationFactor to 2 or more.
+          Note
+          AWS recommends that you have at least two read replicas per cluster.
+          Required: Yes
+          Type: Integer
+          Update requires: No interruption'
+      - SecurityGroupIds: 'A list of security group IDs to be assigned to each node in the DAX cluster.
+          (Each
+          of the
+          security group ID is system-generated.)
+          If this parameter is not specified, DAX assigns the default VPC security group to
+          each node.
+          Required: No
+          Type: List of String
+          Update requires: No interruption'
+      - SSESpecification: 'Represents the settings used to enable server-side encryption on the cluster.
+          Required: No
+          Type: SSESpecification
+          Update requires: Replacement'
+      - SubnetGroupName: 'The name of the subnet group to be used for the replication group.
+          Important
+          DAX clusters can only run in an Amazon VPC environment. All of the subnets
+          that you specify in a subnet group must exist in the same VPC.
+          Note
+          Updates are not supported for this property.
+          Required: No
+          Type: String
+          Update requires: Replacement'
+      - Tags: 'A set of tags to associate with the DAX cluster.
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html
     Properties:
       AvailabilityZones:
       - String
@@ -18,142 +113,49 @@ DAX:
       SubnetGroupName: String
       Tags: Json
     Type: AWS::DAX::Cluster
-  MetaData:
-    description: Creates a DAX cluster. All nodes in the cluster run the same DAX caching software.
-    name: AWS::DAX::Cluster
-    properties:
-    - AvailabilityZones: 'The Availability Zones (AZs) in which the cluster nodes will be created. All
-        nodes
-        belonging to the cluster are placed in these Availability Zones. Use this parameter
-        if you want
-        to distribute the nodes across multiple AZs.
-        Required: No
-        Type: List of String
-        Update requires: No interruption'
-    - ClusterName: 'The name of the DAX cluster.
-        Note
-        Updates are not supported for this property.
-        Required: No
-        Type: String
-        Update requires: Replacement'
-    - Description: 'The description of the cluster.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - IAMRoleARN: 'A valid Amazon Resource Name (ARN) that identifies an IAM role. At runtime, DAX
-        will assume this role and use the roles permissions to access DynamoDB on your
-        behalf.
-        Note
-        Updates are not supported for this property.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - NodeType: 'The node type for the nodes in the cluster. (All nodes in a DAX cluster are of
-        the same type.)
-        Note
-        Updates are not supported for this property.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - NotificationTopicARN: 'The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications
-        will
-        be sent.
-        Note
-        The Amazon SNS topic owner must be same as the DAX cluster owner.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - ParameterGroupName: 'The parameter group to be associated with the DAX cluster.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - PreferredMaintenanceWindow: 'A range of time when maintenance of DAX cluster software will be performed.
-        For
-        example: sun:01:00-sun:09:00. Cluster maintenance normally takes less than
-        30 minutes, and is performed automatically within the maintenance window.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - ReplicationFactor: 'The number of nodes in the DAX cluster. A replication factor of 1 will
-        create a single-node cluster, without any read replicas. For additional fault tolerance,
-        you can create a multiple node cluster with one or more read replicas. To do this,
-        set
-        ReplicationFactor to 2 or more.
-        Note
-        AWS recommends that you have at least two read replicas per cluster.
-        Required: Yes
-        Type: Integer
-        Update requires: No interruption'
-    - SecurityGroupIds: 'A list of security group IDs to be assigned to each node in the DAX cluster.
-        (Each
-        of the
-        security group ID is system-generated.)
-        If this parameter is not specified, DAX assigns the default VPC security group to
-        each node.
-        Required: No
-        Type: List of String
-        Update requires: No interruption'
-    - SSESpecification: 'Represents the settings used to enable server-side encryption on the cluster.
-        Required: No
-        Type: SSESpecification
-        Update requires: Replacement'
-    - SubnetGroupName: 'The name of the subnet group to be used for the replication group.
-        Important
-        DAX clusters can only run in an Amazon VPC environment. All of the subnets
-        that you specify in a subnet group must exist in the same VPC.
-        Note
-        Updates are not supported for this property.
-        Required: No
-        Type: String
-        Update requires: Replacement'
-    - Tags: 'A set of tags to associate with the DAX cluster.
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html
-- MetaData:
-    description: 'A named set of parameters that are applied to all of the nodes in a DAX cluster. '
-    name: AWS::DAX::ParameterGroup
-    properties:
-    - Description: 'A description of the parameter group.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - ParameterGroupName: 'The name of the parameter group.
-        Required: No
-        Type: String
-        Update requires: Replacement'
-    - ParameterNameValues: 'An array of name-value pairs for the parameters in the group. Each element
-        in the
-        array represents a single parameter.
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-parametergroup.html
-  ParameterGroup:
+  ParameterGroupLogicalName:
+    MetaData:
+      Description: 'A named set of parameters that are applied to all of the nodes in a DAX cluster. '
+      Name: AWS::DAX::ParameterGroup
+      Properties:
+      - Description: 'A description of the parameter group.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - ParameterGroupName: 'The name of the parameter group.
+          Required: No
+          Type: String
+          Update requires: Replacement'
+      - ParameterNameValues: 'An array of name-value pairs for the parameters in the group. Each element
+          in the
+          array represents a single parameter.
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-parametergroup.html
     Properties:
       Description: String
       ParameterGroupName: String
       ParameterNameValues: Json
     Type: AWS::DAX::ParameterGroup
-- MetaData:
-    description: Creates a new subnet group.
-    name: AWS::DAX::SubnetGroup
-    properties:
-    - Description: 'The description of the subnet group.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - SubnetGroupName: 'The name of the subnet group.
-        Required: No
-        Type: String
-        Update requires: Replacement'
-    - SubnetIds: 'A list of VPC subnet IDs for the subnet group.
-        Required: Yes
-        Type: List of String
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-subnetgroup.html
-  SubnetGroup:
+  SubnetGroupLogicalName:
+    MetaData:
+      Description: Creates a new subnet group.
+      Name: AWS::DAX::SubnetGroup
+      Properties:
+      - Description: 'The description of the subnet group.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - SubnetGroupName: 'The name of the subnet group.
+          Required: No
+          Type: String
+          Update requires: Replacement'
+      - SubnetIds: 'A list of VPC subnet IDs for the subnet group.
+          Required: Yes
+          Type: List of String
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-subnetgroup.html
     Properties:
       Description: String
       SubnetGroupName: String

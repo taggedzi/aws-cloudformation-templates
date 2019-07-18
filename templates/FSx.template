@@ -1,6 +1,69 @@
 ---
-FSx:
-- FileSystem:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: FSx
+Resources:
+  FileSystemLogicalName:
+    MetaData:
+      Description: 'The AWS::FSx::FileSystem resource is an Amazon FSx resource type that creates either
+        an Amazon FSx for Windows File Server file system or an Amazon FSx for Lustre file system. '
+      Name: AWS::FSx::FileSystem
+      Properties:
+      - BackupId: 'The ID of the backup. Specifies the backup to use if youre creating a file system
+          from an existing backup.
+          Required: No
+          Type: String
+          Update requires: Replacement'
+      - FileSystemType: 'The type of Amazon FSx file system, either LUSTRE or WINDOWS.
+          Required: No
+          Type: String
+          Allowed Values: LUSTRE | WINDOWS
+          Update requires: Replacement'
+      - KmsKeyId: 'The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the file
+          systems data for an Amazon FSx for Windows File Server file system.
+          Required: No
+          Type: String
+          Update requires: Replacement'
+      - LustreConfiguration: 'The Lustre configuration for the file system being created.
+          This value is required if FileSystemType is set to LUSTRE.
+          Required: No
+          Type: LustreConfiguration
+          Update requires: No interruption'
+      - SecurityGroupIds: 'A list of IDs specifying the security groups to apply to all network interfaces
+          created for file system access. This list isnt returned in later requests to
+          describe the file system.
+          Required: No
+          Type: List of String
+          Maximum: 50
+          Update requires: Replacement'
+      - StorageCapacity: 'The storage capacity of the file system being created.
+          For Windows file systems, the storage capacity has a minimum of 300 GiB, and a
+          maximum of 65,536 GiB.
+          For Lustre file systems, the storage capacity has a minimum of 3,600 GiB. Storage
+          capacity is provisioned in increments of 3,600 GiB.
+          Required: No
+          Type: Integer
+          Minimum: 1
+          Update requires: Replacement'
+      - SubnetIds: 'The ID of the subnet to contain the endpoint for the file system. One and only one
+          is
+          supported. The file system is launched in the Availability Zone associated with this
+          subnet.
+          Required: No
+          Type: List of String
+          Maximum: 50
+          Update requires: Replacement'
+      - Tags: 'An array of key-value pairs to apply to this resource.
+          For more information, see Tag.
+          Required: No
+          Type: List of Tag
+          Maximum: 50
+          Update requires: No interruption'
+      - WindowsConfiguration: 'The configuration object for the Microsoft Windows file system you are
+          creating.
+          Required: No
+          Type: WindowsConfiguration
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-filesystem.html
     Properties:
       BackupId: String
       FileSystemType: String
@@ -15,64 +78,4 @@ FSx:
       - Tag
       WindowsConfiguration: WindowsConfiguration
     Type: AWS::FSx::FileSystem
-  MetaData:
-    description: 'The AWS::FSx::FileSystem resource is an Amazon FSx resource type that creates either
-      an Amazon FSx for Windows File Server file system or an Amazon FSx for Lustre file system. '
-    name: AWS::FSx::FileSystem
-    properties:
-    - BackupId: 'The ID of the backup. Specifies the backup to use if youre creating a file system
-        from an existing backup.
-        Required: No
-        Type: String
-        Update requires: Replacement'
-    - FileSystemType: 'The type of Amazon FSx file system, either LUSTRE or WINDOWS.
-        Required: No
-        Type: String
-        Allowed Values: LUSTRE | WINDOWS
-        Update requires: Replacement'
-    - KmsKeyId: 'The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the file
-        systems data for an Amazon FSx for Windows File Server file system.
-        Required: No
-        Type: String
-        Update requires: Replacement'
-    - LustreConfiguration: 'The Lustre configuration for the file system being created.
-        This value is required if FileSystemType is set to LUSTRE.
-        Required: No
-        Type: LustreConfiguration
-        Update requires: No interruption'
-    - SecurityGroupIds: 'A list of IDs specifying the security groups to apply to all network interfaces
-        created for file system access. This list isnt returned in later requests to
-        describe the file system.
-        Required: No
-        Type: List of String
-        Maximum: 50
-        Update requires: Replacement'
-    - StorageCapacity: 'The storage capacity of the file system being created.
-        For Windows file systems, the storage capacity has a minimum of 300 GiB, and a
-        maximum of 65,536 GiB.
-        For Lustre file systems, the storage capacity has a minimum of 3,600 GiB. Storage
-        capacity is provisioned in increments of 3,600 GiB.
-        Required: No
-        Type: Integer
-        Minimum: 1
-        Update requires: Replacement'
-    - SubnetIds: 'The ID of the subnet to contain the endpoint for the file system. One and only one
-        is
-        supported. The file system is launched in the Availability Zone associated with this
-        subnet.
-        Required: No
-        Type: List of String
-        Maximum: 50
-        Update requires: Replacement'
-    - Tags: 'An array of key-value pairs to apply to this resource.
-        For more information, see Tag.
-        Required: No
-        Type: List of Tag
-        Maximum: 50
-        Update requires: No interruption'
-    - WindowsConfiguration: 'The configuration object for the Microsoft Windows file system you are creating.
-        Required: No
-        Type: WindowsConfiguration
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-filesystem.html
 ...

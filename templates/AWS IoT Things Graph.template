@@ -1,26 +1,28 @@
 ---
-AWS IoT Things Graph:
-- FlowTemplate:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS IoT Things Graph
+Resources:
+  FlowTemplateLogicalName:
+    MetaData:
+      Description: 'Represents a workflow template. Workflows can be created only in the users namespace.
+        (The public namespace contains only entities.) The workflow can contain only entities in the specified
+        namespace. The workflow is validated against the entities in the latest version of the users
+        namespace unless another namespace version is specified in the request. '
+      Name: AWS::IoTThingsGraph::FlowTemplate
+      Properties:
+      - CompatibleNamespaceVersion: 'The version of the users namespace against which the workflow was
+          validated. Use
+          this value in your system instance.
+          Required: No
+          Type: Double
+          Update requires: No interruption'
+      - Definition: 'A workflows definition document.
+          Required: Yes
+          Type: DefinitionDocument
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotthingsgraph-flowtemplate.html
     Properties:
       CompatibleNamespaceVersion: Double
       Definition: DefinitionDocument
     Type: AWS::IoTThingsGraph::FlowTemplate
-  MetaData:
-    description: 'Represents a workflow template. Workflows can be created only in the users namespace.
-      (The public namespace contains only entities.) The workflow can contain only entities in the specified
-      namespace. The workflow is validated against the entities in the latest version of the users namespace
-      unless another namespace version is specified in the request. '
-    name: AWS::IoTThingsGraph::FlowTemplate
-    properties:
-    - CompatibleNamespaceVersion: 'The version of the users namespace against which the workflow was
-        validated. Use
-        this value in your system instance.
-        Required: No
-        Type: Double
-        Update requires: No interruption'
-    - Definition: 'A workflows definition document.
-        Required: Yes
-        Type: DefinitionDocument
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotthingsgraph-flowtemplate.html
 ...

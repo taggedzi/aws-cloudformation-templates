@@ -1,56 +1,58 @@
 ---
-Application Auto Scaling:
-- MetaData:
-    description: 'The AWS::ApplicationAutoScaling::ScalableTarget resource specifies a resource that Application
-      Auto Scaling can scale. '
-    name: AWS::ApplicationAutoScaling::ScalableTarget
-    properties:
-    - MaxCapacity: 'The maximum value to scale to in response to a scale-out event.
-        Required: Yes
-        Type: Integer
-        Update requires: No interruption'
-    - MinCapacity: 'The minimum value to scale to in response to a scale-in event.
-        Required: Yes
-        Type: Integer
-        Update requires: No interruption'
-    - ResourceId: 'The resource identifier to associate with this scalable target. This string consists
-        of
-        the resource type and unique identifier. For valid values, see the ResourceId
-        parameter for RegisterScalableTarget in the Application Auto Scaling API
-        Reference.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - RoleARN: 'The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role
-        that
-        allows Application Auto Scaling to modify the scalable target on your behalf.
-        Required: Yes
-        Type: String
-        Update requires: No interruption'
-    - ScalableDimension: 'The scalable dimension that is associated with the scalable target. Specify
-        the service
-        namespace, resource type, and scaling property, for example,
-        ecs:service:DesiredCount for the desired task count of an Amazon ECS
-        service. For valid values, see the ScalableDimension parameter for RegisterScalableTarget in the
-        Application Auto Scaling API
-        Reference.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - ScheduledActions: 'The scheduled actions for the scalable target. Duplicates arent allowed.
-        Required: No
-        Type: List of ScheduledAction
-        Update requires: No interruption'
-    - ServiceNamespace: 'The namespace of the AWS service that provides the resource or
-        custom-resource for a resource provided by your own application or service.
-        For valid values, see the ServiceNamespace parameter for RegisterScalableTarget in the Application
-        Auto Scaling API
-        Reference.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html
-  ScalableTarget:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Application Auto Scaling
+Resources:
+  ScalableTargetLogicalName:
+    MetaData:
+      Description: 'The AWS::ApplicationAutoScaling::ScalableTarget resource specifies a resource that
+        Application Auto Scaling can scale. '
+      Name: AWS::ApplicationAutoScaling::ScalableTarget
+      Properties:
+      - MaxCapacity: 'The maximum value to scale to in response to a scale-out event.
+          Required: Yes
+          Type: Integer
+          Update requires: No interruption'
+      - MinCapacity: 'The minimum value to scale to in response to a scale-in event.
+          Required: Yes
+          Type: Integer
+          Update requires: No interruption'
+      - ResourceId: 'The resource identifier to associate with this scalable target. This string consists
+          of
+          the resource type and unique identifier. For valid values, see the ResourceId
+          parameter for RegisterScalableTarget in the Application Auto Scaling API
+          Reference.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - RoleARN: 'The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role
+          that
+          allows Application Auto Scaling to modify the scalable target on your behalf.
+          Required: Yes
+          Type: String
+          Update requires: No interruption'
+      - ScalableDimension: 'The scalable dimension that is associated with the scalable target. Specify
+          the service
+          namespace, resource type, and scaling property, for example,
+          ecs:service:DesiredCount for the desired task count of an Amazon ECS
+          service. For valid values, see the ScalableDimension parameter for RegisterScalableTarget in
+          the Application Auto Scaling API
+          Reference.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - ScheduledActions: 'The scheduled actions for the scalable target. Duplicates arent allowed.
+          Required: No
+          Type: List of ScheduledAction
+          Update requires: No interruption'
+      - ServiceNamespace: 'The namespace of the AWS service that provides the resource or
+          custom-resource for a resource provided by your own application or service.
+          For valid values, see the ServiceNamespace parameter for RegisterScalableTarget in the Application
+          Auto Scaling API
+          Reference.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html
     Properties:
       MaxCapacity: Integer
       MinCapacity: Integer
@@ -61,81 +63,82 @@ Application Auto Scaling:
       - ScheduledAction
       ServiceNamespace: String
     Type: AWS::ApplicationAutoScaling::ScalableTarget
-- MetaData:
-    description: 'The AWS::ApplicationAutoScaling::ScalingPolicy resource defines a scaling policy that
-      Application Auto Scaling uses to adjust your application resources. '
-    name: AWS::ApplicationAutoScaling::ScalingPolicy
-    properties:
-    - PolicyName: 'The name of the scaling policy.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 256
-        Pattern: \p{Print}+
-        Update requires: Replacement'
-    - PolicyType: 'The Application Auto Scaling policy type. Valid values are StepScaling and
-        TargetTrackingScaling.
-        For DynamoDB, only TargetTrackingScaling is supported. For Amazon ECS, Spot
-        Fleet, and Amazon RDS, both StepScaling and TargetTrackingScaling
-        are supported. For any other service, only StepScaling is supported.
-        Required: Yes
-        Type: String
-        Update requires: No interruption'
-    - ResourceId: 'The unique resource identifier for the scalable target that this scaling policy applies
-        to. For valid values, see the ResourceId parameter for PutScalingPolicy in the Application Auto
-        Scaling API
-        Reference.
-        You must specify either the ResourceId, ScalableDimension, and
-        ServiceNamespace properties, or the ScalingTargetId property,
-        but not both.
-        Required: Conditional
-        Type: String
-        Update requires: Replacement'
-    - ScalableDimension: 'The scalable dimension of the scalable target that this scaling policy applies
-        to.
-        The
-        scalable dimension contains the service namespace, resource type, and scaling property,
-        such as ecs:service:DesiredCount for the desired task count of an Amazon ECS
-        service. For valid values, see the ScalableDimension parameter for PutScalingPolicy in the Application
-        Auto Scaling API
-        Reference.
-        You must specify either the ResourceId, ScalableDimension, and
-        ServiceNamespace properties, or the ScalingTargetId property,
-        but not both.
-        Required: Conditional
-        Type: String
-        Update requires: Replacement'
-    - ScalingTargetId: 'The AWS CloudFormation-generated ID of an Application Auto Scaling scalable target.
-        For
-        more information about the ID, see the Return Value section of the
-        AWS::ApplicationAutoScaling::ScalableTarget resource.
-        You must specify either the ScalingTargetId property, or the
-        ResourceId, ScalableDimension, and ServiceNamespace
-        properties, but not both.
-        Required: Conditional
-        Type: String
-        Update requires: Replacement'
-    - ServiceNamespace: 'The namespace of the AWS service that provides the resource or
-        custom-resource for a resource provided by your own application or service.
-        For valid values, see the ServiceNamespace parameter for PutScalingPolicy in the Application Auto
-        Scaling API
-        Reference.
-        You must specify either the ResourceId, ScalableDimension, and
-        ServiceNamespace properties, or the ScalingTargetId property, but
-        not both.
-        Required: Conditional
-        Type: String
-        Update requires: Replacement'
-    - StepScalingPolicyConfiguration: 'A step scaling policy.
-        Required: No
-        Type: StepScalingPolicyConfiguration
-        Update requires: No interruption'
-    - TargetTrackingScalingPolicyConfiguration: 'A target tracking scaling policy.
-        Required: No
-        Type: TargetTrackingScalingPolicyConfiguration
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html
-  ScalingPolicy:
+  ScalingPolicyLogicalName:
+    MetaData:
+      Description: 'The AWS::ApplicationAutoScaling::ScalingPolicy resource defines a scaling policy that
+        Application Auto Scaling uses to adjust your application resources. '
+      Name: AWS::ApplicationAutoScaling::ScalingPolicy
+      Properties:
+      - PolicyName: 'The name of the scaling policy.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 256
+          Pattern: \p{Print}+
+          Update requires: Replacement'
+      - PolicyType: 'The Application Auto Scaling policy type. Valid values are StepScaling and
+          TargetTrackingScaling.
+          For DynamoDB, only TargetTrackingScaling is supported. For Amazon ECS, Spot
+          Fleet, and Amazon RDS, both StepScaling and TargetTrackingScaling
+          are supported. For any other service, only StepScaling is supported.
+          Required: Yes
+          Type: String
+          Update requires: No interruption'
+      - ResourceId: 'The unique resource identifier for the scalable target that this scaling policy applies
+          to. For valid values, see the ResourceId parameter for PutScalingPolicy in the Application Auto
+          Scaling API
+          Reference.
+          You must specify either the ResourceId, ScalableDimension, and
+          ServiceNamespace properties, or the ScalingTargetId property,
+          but not both.
+          Required: Conditional
+          Type: String
+          Update requires: Replacement'
+      - ScalableDimension: 'The scalable dimension of the scalable target that this scaling policy applies
+          to.
+          The
+          scalable dimension contains the service namespace, resource type, and scaling property,
+          such as ecs:service:DesiredCount for the desired task count of an Amazon ECS
+          service. For valid values, see the ScalableDimension parameter for PutScalingPolicy in the Application
+          Auto Scaling API
+          Reference.
+          You must specify either the ResourceId, ScalableDimension, and
+          ServiceNamespace properties, or the ScalingTargetId property,
+          but not both.
+          Required: Conditional
+          Type: String
+          Update requires: Replacement'
+      - ScalingTargetId: 'The AWS CloudFormation-generated ID of an Application Auto Scaling scalable
+          target.
+          For
+          more information about the ID, see the Return Value section of the
+          AWS::ApplicationAutoScaling::ScalableTarget resource.
+          You must specify either the ScalingTargetId property, or the
+          ResourceId, ScalableDimension, and ServiceNamespace
+          properties, but not both.
+          Required: Conditional
+          Type: String
+          Update requires: Replacement'
+      - ServiceNamespace: 'The namespace of the AWS service that provides the resource or
+          custom-resource for a resource provided by your own application or service.
+          For valid values, see the ServiceNamespace parameter for PutScalingPolicy in the Application
+          Auto Scaling API
+          Reference.
+          You must specify either the ResourceId, ScalableDimension, and
+          ServiceNamespace properties, or the ScalingTargetId property, but
+          not both.
+          Required: Conditional
+          Type: String
+          Update requires: Replacement'
+      - StepScalingPolicyConfiguration: 'A step scaling policy.
+          Required: No
+          Type: StepScalingPolicyConfiguration
+          Update requires: No interruption'
+      - TargetTrackingScalingPolicyConfiguration: 'A target tracking scaling policy.
+          Required: No
+          Type: TargetTrackingScalingPolicyConfiguration
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html
     Properties:
       PolicyName: String
       PolicyType: String

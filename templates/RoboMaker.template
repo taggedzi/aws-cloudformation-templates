@@ -1,95 +1,58 @@
 ---
-RoboMaker:
-- Fleet:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: RoboMaker
+Resources:
+  FleetLogicalName:
+    MetaData:
+      Description: 'The AWS::RoboMaker::Fleet resource creates an AWS RoboMaker fleet. Fleets contain
+        robots and can receive deployments. '
+      Name: AWS::RoboMaker::Fleet
+      Properties:
+      - Name: 'The name of the fleet.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 255
+          Pattern: [a-zA-Z0-9_\-]*
+          Update requires: Replacement'
+      - Tags: 'The list of all tags added to the fleet.
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-fleet.html
     Properties:
       Name: String
       Tags: Json
     Type: AWS::RoboMaker::Fleet
-  MetaData:
-    description: 'The AWS::RoboMaker::Fleet resource creates an AWS RoboMaker fleet. Fleets contain robots
-      and can receive deployments. '
-    name: AWS::RoboMaker::Fleet
-    properties:
-    - Name: 'The name of the fleet.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 255
-        Pattern: [a-zA-Z0-9_\-]*
-        Update requires: Replacement'
-    - Tags: 'The list of all tags added to the fleet.
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-fleet.html
-- MetaData:
-    description: 'The AWS::RoboMaker::RobotApplication resource creates an AWS RoboMaker robot. '
-    name: AWS::RoboMaker::Robot
-    properties:
-    - Architecture: 'The architecture of the robot.
-        Required: Yes
-        Type: String
-        Allowed Values: ARM64 | ARMHF | X86_64
-        Update requires: Replacement'
-    - Fleet: 'The Amazon Resource Name (ARN) of the fleet to which the robot will be registered.
-        Required: No
-        Type: String
-        Update requires: Replacement'
-    - GreengrassGroupId: 'The Greengrass group associated with the robot.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 1224
-        Update requires: Replacement'
-    - Name: 'The name of the robot.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 255
-        Pattern: [a-zA-Z0-9_\-]*
-        Update requires: Replacement'
-    - Tags: 'A map that contains tag keys and tag values that are attached to the robot.
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robot.html
-  Robot:
-    Properties:
-      Architecture: String
-      Fleet: String
-      GreengrassGroupId: String
-      Name: String
-      Tags: Json
-    Type: AWS::RoboMaker::Robot
-- MetaData:
-    description: 'The AWS::RoboMaker::RobotApplication resource creates an AWS RoboMaker robot application. '
-    name: AWS::RoboMaker::RobotApplication
-    properties:
-    - CurrentRevisionId: 'The current revision id.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - Name: 'The name of the robot application.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 255
-        Pattern: [a-zA-Z0-9_\-]*
-        Update requires: Replacement'
-    - RobotSoftwareSuite: 'The robot software suite used by the robot application.
-        Required: Yes
-        Type: RobotSoftwareSuite
-        Update requires: Replacement'
-    - Sources: 'The sources of the robot application.
-        Required: Yes
-        Type: List of SourceConfig
-        Update requires: No interruption'
-    - Tags: 'A map that contains tag keys and tag values that are attached to the robot application.
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplication.html
-  RobotApplication:
+  RobotApplicationLogicalName:
+    MetaData:
+      Description: 'The AWS::RoboMaker::RobotApplication resource creates an AWS RoboMaker robot application. '
+      Name: AWS::RoboMaker::RobotApplication
+      Properties:
+      - CurrentRevisionId: 'The current revision id.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - Name: 'The name of the robot application.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 255
+          Pattern: [a-zA-Z0-9_\-]*
+          Update requires: Replacement'
+      - RobotSoftwareSuite: 'The robot software suite used by the robot application.
+          Required: Yes
+          Type: RobotSoftwareSuite
+          Update requires: Replacement'
+      - Sources: 'The sources of the robot application.
+          Required: Yes
+          Type: List of SourceConfig
+          Update requires: No interruption'
+      - Tags: 'A map that contains tag keys and tag values that are attached to the robot application.
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplication.html
     Properties:
       CurrentRevisionId: String
       Name: String
@@ -98,71 +61,110 @@ RoboMaker:
       - SourceConfig
       Tags: Json
     Type: AWS::RoboMaker::RobotApplication
-- MetaData:
-    description: 'The AWS::RoboMaker::RobotApplicationVersion resource creates an AWS RoboMaker robot
-      version. '
-    name: AWS::RoboMaker::RobotApplicationVersion
-    properties:
-    - Application: 'The application information for the robot application.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 1224
-        Pattern: arn:.*
-        Update requires: Replacement'
-    - CurrentRevisionId: 'The current revision id for the robot application. If you provide a value and
-        it
-        matches the latest revision ID, a new version will be created.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 40
-        Pattern: [a-zA-Z0-9_.\-]*
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplicationversion.html
-  RobotApplicationVersion:
+  RobotApplicationVersionLogicalName:
+    MetaData:
+      Description: 'The AWS::RoboMaker::RobotApplicationVersion resource creates an AWS RoboMaker robot
+        version. '
+      Name: AWS::RoboMaker::RobotApplicationVersion
+      Properties:
+      - Application: 'The application information for the robot application.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 1224
+          Pattern: arn:.*
+          Update requires: Replacement'
+      - CurrentRevisionId: 'The current revision id for the robot application. If you provide a value
+          and it
+          matches the latest revision ID, a new version will be created.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 40
+          Pattern: [a-zA-Z0-9_.\-]*
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplicationversion.html
     Properties:
       Application: String
       CurrentRevisionId: String
     Type: AWS::RoboMaker::RobotApplicationVersion
-- MetaData:
-    description: 'The AWS::RoboMaker::SimulationApplication resource creates an AWS RoboMaker simulation
-      application. '
-    name: AWS::RoboMaker::SimulationApplication
-    properties:
-    - CurrentRevisionId: 'The current revision id.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - Name: 'The name of the simulation application.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 255
-        Pattern: [a-zA-Z0-9_\-]*
-        Update requires: Replacement'
-    - RenderingEngine: 'The rendering engine for the simulation application.
-        Required: Yes
-        Type: RenderingEngine
-        Update requires: Replacement'
-    - RobotSoftwareSuite: 'The robot software suite of the simulation application.
-        Required: Yes
-        Type: RobotSoftwareSuite
-        Update requires: Replacement'
-    - SimulationSoftwareSuite: 'The simulation software suite used by the simulation application.
-        Required: Yes
-        Type: SimulationSoftwareSuite
-        Update requires: Replacement'
-    - Sources: 'The sources of the simulation application.
-        Required: Yes
-        Type: List of SourceConfig
-        Update requires: No interruption'
-    - Tags: 'A map that contains tag keys and tag values that are attached to the simulation application.
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html
-  SimulationApplication:
+  RobotLogicalName:
+    MetaData:
+      Description: 'The AWS::RoboMaker::RobotApplication resource creates an AWS RoboMaker robot. '
+      Name: AWS::RoboMaker::Robot
+      Properties:
+      - Architecture: 'The architecture of the robot.
+          Required: Yes
+          Type: String
+          Allowed Values: ARM64 | ARMHF | X86_64
+          Update requires: Replacement'
+      - Fleet: 'The Amazon Resource Name (ARN) of the fleet to which the robot will be registered.
+          Required: No
+          Type: String
+          Update requires: Replacement'
+      - GreengrassGroupId: 'The Greengrass group associated with the robot.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 1224
+          Update requires: Replacement'
+      - Name: 'The name of the robot.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 255
+          Pattern: [a-zA-Z0-9_\-]*
+          Update requires: Replacement'
+      - Tags: 'A map that contains tag keys and tag values that are attached to the robot.
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robot.html
+    Properties:
+      Architecture: String
+      Fleet: String
+      GreengrassGroupId: String
+      Name: String
+      Tags: Json
+    Type: AWS::RoboMaker::Robot
+  SimulationApplicationLogicalName:
+    MetaData:
+      Description: 'The AWS::RoboMaker::SimulationApplication resource creates an AWS RoboMaker simulation
+        application. '
+      Name: AWS::RoboMaker::SimulationApplication
+      Properties:
+      - CurrentRevisionId: 'The current revision id.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - Name: 'The name of the simulation application.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 255
+          Pattern: [a-zA-Z0-9_\-]*
+          Update requires: Replacement'
+      - RenderingEngine: 'The rendering engine for the simulation application.
+          Required: Yes
+          Type: RenderingEngine
+          Update requires: Replacement'
+      - RobotSoftwareSuite: 'The robot software suite of the simulation application.
+          Required: Yes
+          Type: RobotSoftwareSuite
+          Update requires: Replacement'
+      - SimulationSoftwareSuite: 'The simulation software suite used by the simulation application.
+          Required: Yes
+          Type: SimulationSoftwareSuite
+          Update requires: Replacement'
+      - Sources: 'The sources of the simulation application.
+          Required: Yes
+          Type: List of SourceConfig
+          Update requires: No interruption'
+      - Tags: 'A map that contains tag keys and tag values that are attached to the simulation application.
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html
     Properties:
       CurrentRevisionId: String
       Name: String
@@ -173,30 +175,30 @@ RoboMaker:
       - SourceConfig
       Tags: Json
     Type: AWS::RoboMaker::SimulationApplication
-- MetaData:
-    description: 'The AWS::RoboMaker::SimulationApplicationVersion resource creates a version of an AWS
-      RoboMaker simulation application. '
-    name: AWS::RoboMaker::SimulationApplicationVersion
-    properties:
-    - Application: 'The application information for the simulation application.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 1224
-        Pattern: arn:.*
-        Update requires: Replacement'
-    - CurrentRevisionId: 'The current revision id for the simulation application. If you provide a value
-        and
-        it
-        matches the latest revision ID, a new version will be created.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 40
-        Pattern: [a-zA-Z0-9_.\-]*
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplicationversion.html
-  SimulationApplicationVersion:
+  SimulationApplicationVersionLogicalName:
+    MetaData:
+      Description: 'The AWS::RoboMaker::SimulationApplicationVersion resource creates a version of an
+        AWS RoboMaker simulation application. '
+      Name: AWS::RoboMaker::SimulationApplicationVersion
+      Properties:
+      - Application: 'The application information for the simulation application.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 1224
+          Pattern: arn:.*
+          Update requires: Replacement'
+      - CurrentRevisionId: 'The current revision id for the simulation application. If you provide a value
+          and
+          it
+          matches the latest revision ID, a new version will be created.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 40
+          Pattern: [a-zA-Z0-9_.\-]*
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplicationversion.html
     Properties:
       Application: String
       CurrentRevisionId: String

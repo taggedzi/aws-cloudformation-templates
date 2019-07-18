@@ -1,18 +1,20 @@
 ---
-SecurityHub:
-- Hub:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: SecurityHub
+Resources:
+  HubLogicalName:
+    MetaData:
+      Description: 'The AWS::SecurityHub::Hub resource represents the implementation of the AWS Security
+        Hub service in your account. One hub resource is created for each Region in which you enable Security
+        Hub. '
+      Name: AWS::SecurityHub::Hub
+      Properties:
+      - Tags: 'The tags to add to the hub resource.
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-hub.html
     Properties:
       Tags: Json
     Type: AWS::SecurityHub::Hub
-  MetaData:
-    description: 'The AWS::SecurityHub::Hub resource represents the implementation of the AWS Security
-      Hub service in your account. One hub resource is created for each Region in which you enable Security
-      Hub. '
-    name: AWS::SecurityHub::Hub
-    properties:
-    - Tags: 'The tags to add to the hub resource.
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-hub.html
 ...

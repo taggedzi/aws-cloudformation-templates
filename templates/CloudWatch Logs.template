@@ -1,164 +1,167 @@
 ---
-CloudWatch Logs:
-- Destination:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudWatch Logs
+Resources:
+  DestinationLogicalName:
+    MetaData:
+      Description: 'The AWS::Logs::Destination resource specifies a CloudWatch Logs destination. A destination
+        encapsulates a physical resource (such as an Amazon Kinesis data stream) and enables you to subscribe
+        that resource to a stream of log events. '
+      Name: AWS::Logs::Destination
+      Properties:
+      - DestinationName: 'The name of the destination.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 512
+          Pattern: [^:*]*
+          Update requires: Replacement'
+      - DestinationPolicy: 'An IAM policy document that governs which AWS accounts can create subscription
+          filters
+          against this destination.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Update requires: No interruption'
+      - RoleArn: 'The ARN of an IAM role that permits CloudWatch Logs to send data to the specified
+          AWS resource.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Update requires: No interruption'
+      - TargetArn: 'The Amazon Resource Name (ARN) of the physical target to where the log events are
+          delivered (for example, a Kinesis stream).
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html
     Properties:
       DestinationName: String
       DestinationPolicy: String
       RoleArn: String
       TargetArn: String
     Type: AWS::Logs::Destination
-  MetaData:
-    description: 'The AWS::Logs::Destination resource specifies a CloudWatch Logs destination. A destination
-      encapsulates a physical resource (such as an Amazon Kinesis data stream) and enables you to subscribe
-      that resource to a stream of log events. '
-    name: AWS::Logs::Destination
-    properties:
-    - DestinationName: 'The name of the destination.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 512
-        Pattern: [^:*]*
-        Update requires: Replacement'
-    - DestinationPolicy: 'An IAM policy document that governs which AWS accounts can create subscription
-        filters
-        against this destination.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Update requires: No interruption'
-    - RoleArn: 'The ARN of an IAM role that permits CloudWatch Logs to send data to the specified
-        AWS resource.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Update requires: No interruption'
-    - TargetArn: 'The Amazon Resource Name (ARN) of the physical target to where the log events are
-        delivered (for example, a Kinesis stream).
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html
-- LogGroup:
+  LogGroupLogicalName:
+    MetaData:
+      Description: 'The AWS::Logs::LogGroup resource specifies a log group. A log group defines common
+        properties for log streams,  such as their retention and access control rules. Each log stream
+        must belong to one log group. '
+      Name: AWS::Logs::LogGroup
+      Properties:
+      - LogGroupName: 'The name of the log group. If you dont specify a name, AWS CloudFormation generates
+          a unique ID for the log group.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 512
+          Pattern: [\.\-_/#A-Za-z0-9]+
+          Update requires: Replacement'
+      - RetentionInDays: 'The number of days to retain the log events in the specified log group.
+          Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731,
+          1827, and 3653.
+          Required: No
+          Type: Integer
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html
     Properties:
       LogGroupName: String
       RetentionInDays: Integer
     Type: AWS::Logs::LogGroup
-  MetaData:
-    description: 'The AWS::Logs::LogGroup resource specifies a log group. A log group defines common properties
-      for log streams,  such as their retention and access control rules. Each log stream must belong
-      to one log group. '
-    name: AWS::Logs::LogGroup
-    properties:
-    - LogGroupName: 'The name of the log group. If you dont specify a name, AWS CloudFormation generates
-        a unique ID for the log group.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 512
-        Pattern: [\.\-_/#A-Za-z0-9]+
-        Update requires: Replacement'
-    - RetentionInDays: 'The number of days to retain the log events in the specified log group.
-        Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731,
-        1827, and 3653.
-        Required: No
-        Type: Integer
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html
-- LogStream:
+  LogStreamLogicalName:
+    MetaData:
+      Description: 'The AWS::Logs::LogStream resource specifies an Amazon CloudWatch Logs log stream in
+        a specific log group.  A log stream represents the sequence of events coming from an application
+        instance or resource that you are monitoring. '
+      Name: AWS::Logs::LogStream
+      Properties:
+      - LogGroupName: 'The name of the log group where the log stream is created.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 512
+          Pattern: [\.\-_/#A-Za-z0-9]+
+          Update requires: Replacement'
+      - LogStreamName: 'The name of the log stream. The name must be unique within the log group.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 512
+          Pattern: [^:*]*
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html
     Properties:
       LogGroupName: String
       LogStreamName: String
     Type: AWS::Logs::LogStream
-  MetaData:
-    description: 'The AWS::Logs::LogStream resource specifies an Amazon CloudWatch Logs log stream in
-      a specific log group.  A log stream represents the sequence of events coming from an application
-      instance or resource that you are monitoring. '
-    name: AWS::Logs::LogStream
-    properties:
-    - LogGroupName: 'The name of the log group where the log stream is created.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 512
-        Pattern: [\.\-_/#A-Za-z0-9]+
-        Update requires: Replacement'
-    - LogStreamName: 'The name of the log stream. The name must be unique within the log group.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 512
-        Pattern: [^:*]*
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html
-- MetaData:
-    description: 'The AWS::Logs::MetricFilter resource specifies a metric filter that describes how CloudWatch
-      Logs extracts information from logs and transforms it into Amazon CloudWatch metrics. If you have
-      multiple metric filters that are associated with a log group, all the filters are applied to the
-      log streams in that group. '
-    name: AWS::Logs::MetricFilter
-    properties:
-    - FilterPattern: 'A filter pattern for extracting metric data out of ingested log events.
-        Required: Yes
-        Type: String
-        Update requires: No interruption'
-    - LogGroupName: 'The name of an existing log group that you want to associate with this metric filter.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 512
-        Pattern: [\.\-_/#A-Za-z0-9]+
-        Update requires: Replacement'
-    - MetricTransformations: 'The metric transformations.
-        Required: Yes
-        Type: List of MetricTransformation
-        Maximum: 1
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html
-  MetricFilter:
+  MetricFilterLogicalName:
+    MetaData:
+      Description: 'The AWS::Logs::MetricFilter resource specifies a metric filter that describes how
+        CloudWatch Logs extracts information from logs and transforms it into Amazon CloudWatch metrics.
+        If you have multiple metric filters that are associated with a log group, all the filters are
+        applied to the log streams in that group. '
+      Name: AWS::Logs::MetricFilter
+      Properties:
+      - FilterPattern: 'A filter pattern for extracting metric data out of ingested log events.
+          Required: Yes
+          Type: String
+          Update requires: No interruption'
+      - LogGroupName: 'The name of an existing log group that you want to associate with this metric filter.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 512
+          Pattern: [\.\-_/#A-Za-z0-9]+
+          Update requires: Replacement'
+      - MetricTransformations: 'The metric transformations.
+          Required: Yes
+          Type: List of MetricTransformation
+          Maximum: 1
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html
     Properties:
       FilterPattern: String
       LogGroupName: String
       MetricTransformations:
       - MetricTransformation
     Type: AWS::Logs::MetricFilter
-- MetaData:
-    description: 'The AWS::Logs::SubscriptionFilter resource specifies a subscription filter and associates
-      it with the specified log group. Subscription filters allow you to subscribe to a real-time stream
-      of log events and have them delivered to a specific destination. Currently, the supported destinations
-      are: '
-    name: AWS::Logs::SubscriptionFilter
-    properties:
-    - DestinationArn: 'The Amazon Resource Name (ARN) of the destination.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Update requires: Replacement'
-    - FilterPattern: 'The filtering expressions that restrict what gets delivered to the destination AWS
-        resource.
-        For more information about the filter pattern syntax, see
-        Filter and Pattern Syntax.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - LogGroupName: 'The log group to associate with the subscription filter. All log events that are
-        uploaded to this log group are filtered and delivered to the specified AWS resource
-        if the filter pattern matches the log events.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 512
-        Pattern: [\.\-_/#A-Za-z0-9]+
-        Update requires: Replacement'
-    - RoleArn: 'The ARN of an IAM role that grants CloudWatch Logs permissions to deliver ingested
-        log events to the destination stream.
-        Required: No
-        Type: String
-        Minimum: 1
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html
-  SubscriptionFilter:
+  SubscriptionFilterLogicalName:
+    MetaData:
+      Description: 'The AWS::Logs::SubscriptionFilter resource specifies a subscription filter and associates
+        it with the specified log group. Subscription filters allow you to subscribe to a real-time stream
+        of log events and have them delivered to a specific destination. Currently, the supported destinations
+        are: '
+      Name: AWS::Logs::SubscriptionFilter
+      Properties:
+      - DestinationArn: 'The Amazon Resource Name (ARN) of the destination.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Update requires: Replacement'
+      - FilterPattern: 'The filtering expressions that restrict what gets delivered to the destination
+          AWS
+          resource.
+          For more information about the filter pattern syntax, see
+          Filter and Pattern Syntax.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - LogGroupName: 'The log group to associate with the subscription filter. All log events that are
+          uploaded to this log group are filtered and delivered to the specified AWS resource
+          if the filter pattern matches the log events.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 512
+          Pattern: [\.\-_/#A-Za-z0-9]+
+          Update requires: Replacement'
+      - RoleArn: 'The ARN of an IAM role that grants CloudWatch Logs permissions to deliver ingested
+          log events to the destination stream.
+          Required: No
+          Type: String
+          Minimum: 1
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html
     Properties:
       DestinationArn: String
       FilterPattern: String

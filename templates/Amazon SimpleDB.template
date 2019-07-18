@@ -1,17 +1,20 @@
 ---
-Amazon SimpleDB:
-- Domain:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Amazon SimpleDB
+Resources:
+  DomainLogicalName:
+    MetaData:
+      Description: ' Use the AWS::SDB::Domain resource to declare a SimpleDB domain. When you specify
+        AWS::SDB::Domain as an argument in a Ref function, AWS CloudFormation returns the value of the
+        DomainName.  '
+      Name: AWS::SDB::Domain
+      Properties:
+      - Description: 'Information about the SimpleDB domain.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html
     Properties:
       Description: String
     Type: AWS::SDB::Domain
-  MetaData:
-    description: ' Use the AWS::SDB::Domain resource to declare a SimpleDB domain. When you specify AWS::SDB::Domain
-      as an argument in a Ref function, AWS CloudFormation returns the value of the DomainName.  '
-    name: AWS::SDB::Domain
-    properties:
-    - Description: 'Information about the SimpleDB domain.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html
 ...

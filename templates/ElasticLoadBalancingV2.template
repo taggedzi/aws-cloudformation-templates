@@ -1,6 +1,66 @@
 ---
-ElasticLoadBalancingV2:
-- Listener:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: ElasticLoadBalancingV2
+Resources:
+  ListenerCertificateLogicalName:
+    MetaData:
+      Description: Specifies a certificate list for an HTTPS listener.
+      Name: AWS::ElasticLoadBalancingV2::ListenerCertificate
+      Properties:
+      - Certificates: 'The certificates to add. Duplicates are not allowed.
+          Required: Yes
+          Type: List of Certificate
+          Update requires: Replacement'
+      - ListenerArn: 'The Amazon Resource Name (ARN) of the listener.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html
+    Properties:
+      Certificates:
+      - Certificate
+      ListenerArn: String
+    Type: AWS::ElasticLoadBalancingV2::ListenerCertificate
+  ListenerLogicalName:
+    MetaData:
+      Description: Specifies a listener for an Application Load Balancer or Network Load Balancer.
+      Name: AWS::ElasticLoadBalancingV2::Listener
+      Properties:
+      - Certificates: 'The default SSL server certificate. You must provide exactly one certificate if
+          the
+          listener protocol is HTTPS or TLS.
+          Required: Conditional
+          Type: List of Certificate
+          Update requires: No interruption'
+      - DefaultActions: 'The actions for the default rule.
+          Required: Yes
+          Type: List of Action
+          Update requires: No interruption'
+      - LoadBalancerArn: 'The Amazon Resource Name (ARN) of the load balancer.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - Port: 'The port on which the load balancer is listening.
+          Required: Yes
+          Type: Integer
+          Minimum: 1
+          Maximum: 65535
+          Update requires: No interruption'
+      - Protocol: 'The protocol for connections from clients to the load balancer. For Application Load
+          Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers,
+          the
+          supported protocols are TCP, TLS, UDP, and TCP_UDP.
+          Required: Yes
+          Type: String
+          Allowed Values: HTTP | HTTPS | TCP | TCP_UDP | TLS | UDP
+          Update requires: No interruption'
+      - SslPolicy: '[HTTPS and TLS listeners] The security policy that defines which ciphers and protocols
+          are
+          supported. The default is the current predefined security policy.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html
     Properties:
       Certificates:
       - Certificate
@@ -11,64 +71,36 @@ ElasticLoadBalancingV2:
       Protocol: String
       SslPolicy: String
     Type: AWS::ElasticLoadBalancingV2::Listener
-  MetaData:
-    description: Specifies a listener for an Application Load Balancer or Network Load Balancer.
-    name: AWS::ElasticLoadBalancingV2::Listener
-    properties:
-    - Certificates: 'The default SSL server certificate. You must provide exactly one certificate if the
-        listener protocol is HTTPS or TLS.
-        Required: Conditional
-        Type: List of Certificate
-        Update requires: No interruption'
-    - DefaultActions: 'The actions for the default rule.
-        Required: Yes
-        Type: List of Action
-        Update requires: No interruption'
-    - LoadBalancerArn: 'The Amazon Resource Name (ARN) of the load balancer.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - Port: 'The port on which the load balancer is listening.
-        Required: Yes
-        Type: Integer
-        Minimum: 1
-        Maximum: 65535
-        Update requires: No interruption'
-    - Protocol: 'The protocol for connections from clients to the load balancer. For Application Load
-        Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers,
-        the
-        supported protocols are TCP, TLS, UDP, and TCP_UDP.
-        Required: Yes
-        Type: String
-        Allowed Values: HTTP | HTTPS | TCP | TCP_UDP | TLS | UDP
-        Update requires: No interruption'
-    - SslPolicy: '[HTTPS and TLS listeners] The security policy that defines which ciphers and protocols
-        are
-        supported. The default is the current predefined security policy.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html
-- ListenerCertificate:
-    Properties:
-      Certificates:
-      - Certificate
-      ListenerArn: String
-    Type: AWS::ElasticLoadBalancingV2::ListenerCertificate
-  MetaData:
-    description: Specifies a certificate list for an HTTPS listener.
-    name: AWS::ElasticLoadBalancingV2::ListenerCertificate
-    properties:
-    - Certificates: 'The certificates to add. Duplicates are not allowed.
-        Required: Yes
-        Type: List of Certificate
-        Update requires: Replacement'
-    - ListenerArn: 'The Amazon Resource Name (ARN) of the listener.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html
-- ListenerRule:
+  ListenerRuleLogicalName:
+    MetaData:
+      Description: Specifies a listener rule.
+      Name: AWS::ElasticLoadBalancingV2::ListenerRule
+      Properties:
+      - Actions: 'The actions.
+          Required: Yes
+          Type: List of Action
+          Update requires: No interruption'
+      - Conditions: 'The conditions.
+          Required: Yes
+          Type: List of RuleCondition
+          Update requires: No interruption'
+      - ListenerArn: 'The Amazon Resource Name (ARN) of the listener.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - Priority: 'The rule priority. A listener cant have multiple rules with the same priority.
+          If you try to reorder rules by updating their priorities, do not specify a new priority
+          if an existing rule already uses this priority, as this can cause an error. If you
+          need to
+          reuse a priority with a different rule, you must remove it as a priority first, and
+          then
+          specify it in a subsequent update.
+          Required: Yes
+          Type: Integer
+          Minimum: 1
+          Maximum: 50000
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html
     Properties:
       Actions:
       - Action
@@ -77,36 +109,92 @@ ElasticLoadBalancingV2:
       ListenerArn: String
       Priority: Integer
     Type: AWS::ElasticLoadBalancingV2::ListenerRule
-  MetaData:
-    description: Specifies a listener rule.
-    name: AWS::ElasticLoadBalancingV2::ListenerRule
-    properties:
-    - Actions: 'The actions.
-        Required: Yes
-        Type: List of Action
-        Update requires: No interruption'
-    - Conditions: 'The conditions.
-        Required: Yes
-        Type: List of RuleCondition
-        Update requires: No interruption'
-    - ListenerArn: 'The Amazon Resource Name (ARN) of the listener.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - Priority: 'The rule priority. A listener cant have multiple rules with the same priority.
-        If you try to reorder rules by updating their priorities, do not specify a new priority
-        if an existing rule already uses this priority, as this can cause an error. If you
-        need to
-        reuse a priority with a different rule, you must remove it as a priority first, and
-        then
-        specify it in a subsequent update.
-        Required: Yes
-        Type: Integer
-        Minimum: 1
-        Maximum: 50000
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html
-- LoadBalancer:
+  LoadBalancerLogicalName:
+    MetaData:
+      Description: Specifies an Application Load Balancer or a Network Load Balancer.
+      Name: AWS::ElasticLoadBalancingV2::LoadBalancer
+      Properties:
+      - IpAddressType: 'The IP address type. The possible values are ipv4 (for IPv4 addresses) and
+          dualstack (for IPv4 and IPv6 addresses). Internal load balancers must use
+          ipv4. Network Load Balancers must use ipv4.
+          Required: No
+          Type: String
+          Allowed Values: dualstack | ipv4
+          Update requires: No interruption'
+      - LoadBalancerAttributes: 'The load balancer attributes.
+          Required: No
+          Type: List of LoadBalancerAttribute
+          Maximum: 20
+          Update requires: No interruption'
+      - Name: 'The name of the load balancer. This name must be unique per region per account, can
+          have a maximum of 32 characters,
+          must contain only alphanumeric characters or hyphens, must not begin or end with a
+          hyphen, and must not begin with "internal-".
+          If you dont specify a name, AWS CloudFormation generates a unique physical ID for
+          the load balancer. If you specify a name,
+          you cannot perform updates that require replacement of this resource, but you can
+          perform other updates. To replace the resource,
+          specify a new name.
+          Required: No
+          Type: String
+          Update requires: Replacement'
+      - Scheme: 'The nodes of an Internet-facing load balancer have public IP addresses. The DNS name
+          of
+          an Internet-facing load balancer is publicly resolvable to the public IP addresses
+          of the
+          nodes. Therefore, Internet-facing load balancers can route requests from clients over
+          the
+          internet.
+          The nodes of an internal load balancer have only private IP addresses. The DNS name
+          of
+          an internal load balancer is publicly resolvable to the private IP addresses of the
+          nodes.
+          Therefore, internal load balancers can only route requests from clients with access
+          to the VPC
+          for the load balancer.
+          The default is an Internet-facing load balancer.
+          Required: No
+          Type: String
+          Allowed Values: internal | internet-facing
+          Update requires: Replacement'
+      - SecurityGroups: '[Application Load Balancers] The IDs of the security groups for the load balancer.
+          Required: No
+          Type: List of String
+          Update requires: No interruption'
+      - SubnetMappings: 'The IDs of the public subnets. You can specify only one subnet per Availability
+          Zone.
+          You must specify either subnets or subnet mappings.
+          [Application Load Balancers] You must specify subnets from at least two Availability
+          Zones. You cannot specify Elastic IP addresses for your subnets.
+          [Network Load Balancers] You can specify subnets from one or more Availability Zones.
+          You can specify one Elastic IP address per subnet if you need static IP addresses
+          for
+          your load balancer.
+          Required: No
+          Type: List of SubnetMapping
+          Update requires: Replacement'
+      - Subnets: 'The IDs of the public subnets. You can specify only one subnet per Availability Zone.
+          You must specify either subnets or subnet mappings.
+          [Application Load Balancers] You must specify subnets from at least two Availability
+          Zones. When you
+          specify subnets for an existing Application Load Balancer, they replace the previously
+          enabled subnets.
+          [Network Load Balancers] You can specify subnets from one or more Availability Zones
+          when you create the load balancer.
+          You cant change the subnets for an existing Network Load Balancer.
+          Required: No
+          Type: List of String
+          Update requires: No interruption'
+      - Tags: 'The tags. Each resource can have a maximum of 10 tags.
+          Required: No
+          Type: List of Tag
+          Update requires: No interruption'
+      - Type: 'The type of load balancer. The default is application.
+          Required: No
+          Type: String
+          Allowed Values: application | network
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
     Properties:
       IpAddressType: String
       LoadBalancerAttributes:
@@ -123,233 +211,148 @@ ElasticLoadBalancingV2:
       - Tag
       Type: String
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-  MetaData:
-    description: Specifies an Application Load Balancer or a Network Load Balancer.
-    name: AWS::ElasticLoadBalancingV2::LoadBalancer
-    properties:
-    - IpAddressType: 'The IP address type. The possible values are ipv4 (for IPv4 addresses) and
-        dualstack (for IPv4 and IPv6 addresses). Internal load balancers must use
-        ipv4. Network Load Balancers must use ipv4.
-        Required: No
-        Type: String
-        Allowed Values: dualstack | ipv4
-        Update requires: No interruption'
-    - LoadBalancerAttributes: 'The load balancer attributes.
-        Required: No
-        Type: List of LoadBalancerAttribute
-        Maximum: 20
-        Update requires: No interruption'
-    - Name: 'The name of the load balancer. This name must be unique per region per account, can
-        have a maximum of 32 characters,
-        must contain only alphanumeric characters or hyphens, must not begin or end with a
-        hyphen, and must not begin with "internal-".
-        If you dont specify a name, AWS CloudFormation generates a unique physical ID for
-        the load balancer. If you specify a name,
-        you cannot perform updates that require replacement of this resource, but you can
-        perform other updates. To replace the resource,
-        specify a new name.
-        Required: No
-        Type: String
-        Update requires: Replacement'
-    - Scheme: 'The nodes of an Internet-facing load balancer have public IP addresses. The DNS name
-        of
-        an Internet-facing load balancer is publicly resolvable to the public IP addresses
-        of the
-        nodes. Therefore, Internet-facing load balancers can route requests from clients over
-        the
-        internet.
-        The nodes of an internal load balancer have only private IP addresses. The DNS name
-        of
-        an internal load balancer is publicly resolvable to the private IP addresses of the
-        nodes.
-        Therefore, internal load balancers can only route requests from clients with access
-        to the VPC
-        for the load balancer.
-        The default is an Internet-facing load balancer.
-        Required: No
-        Type: String
-        Allowed Values: internal | internet-facing
-        Update requires: Replacement'
-    - SecurityGroups: '[Application Load Balancers] The IDs of the security groups for the load balancer.
-        Required: No
-        Type: List of String
-        Update requires: No interruption'
-    - SubnetMappings: 'The IDs of the public subnets. You can specify only one subnet per Availability
-        Zone.
-        You must specify either subnets or subnet mappings.
-        [Application Load Balancers] You must specify subnets from at least two Availability
-        Zones. You cannot specify Elastic IP addresses for your subnets.
-        [Network Load Balancers] You can specify subnets from one or more Availability Zones.
-        You can specify one Elastic IP address per subnet if you need static IP addresses
-        for
-        your load balancer.
-        Required: No
-        Type: List of SubnetMapping
-        Update requires: Replacement'
-    - Subnets: 'The IDs of the public subnets. You can specify only one subnet per Availability Zone.
-        You must specify either subnets or subnet mappings.
-        [Application Load Balancers] You must specify subnets from at least two Availability
-        Zones. When you
-        specify subnets for an existing Application Load Balancer, they replace the previously
-        enabled subnets.
-        [Network Load Balancers] You can specify subnets from one or more Availability Zones
-        when you create the load balancer.
-        You cant change the subnets for an existing Network Load Balancer.
-        Required: No
-        Type: List of String
-        Update requires: No interruption'
-    - Tags: 'The tags. Each resource can have a maximum of 10 tags.
-        Required: No
-        Type: List of Tag
-        Update requires: No interruption'
-    - Type: 'The type of load balancer. The default is application.
-        Required: No
-        Type: String
-        Allowed Values: application | network
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html
-- MetaData:
-    description: Specifies a target group for an Application Load Balancer or Network Load Balancer.
-    name: AWS::ElasticLoadBalancingV2::TargetGroup
-    properties:
-    - HealthCheckEnabled: 'Indicates whether health checks are enabled. If the target type is lambda,
-        health checks are disabled by default but can be enabled. If the target type is instance
-        or ip, health checks are always enabled and cannot be disabled.
-        Required: No
-        Type: Boolean
-        Update requires: No interruption'
-    - HealthCheckIntervalSeconds: "The approximate amount of time, in seconds, between health checks of
-        an individual\ntarget.\nFor HTTP and HTTPS health checks, the range is 5â\x80\x93300 seconds.\nFor
-        TCP health checks, the supported values are 10 and 30 seconds.\nIf the target type is instance
-        or ip, the default is 30 seconds.\nIf the target type is lambda, the default is 35 seconds.\nRequired:
-        No\nType: Integer\nMinimum: 5\nMaximum: 300\nUpdate requires: No interruption"
-    - HealthCheckPath: '[HTTP/HTTPS health checks] The ping path that is the destination on the targets
-        for
-        health checks. The default is /.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 1024
-        Update requires: No interruption'
-    - HealthCheckPort: 'The port the load balancer uses when performing health checks on targets. The
-        default
-        is traffic-port, which is the port on which each target receives traffic from the
-        load balancer.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - HealthCheckProtocol: 'The protocol the load balancer uses when performing health checks on targets.
-        For Application Load Balancers, the default is HTTP. For Network Load Balancers, the
-        default is TCP.
-        The TCP protocol is supported for health checks only if the protocol of the target
-        group is TCP, TLS, UDP, or TCP_UDP.
-        The TLS, UDP, and TCP_UDP protocols are not supported for health checks.
-        Required: No
-        Type: String
-        Allowed Values: HTTP | HTTPS | TCP | TCP_UDP | TLS | UDP
-        Update requires: No interruption'
-    - HealthCheckTimeoutSeconds: 'The amount of time, in seconds, during which no response from a target
-        means a failed
-        health check.
-        For target groups with a protocol of HTTP or HTTPS, the default is 5 seconds.
-        For target groups with a protocol of TCP or TLS, this value must be 6 seconds for
-        HTTP health checks
-        and 10 seconds for TCP and HTTPS health checks.
-        If the target type is lambda, the default is 30 seconds.
-        Required: No
-        Type: Integer
-        Minimum: 2
-        Maximum: 120
-        Update requires: No interruption'
-    - HealthyThresholdCount: 'The number of consecutive health checks successes required before considering
-        an unhealthy
-        target healthy.
-        For target groups with a protocol of HTTP or HTTPS, the default is 5.
-        For target groups with a protocol of TCP or TLS, the default is 3.
-        If the target type is lambda, the default is 5.
-        Required: No
-        Type: Integer
-        Minimum: 2
-        Maximum: 10
-        Update requires: No interruption'
-    - Matcher: '[HTTP/HTTPS health checks] The HTTP codes to use when checking for a successful response
-        from a target.
-        Required: No
-        Type: Matcher
-        Update requires: No interruption'
-    - Name: 'The name of the target group.
-        This name must be unique per region per account, can have a maximum of 32 characters,
-        must contain only alphanumeric characters or hyphens, and must not begin or end with
-        a
-        hyphen.
-        Required: No
-        Type: String
-        Update requires: Replacement'
-    - Port: 'The port on which the targets receive traffic. This port is used unless you specify
-        a
-        port override when registering the target. If the target is a Lambda function, this
-        parameter does not apply.
-        Required: No
-        Type: Integer
-        Minimum: 1
-        Maximum: 65535
-        Update requires: Replacement'
-    - Protocol: 'The protocol to use for routing traffic to the targets. For Application Load Balancers,
-        the supported protocols are HTTP and HTTPS. For Network Load Balancers, the supported
-        protocols
-        are TCP, TLS, UDP, or TCP_UDP. A TCP_UDP listener must be associated with a TCP_UDP
-        target group.
-        If the target is a Lambda function, this parameter does not apply.
-        Required: No
-        Type: String
-        Allowed Values: HTTP | HTTPS | TCP | TCP_UDP | TLS | UDP
-        Update requires: Replacement'
-    - Tags: 'The tags. Each resource can have a maximum of 10 tags.
-        Required: No
-        Type: List of Tag
-        Update requires: No interruption'
-    - TargetGroupAttributes: 'The attributes.
-        Required: No
-        Type: List of TargetGroupAttribute
-        Update requires: No interruption'
-    - Targets: 'The targets.
-        Required: No
-        Type: List of TargetDescription
-        Update requires: No interruption'
-    - TargetType: 'The type of target that you must specify when registering targets with this target
-        group.
-        You cant specify targets for a target group using more than one target type.
-        instance - Targets are specified by instance ID. This is the default value.
-        If the target group protocol is UDP or TCP_UDP, the target type must be instance.
-        ip - Targets are specified by IP address. You can specify IP addresses
-        from the subnets of the virtual private cloud (VPC) for the target group, the RFC
-        1918
-        range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range
-        (100.64.0.0/10). You cant specify publicly routable IP addresses.
-        lambda - The target groups contains a single Lambda function.
-        Required: No
-        Type: String
-        Allowed Values: instance | ip | lambda
-        Update requires: Replacement'
-    - UnhealthyThresholdCount: 'The number of consecutive health check failures required before considering
-        a target
-        unhealthy.
-        For target groups with a protocol of HTTP or HTTPS, the default is 2.
-        For target groups with a protocol of TCP or TLS, this value must be the same as the
-        healthy threshold count.
-        If the target type is lambda, the default is 2.
-        Required: No
-        Type: Integer
-        Minimum: 2
-        Maximum: 10
-        Update requires: No interruption'
-    - VpcId: 'The identifier of the virtual private cloud (VPC). If the target is a Lambda function,
-        this parameter does not apply. Otherwise, this parameter is required.
-        Required: Conditional
-        Type: String
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html
-  TargetGroup:
+  TargetGroupLogicalName:
+    MetaData:
+      Description: Specifies a target group for an Application Load Balancer or Network Load Balancer.
+      Name: AWS::ElasticLoadBalancingV2::TargetGroup
+      Properties:
+      - HealthCheckEnabled: 'Indicates whether health checks are enabled. If the target type is lambda,
+          health checks are disabled by default but can be enabled. If the target type is instance
+          or ip, health checks are always enabled and cannot be disabled.
+          Required: No
+          Type: Boolean
+          Update requires: No interruption'
+      - HealthCheckIntervalSeconds: "The approximate amount of time, in seconds, between health checks
+          of an individual\ntarget.\nFor HTTP and HTTPS health checks, the range is 5â\x80\x93300 seconds.\nFor
+          TCP health checks, the supported values are 10 and 30 seconds.\nIf the target type is instance
+          or ip, the default is 30 seconds.\nIf the target type is lambda, the default is 35 seconds.\nRequired:
+          No\nType: Integer\nMinimum: 5\nMaximum: 300\nUpdate requires: No interruption"
+      - HealthCheckPath: '[HTTP/HTTPS health checks] The ping path that is the destination on the targets
+          for
+          health checks. The default is /.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 1024
+          Update requires: No interruption'
+      - HealthCheckPort: 'The port the load balancer uses when performing health checks on targets. The
+          default
+          is traffic-port, which is the port on which each target receives traffic from the
+          load balancer.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - HealthCheckProtocol: 'The protocol the load balancer uses when performing health checks on targets.
+          For Application Load Balancers, the default is HTTP. For Network Load Balancers, the
+          default is TCP.
+          The TCP protocol is supported for health checks only if the protocol of the target
+          group is TCP, TLS, UDP, or TCP_UDP.
+          The TLS, UDP, and TCP_UDP protocols are not supported for health checks.
+          Required: No
+          Type: String
+          Allowed Values: HTTP | HTTPS | TCP | TCP_UDP | TLS | UDP
+          Update requires: No interruption'
+      - HealthCheckTimeoutSeconds: 'The amount of time, in seconds, during which no response from a target
+          means a failed
+          health check.
+          For target groups with a protocol of HTTP or HTTPS, the default is 5 seconds.
+          For target groups with a protocol of TCP or TLS, this value must be 6 seconds for
+          HTTP health checks
+          and 10 seconds for TCP and HTTPS health checks.
+          If the target type is lambda, the default is 30 seconds.
+          Required: No
+          Type: Integer
+          Minimum: 2
+          Maximum: 120
+          Update requires: No interruption'
+      - HealthyThresholdCount: 'The number of consecutive health checks successes required before considering
+          an unhealthy
+          target healthy.
+          For target groups with a protocol of HTTP or HTTPS, the default is 5.
+          For target groups with a protocol of TCP or TLS, the default is 3.
+          If the target type is lambda, the default is 5.
+          Required: No
+          Type: Integer
+          Minimum: 2
+          Maximum: 10
+          Update requires: No interruption'
+      - Matcher: '[HTTP/HTTPS health checks] The HTTP codes to use when checking for a successful response
+          from a target.
+          Required: No
+          Type: Matcher
+          Update requires: No interruption'
+      - Name: 'The name of the target group.
+          This name must be unique per region per account, can have a maximum of 32 characters,
+          must contain only alphanumeric characters or hyphens, and must not begin or end with
+          a
+          hyphen.
+          Required: No
+          Type: String
+          Update requires: Replacement'
+      - Port: 'The port on which the targets receive traffic. This port is used unless you specify
+          a
+          port override when registering the target. If the target is a Lambda function, this
+          parameter does not apply.
+          Required: No
+          Type: Integer
+          Minimum: 1
+          Maximum: 65535
+          Update requires: Replacement'
+      - Protocol: 'The protocol to use for routing traffic to the targets. For Application Load Balancers,
+          the supported protocols are HTTP and HTTPS. For Network Load Balancers, the supported
+          protocols
+          are TCP, TLS, UDP, or TCP_UDP. A TCP_UDP listener must be associated with a TCP_UDP
+          target group.
+          If the target is a Lambda function, this parameter does not apply.
+          Required: No
+          Type: String
+          Allowed Values: HTTP | HTTPS | TCP | TCP_UDP | TLS | UDP
+          Update requires: Replacement'
+      - Tags: 'The tags. Each resource can have a maximum of 10 tags.
+          Required: No
+          Type: List of Tag
+          Update requires: No interruption'
+      - TargetGroupAttributes: 'The attributes.
+          Required: No
+          Type: List of TargetGroupAttribute
+          Update requires: No interruption'
+      - Targets: 'The targets.
+          Required: No
+          Type: List of TargetDescription
+          Update requires: No interruption'
+      - TargetType: 'The type of target that you must specify when registering targets with this target
+          group.
+          You cant specify targets for a target group using more than one target type.
+          instance - Targets are specified by instance ID. This is the default value.
+          If the target group protocol is UDP or TCP_UDP, the target type must be instance.
+          ip - Targets are specified by IP address. You can specify IP addresses
+          from the subnets of the virtual private cloud (VPC) for the target group, the RFC
+          1918
+          range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range
+          (100.64.0.0/10). You cant specify publicly routable IP addresses.
+          lambda - The target groups contains a single Lambda function.
+          Required: No
+          Type: String
+          Allowed Values: instance | ip | lambda
+          Update requires: Replacement'
+      - UnhealthyThresholdCount: 'The number of consecutive health check failures required before considering
+          a target
+          unhealthy.
+          For target groups with a protocol of HTTP or HTTPS, the default is 2.
+          For target groups with a protocol of TCP or TLS, this value must be the same as the
+          healthy threshold count.
+          If the target type is lambda, the default is 2.
+          Required: No
+          Type: Integer
+          Minimum: 2
+          Maximum: 10
+          Update requires: No interruption'
+      - VpcId: 'The identifier of the virtual private cloud (VPC). If the target is a Lambda function,
+          this parameter does not apply. Otherwise, this parameter is required.
+          Required: Conditional
+          Type: String
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html
     Properties:
       HealthCheckEnabled: Boolean
       HealthCheckIntervalSeconds: Integer

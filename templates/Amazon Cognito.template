@@ -1,6 +1,65 @@
 ---
-Amazon Cognito:
-- IdentityPool:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Amazon Cognito
+Resources:
+  IdentityPoolLogicalName:
+    MetaData:
+      Description: 'The AWS::Cognito::IdentityPool resource creates an Amazon Cognito identity pool. '
+      Name: AWS::Cognito::IdentityPool
+      Properties:
+      - AllowUnauthenticatedIdentities: 'Specifies whether the identity pool supports unauthenticated
+          logins.
+          Required: Yes
+          Type: Boolean
+          Update requires: No interruption'
+      - CognitoEvents: 'The events to configure.
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      - CognitoIdentityProviders: 'An array of Amazon Cognito user pools and their client IDs.
+          Required: No
+          Type: List of CognitoIdentityProvider
+          Update requires: No interruption'
+      - CognitoStreams: 'Configuration options for configuring Amazon Cognito streams.
+          Required: No
+          Type: CognitoStreams
+          Update requires: No interruption'
+      - DeveloperProviderName: 'The "domain" by which Amazon Cognito will refer to your users. This name
+          acts as a
+          placeholder that allows your backend and the Amazon Cognito service to communicate
+          about the developer provider. For the DeveloperProviderName, you can use letters and periods
+          (.), underscores (_), and dashes (-).
+          Minimum length: 1
+          Maximum length: 100
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - IdentityPoolName: 'The name of your Amazon Cognito identity pool.
+          Minimum length: 1
+          Maximum length: 128
+          Pattern: [\w ]+
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - OpenIdConnectProviderARNs: 'A list of ARNs for the OpendID Connect provider.
+          Required: No
+          Type: List of String
+          Update requires: No interruption'
+      - PushSync: 'Configuration options to be applied to the identity pool.
+          Required: No
+          Type: PushSync
+          Update requires: No interruption'
+      - SamlProviderARNs: 'A list of Amazon Resource Names (ARNs) of Security Assertion Markup Language
+          (SAML)
+          providers.
+          Required: No
+          Type: List of String
+          Update requires: No interruption'
+      - SupportedLoginProviders: 'Key-value pairs that map provider names to provider app IDs.
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html
     Properties:
       AllowUnauthenticatedIdentities: Boolean
       CognitoEvents: Json
@@ -16,201 +75,272 @@ Amazon Cognito:
       - String
       SupportedLoginProviders: Json
     Type: AWS::Cognito::IdentityPool
-  MetaData:
-    description: 'The AWS::Cognito::IdentityPool resource creates an Amazon Cognito identity pool. '
-    name: AWS::Cognito::IdentityPool
-    properties:
-    - AllowUnauthenticatedIdentities: 'Specifies whether the identity pool supports unauthenticated logins.
-        Required: Yes
-        Type: Boolean
-        Update requires: No interruption'
-    - CognitoEvents: 'The events to configure.
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    - CognitoIdentityProviders: 'An array of Amazon Cognito user pools and their client IDs.
-        Required: No
-        Type: List of CognitoIdentityProvider
-        Update requires: No interruption'
-    - CognitoStreams: 'Configuration options for configuring Amazon Cognito streams.
-        Required: No
-        Type: CognitoStreams
-        Update requires: No interruption'
-    - DeveloperProviderName: 'The "domain" by which Amazon Cognito will refer to your users. This name
-        acts as a
-        placeholder that allows your backend and the Amazon Cognito service to communicate
-        about the developer provider. For the DeveloperProviderName, you can use letters and periods (.),
-        underscores (_), and dashes (-).
-        Minimum length: 1
-        Maximum length: 100
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - IdentityPoolName: 'The name of your Amazon Cognito identity pool.
-        Minimum length: 1
-        Maximum length: 128
-        Pattern: [\w ]+
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - OpenIdConnectProviderARNs: 'A list of ARNs for the OpendID Connect provider.
-        Required: No
-        Type: List of String
-        Update requires: No interruption'
-    - PushSync: 'Configuration options to be applied to the identity pool.
-        Required: No
-        Type: PushSync
-        Update requires: No interruption'
-    - SamlProviderARNs: 'A list of Amazon Resource Names (ARNs) of Security Assertion Markup Language
-        (SAML)
-        providers.
-        Required: No
-        Type: List of String
-        Update requires: No interruption'
-    - SupportedLoginProviders: 'Key-value pairs that map provider names to provider app IDs.
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html
-- IdentityPoolRoleAttachment:
+  IdentityPoolRoleAttachmentLogicalName:
+    MetaData:
+      Description: 'The AWS::Cognito::IdentityPoolRoleAttachment resource manages the role configuration
+        for an Amazon Cognito identity pool. '
+      Name: AWS::Cognito::IdentityPoolRoleAttachment
+      Properties:
+      - IdentityPoolId: 'An identity pool ID in the format REGION:GUID.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - RoleMappings: 'How users for a specific identity provider are mapped to roles. This is a string
+          to
+          RoleMapping object map. The string identifies the identity provider, for example,
+          "graph.facebook.com" or "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      - Roles: 'The map of roles associated with this pool. For a given role, the key will be either
+          "authenticated" or "unauthenticated" and the value will be the Role ARN.
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html
     Properties:
       IdentityPoolId: String
       RoleMappings: Json
       Roles: Json
     Type: AWS::Cognito::IdentityPoolRoleAttachment
-  MetaData:
-    description: 'The AWS::Cognito::IdentityPoolRoleAttachment resource manages the role configuration
-      for an Amazon Cognito identity pool. '
-    name: AWS::Cognito::IdentityPoolRoleAttachment
-    properties:
-    - IdentityPoolId: 'An identity pool ID in the format REGION:GUID.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - RoleMappings: 'How users for a specific identity provider are mapped to roles. This is a string
-        to
-        RoleMapping object map. The string identifies the identity provider, for example,
-        "graph.facebook.com" or "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    - Roles: 'The map of roles associated with this pool. For a given role, the key will be either
-        "authenticated" or "unauthenticated" and the value will be the Role ARN.
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html
-- MetaData:
-    description: 'The AWS::Cognito::UserPool resource creates an Amazon Cognito user pool. For more information
-      on working with Amazon Cognito user pools, see Amazon Cognito User Pools and CreateUserPool. '
-    name: AWS::Cognito::UserPool
-    properties:
-    - AdminCreateUserConfig: 'The type of configuration for creating a new user profile.
-        Required: No
-        Type: AdminCreateUserConfig
-        Update requires: No interruption'
-    - AliasAttributes: 'Attributes supported as an alias for this user pool. Possible values: phone_number,
-        email, or
-        preferred_username.
-        Required: No
-        Type: List of String
-        Update requires: Replacement'
-    - AutoVerifiedAttributes: 'The attributes to be auto-verified. Possible values: email, phone_number.
-        Required: No
-        Type: List of String
-        Update requires: No interruption'
-    - DeviceConfiguration: 'The type of configuration for the user pools device tracking.
-        Required: No
-        Type: DeviceConfiguration
-        Update requires: No interruption'
-    - EmailConfiguration: 'The email configuration.
-        Required: No
-        Type: EmailConfiguration
-        Update requires: No interruption'
-    - EmailVerificationMessage: 'A string representing the email verification message.
-        Required: No
-        Type: String
-        Minimum: 6
-        Maximum: 20000
-        Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}\s*]*\{####\}[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]*
-        Update requires: No interruption'
-    - EmailVerificationSubject: 'A string representing the email verification subject.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 140
-        Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}\s]+
-        Update requires: No interruption'
-    - LambdaConfig: 'The Lambda trigger configuration information for the new user pool.
-        Note
-        In a push model, event sources (such as Amazon S3 and custom applications) need
-        permission to invoke a function. So you will need to make an extra call to add
-        permission for these event sources to invoke your Lambda function.
-        For more information on using the Lambda API to add permission, see
-        AddPermission .
-        For adding permission using the AWS CLI, see  add-permission .
-        Required: No
-        Type: LambdaConfig
-        Update requires: No interruption'
-    - MfaConfiguration: 'Specifies multi-factor authentication (MFA) configuration details. Can be one
-        of the
-        following values:
-        OFF - MFA tokens are not required and cannot be specified during user registration.
-        ON - MFA tokens are required for all user registrations. You can only specify required
-        when you are initially creating a user pool.
-        OPTIONAL - Users have the option when registering to create an MFA token.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - Policies: 'The policy associated with a user pool.
-        Required: No
-        Type: Policies
-        Update requires: No interruption'
-    - Schema: 'An array of schema attributes for the new user pool. These attributes can be
-        standard or custom attributes.
-        Required: No
-        Type: List of SchemaAttribute
-        Maximum: 50
-        Update requires: Replacement'
-    - SmsAuthenticationMessage: 'A string representing the SMS authentication message.
-        Required: No
-        Type: String
-        Minimum: 6
-        Maximum: 140
-        Pattern: .*\{####\}.*
-        Update requires: No interruption'
-    - SmsConfiguration: 'The SMS configuration.
-        Required: No
-        Type: SmsConfiguration
-        Update requires: No interruption'
-    - SmsVerificationMessage: 'A string representing the SMS verification message.
-        Required: No
-        Type: String
-        Minimum: 6
-        Maximum: 140
-        Pattern: .*\{####\}.*
-        Update requires: No interruption'
-    - UsernameAttributes: 'Specifies whether email addresses or phone numbers can be specified as user
-        names
-        when a user signs up. Possible values: phone_number or email.
-        Required: No
-        Type: List of String
-        Update requires: Replacement'
-    - UserPoolName: 'A string used to name the user pool.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 128
-        Pattern: [\w\s+=,.@-]+
-        Update requires: Replacement'
-    - UserPoolTags: 'The tag keys and values to assign to the user pool. A tag is a label that you can
-        use to categorize and manage user pools in different ways, such as by purpose, owner,
-        environment, or other criteria.
-        Required: No
-        Type: Json
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html
-  UserPool:
+  UserPoolClientLogicalName:
+    MetaData:
+      Description: 'The AWS::Cognito::UserPoolClient resource creates an Amazon Cognito user pool client. '
+      Name: AWS::Cognito::UserPoolClient
+      Properties:
+      - ClientName: 'The client name for the user pool client you would like to create.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 128
+          Pattern: [\w\s+=,.@-]+
+          Update requires: No interruption'
+      - ExplicitAuthFlows: 'The explicit authentication flows, which can be one of the following:
+          ADMIN_NO_SRP_AUTH, CUSTOM_AUTH_FLOW_ONLY, or USER_PASSWORD_AUTH.
+          Required: No
+          Type: List of String
+          Update requires: No interruption'
+      - GenerateSecret: 'Boolean to specify whether you want to generate a secret for the user pool client
+          being created.
+          Required: No
+          Type: Boolean
+          Update requires: Replacement'
+      - ReadAttributes: 'The read attributes.
+          Required: No
+          Type: List of String
+          Update requires: No interruption'
+      - RefreshTokenValidity: 'The time limit, in days, after which the refresh token is no longer valid
+          and
+          cannot be used.
+          Required: No
+          Type: Double
+          Minimum: 0
+          Maximum: 3650
+          Update requires: No interruption'
+      - UserPoolId: 'The user pool ID for the user pool where you want to create a user pool
+          client.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 55
+          Pattern: [\w-]+_[0-9a-zA-Z]+
+          Update requires: Replacement'
+      - WriteAttributes: 'The user pool attributes that the app client can write to.
+          If your app client allows users to sign in through an identity provider, this array
+          must include all
+          attributes that are mapped to identity provider attributes. Amazon Cognito
+          updates mapped attributes when users sign in to your application through an identity
+          provider. If your app client lacks write access to a mapped attribute, Amazon Cognito
+          throws an error when it attempts to update the attribute. For more information, see
+          Specifying Identity Provider Attribute Mappings for Your User
+          Pool.
+          Required: No
+          Type: List of String
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html
+    Properties:
+      ClientName: String
+      ExplicitAuthFlows:
+      - String
+      GenerateSecret: Boolean
+      ReadAttributes:
+      - String
+      RefreshTokenValidity: Double
+      UserPoolId: String
+      WriteAttributes:
+      - String
+    Type: AWS::Cognito::UserPoolClient
+  UserPoolGroupLogicalName:
+    MetaData:
+      Description: 'The AWS::Cognito::UserPoolGroup resource creates a user group in an Amazon Cognito
+        user pool. '
+      Name: AWS::Cognito::UserPoolGroup
+      Properties:
+      - Description: 'A string containing the description of the group.
+          Required: No
+          Type: String
+          Maximum: 2048
+          Update requires: No interruption'
+      - GroupName: 'The name of the group. Must be unique.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 128
+          Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}]+
+          Update requires: Replacement'
+      - Precedence: 'A nonnegative integer value that specifies the precedence of this group relative
+          to
+          the other groups that a user can belong to in the user pool. Zero is the highest
+          precedence value. Groups with lower Precedence values take precedence over
+          groups with higher or null Precedence values. If a user belongs to two or
+          more groups, it is the group with the lowest precedence value whose role ARN will
+          be
+          used in the cognito:roles and cognito:preferred_role claims in
+          the users tokens.
+          Two groups can have the same Precedence value. If this happens,
+          neither group takes precedence over the other. If two groups with the same
+          Precedence have the same role ARN, that role is used in the
+          cognito:preferred_role claim in tokens for users in each group. If the
+          two groups have different role ARNs, the cognito:preferred_role claim is
+          not set in users tokens.
+          The default Precedence value is null.
+          Required: No
+          Type: Double
+          Minimum: 0
+          Update requires: No interruption'
+      - RoleArn: 'The role ARN for the group.
+          Required: No
+          Type: String
+          Minimum: 20
+          Maximum: 2048
+          Pattern: arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=/,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?
+          Update requires: No interruption'
+      - UserPoolId: 'The user pool ID for the user pool.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 55
+          Pattern: [\w-]+_[0-9a-zA-Z]+
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolgroup.html
+    Properties:
+      Description: String
+      GroupName: String
+      Precedence: Double
+      RoleArn: String
+      UserPoolId: String
+    Type: AWS::Cognito::UserPoolGroup
+  UserPoolLogicalName:
+    MetaData:
+      Description: 'The AWS::Cognito::UserPool resource creates an Amazon Cognito user pool. For more
+        information on working with Amazon Cognito user pools, see Amazon Cognito User Pools and CreateUserPool. '
+      Name: AWS::Cognito::UserPool
+      Properties:
+      - AdminCreateUserConfig: 'The type of configuration for creating a new user profile.
+          Required: No
+          Type: AdminCreateUserConfig
+          Update requires: No interruption'
+      - AliasAttributes: 'Attributes supported as an alias for this user pool. Possible values: phone_number,
+          email, or
+          preferred_username.
+          Required: No
+          Type: List of String
+          Update requires: Replacement'
+      - AutoVerifiedAttributes: 'The attributes to be auto-verified. Possible values: email, phone_number.
+          Required: No
+          Type: List of String
+          Update requires: No interruption'
+      - DeviceConfiguration: 'The type of configuration for the user pools device tracking.
+          Required: No
+          Type: DeviceConfiguration
+          Update requires: No interruption'
+      - EmailConfiguration: 'The email configuration.
+          Required: No
+          Type: EmailConfiguration
+          Update requires: No interruption'
+      - EmailVerificationMessage: 'A string representing the email verification message.
+          Required: No
+          Type: String
+          Minimum: 6
+          Maximum: 20000
+          Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}\s*]*\{####\}[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]*
+          Update requires: No interruption'
+      - EmailVerificationSubject: 'A string representing the email verification subject.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 140
+          Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}\s]+
+          Update requires: No interruption'
+      - LambdaConfig: 'The Lambda trigger configuration information for the new user pool.
+          Note
+          In a push model, event sources (such as Amazon S3 and custom applications) need
+          permission to invoke a function. So you will need to make an extra call to add
+          permission for these event sources to invoke your Lambda function.
+          For more information on using the Lambda API to add permission, see
+          AddPermission .
+          For adding permission using the AWS CLI, see  add-permission .
+          Required: No
+          Type: LambdaConfig
+          Update requires: No interruption'
+      - MfaConfiguration: 'Specifies multi-factor authentication (MFA) configuration details. Can be one
+          of the
+          following values:
+          OFF - MFA tokens are not required and cannot be specified during user registration.
+          ON - MFA tokens are required for all user registrations. You can only specify required
+          when you are initially creating a user pool.
+          OPTIONAL - Users have the option when registering to create an MFA token.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - Policies: 'The policy associated with a user pool.
+          Required: No
+          Type: Policies
+          Update requires: No interruption'
+      - Schema: 'An array of schema attributes for the new user pool. These attributes can be
+          standard or custom attributes.
+          Required: No
+          Type: List of SchemaAttribute
+          Maximum: 50
+          Update requires: Replacement'
+      - SmsAuthenticationMessage: 'A string representing the SMS authentication message.
+          Required: No
+          Type: String
+          Minimum: 6
+          Maximum: 140
+          Pattern: .*\{####\}.*
+          Update requires: No interruption'
+      - SmsConfiguration: 'The SMS configuration.
+          Required: No
+          Type: SmsConfiguration
+          Update requires: No interruption'
+      - SmsVerificationMessage: 'A string representing the SMS verification message.
+          Required: No
+          Type: String
+          Minimum: 6
+          Maximum: 140
+          Pattern: .*\{####\}.*
+          Update requires: No interruption'
+      - UsernameAttributes: 'Specifies whether email addresses or phone numbers can be specified as user
+          names
+          when a user signs up. Possible values: phone_number or email.
+          Required: No
+          Type: List of String
+          Update requires: Replacement'
+      - UserPoolName: 'A string used to name the user pool.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 128
+          Pattern: [\w\s+=,.@-]+
+          Update requires: Replacement'
+      - UserPoolTags: 'The tag keys and values to assign to the user pool. A tag is a label that you can
+          use to categorize and manage user pools in different ways, such as by purpose, owner,
+          environment, or other criteria.
+          Required: No
+          Type: Json
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html
     Properties:
       AdminCreateUserConfig: AdminCreateUserConfig
       AliasAttributes:
@@ -234,225 +364,99 @@ Amazon Cognito:
       UsernameAttributes:
       - String
     Type: AWS::Cognito::UserPool
-- MetaData:
-    description: 'The AWS::Cognito::UserPoolClient resource creates an Amazon Cognito user pool client. '
-    name: AWS::Cognito::UserPoolClient
-    properties:
-    - ClientName: 'The client name for the user pool client you would like to create.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 128
-        Pattern: [\w\s+=,.@-]+
-        Update requires: No interruption'
-    - ExplicitAuthFlows: 'The explicit authentication flows, which can be one of the following:
-        ADMIN_NO_SRP_AUTH, CUSTOM_AUTH_FLOW_ONLY, or USER_PASSWORD_AUTH.
-        Required: No
-        Type: List of String
-        Update requires: No interruption'
-    - GenerateSecret: 'Boolean to specify whether you want to generate a secret for the user pool client
-        being created.
-        Required: No
-        Type: Boolean
-        Update requires: Replacement'
-    - ReadAttributes: 'The read attributes.
-        Required: No
-        Type: List of String
-        Update requires: No interruption'
-    - RefreshTokenValidity: 'The time limit, in days, after which the refresh token is no longer valid
-        and
-        cannot be used.
-        Required: No
-        Type: Double
-        Minimum: 0
-        Maximum: 3650
-        Update requires: No interruption'
-    - UserPoolId: 'The user pool ID for the user pool where you want to create a user pool
-        client.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 55
-        Pattern: [\w-]+_[0-9a-zA-Z]+
-        Update requires: Replacement'
-    - WriteAttributes: 'The user pool attributes that the app client can write to.
-        If your app client allows users to sign in through an identity provider, this array
-        must include all
-        attributes that are mapped to identity provider attributes. Amazon Cognito
-        updates mapped attributes when users sign in to your application through an identity
-        provider. If your app client lacks write access to a mapped attribute, Amazon Cognito
-        throws an error when it attempts to update the attribute. For more information, see
-        Specifying Identity Provider Attribute Mappings for Your User
-        Pool.
-        Required: No
-        Type: List of String
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html
-  UserPoolClient:
-    Properties:
-      ClientName: String
-      ExplicitAuthFlows:
-      - String
-      GenerateSecret: Boolean
-      ReadAttributes:
-      - String
-      RefreshTokenValidity: Double
-      UserPoolId: String
-      WriteAttributes:
-      - String
-    Type: AWS::Cognito::UserPoolClient
-- MetaData:
-    description: 'The AWS::Cognito::UserPoolGroup resource creates a user group in an Amazon Cognito user
-      pool. '
-    name: AWS::Cognito::UserPoolGroup
-    properties:
-    - Description: 'A string containing the description of the group.
-        Required: No
-        Type: String
-        Maximum: 2048
-        Update requires: No interruption'
-    - GroupName: 'The name of the group. Must be unique.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 128
-        Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}]+
-        Update requires: Replacement'
-    - Precedence: 'A nonnegative integer value that specifies the precedence of this group relative to
-        the other groups that a user can belong to in the user pool. Zero is the highest
-        precedence value. Groups with lower Precedence values take precedence over
-        groups with higher or null Precedence values. If a user belongs to two or
-        more groups, it is the group with the lowest precedence value whose role ARN will
-        be
-        used in the cognito:roles and cognito:preferred_role claims in
-        the users tokens.
-        Two groups can have the same Precedence value. If this happens,
-        neither group takes precedence over the other. If two groups with the same
-        Precedence have the same role ARN, that role is used in the
-        cognito:preferred_role claim in tokens for users in each group. If the
-        two groups have different role ARNs, the cognito:preferred_role claim is
-        not set in users tokens.
-        The default Precedence value is null.
-        Required: No
-        Type: Double
-        Minimum: 0
-        Update requires: No interruption'
-    - RoleArn: 'The role ARN for the group.
-        Required: No
-        Type: String
-        Minimum: 20
-        Maximum: 2048
-        Pattern: arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=/,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?
-        Update requires: No interruption'
-    - UserPoolId: 'The user pool ID for the user pool.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 55
-        Pattern: [\w-]+_[0-9a-zA-Z]+
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolgroup.html
-  UserPoolGroup:
-    Properties:
-      Description: String
-      GroupName: String
-      Precedence: Double
-      RoleArn: String
-      UserPoolId: String
-    Type: AWS::Cognito::UserPoolGroup
-- MetaData:
-    description: 'The AWS::Cognito::UserPoolUser resource creates an Amazon Cognito user pool user. '
-    name: AWS::Cognito::UserPoolUser
-    properties:
-    - DesiredDeliveryMediums: 'Specify "EMAIL" if email will be used to send the welcome message.
-        Specify "SMS" if the phone number will be used. The default value is
-        "SMS". More than one value can be specified.
-        Required: No
-        Type: List of String
-        Update requires: Replacement'
-    - ForceAliasCreation: 'This parameter is only used if the phone_number_verified or
-        email_verified attribute is set to True. Otherwise, it is
-        ignored.
-        If this parameter is set to True and the phone number or email address
-        specified in the UserAttributes parameter already exists as an alias with a different
-        user, the API call will migrate the alias from the previous user to the newly created
-        user. The previous user will no longer be able to log in using that alias.
-        If this parameter is set to False, the API throws an
-        AliasExistsException error if the alias already exists. The default
-        value is False.
-        Required: No
-        Type: Boolean
-        Update requires: Replacement'
-    - MessageAction: 'Set to "RESEND" to resend the invitation message to a user that
-        already exists and reset the expiration limit on the users account. Set to
-        "SUPPRESS" to suppress sending the message. Only one value can be
-        specified.
-        Required: No
-        Type: String
-        Allowed Values: RESEND | SUPPRESS
-        Update requires: Replacement'
-    - UserAttributes: 'An array of name-value pairs that contain user attributes and attribute values
-        to
-        be set for the user to be created. You can create a user without specifying any
-        attributes other than Username. However, any attributes that you specify as
-        required (in https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html
-        or in the Attributes tab of the console) must be supplied either by you (in your
-        call to AdminCreateUser) or by the user (when he or she signs up in
-        response to your welcome message).
-        For custom attributes, you must prepend the custom: prefix to the
-        attribute name.
-        To send a message inviting the user to sign up, you must specify the users email
-        address or phone number. This can be done in your call to AdminCreateUser or in the
-        Users tab of the Amazon Cognito console for
-        managing your user pools.
-        In your call to AdminCreateUser, you can set the
-        email_verified attribute to True, and you can set the
-        phone_number_verified attribute to True. (You can also do
-        this by calling https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html.)
-        email: The email address of the user to
-        whom the message that contains the code and username will be sent. Required if
-        the email_verified attribute is set to True, or if
-        "EMAIL" is specified in the DesiredDeliveryMediums
-        parameter.
-        phone_number: The phone number of the user
-        to whom the message that contains the code and username will be sent. Required
-        if the phone_number_verified attribute is set to True,
-        or if "SMS" is specified in the DesiredDeliveryMediums
-        parameter.
-        Required: No
-        Type: List of AttributeType
-        Update requires: Replacement'
-    - Username: 'The username for the user. Must be unique within the user pool. Must be a UTF-8
-        string between 1 and 128 characters. After the user is created, the username cannot
-        be
-        changed.
-        Required: No
-        Type: String
-        Minimum: 1
-        Maximum: 128
-        Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}]+
-        Update requires: Replacement'
-    - UserPoolId: 'The user pool ID for the user pool where the user will be created.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 55
-        Pattern: [\w-]+_[0-9a-zA-Z]+
-        Update requires: Replacement'
-    - ValidationData: 'The users validation data. This is an array of name-value pairs that contain
-        user
-        attributes and attribute values that you can use for custom validation, such as
-        restricting the types of user accounts that can be registered. For example, you might
-        choose to allow or disallow user sign-up based on the users domain.
-        To configure custom validation, you must create a Pre Sign-up Lambda trigger for
-        the user pool as described in the Amazon Cognito Developer Guide. The Lambda trigger
-        receives the validation data and uses it in the validation process.
-        The users validation data is not persisted.
-        Required: No
-        Type: List of AttributeType
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluser.html
-  UserPoolUser:
+  UserPoolUserLogicalName:
+    MetaData:
+      Description: 'The AWS::Cognito::UserPoolUser resource creates an Amazon Cognito user pool user. '
+      Name: AWS::Cognito::UserPoolUser
+      Properties:
+      - DesiredDeliveryMediums: 'Specify "EMAIL" if email will be used to send the welcome message.
+          Specify "SMS" if the phone number will be used. The default value is
+          "SMS". More than one value can be specified.
+          Required: No
+          Type: List of String
+          Update requires: Replacement'
+      - ForceAliasCreation: 'This parameter is only used if the phone_number_verified or
+          email_verified attribute is set to True. Otherwise, it is
+          ignored.
+          If this parameter is set to True and the phone number or email address
+          specified in the UserAttributes parameter already exists as an alias with a different
+          user, the API call will migrate the alias from the previous user to the newly created
+          user. The previous user will no longer be able to log in using that alias.
+          If this parameter is set to False, the API throws an
+          AliasExistsException error if the alias already exists. The default
+          value is False.
+          Required: No
+          Type: Boolean
+          Update requires: Replacement'
+      - MessageAction: 'Set to "RESEND" to resend the invitation message to a user that
+          already exists and reset the expiration limit on the users account. Set to
+          "SUPPRESS" to suppress sending the message. Only one value can be
+          specified.
+          Required: No
+          Type: String
+          Allowed Values: RESEND | SUPPRESS
+          Update requires: Replacement'
+      - UserAttributes: 'An array of name-value pairs that contain user attributes and attribute values
+          to
+          be set for the user to be created. You can create a user without specifying any
+          attributes other than Username. However, any attributes that you specify as
+          required (in https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html
+          or in the Attributes tab of the console) must be supplied either by you (in your
+          call to AdminCreateUser) or by the user (when he or she signs up in
+          response to your welcome message).
+          For custom attributes, you must prepend the custom: prefix to the
+          attribute name.
+          To send a message inviting the user to sign up, you must specify the users email
+          address or phone number. This can be done in your call to AdminCreateUser or in the
+          Users tab of the Amazon Cognito console for
+          managing your user pools.
+          In your call to AdminCreateUser, you can set the
+          email_verified attribute to True, and you can set the
+          phone_number_verified attribute to True. (You can also do
+          this by calling https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html.)
+          email: The email address of the user to
+          whom the message that contains the code and username will be sent. Required if
+          the email_verified attribute is set to True, or if
+          "EMAIL" is specified in the DesiredDeliveryMediums
+          parameter.
+          phone_number: The phone number of the user
+          to whom the message that contains the code and username will be sent. Required
+          if the phone_number_verified attribute is set to True,
+          or if "SMS" is specified in the DesiredDeliveryMediums
+          parameter.
+          Required: No
+          Type: List of AttributeType
+          Update requires: Replacement'
+      - Username: 'The username for the user. Must be unique within the user pool. Must be a UTF-8
+          string between 1 and 128 characters. After the user is created, the username cannot
+          be
+          changed.
+          Required: No
+          Type: String
+          Minimum: 1
+          Maximum: 128
+          Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}]+
+          Update requires: Replacement'
+      - UserPoolId: 'The user pool ID for the user pool where the user will be created.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 55
+          Pattern: [\w-]+_[0-9a-zA-Z]+
+          Update requires: Replacement'
+      - ValidationData: 'The users validation data. This is an array of name-value pairs that contain
+          user
+          attributes and attribute values that you can use for custom validation, such as
+          restricting the types of user accounts that can be registered. For example, you might
+          choose to allow or disallow user sign-up based on the users domain.
+          To configure custom validation, you must create a Pre Sign-up Lambda trigger for
+          the user pool as described in the Amazon Cognito Developer Guide. The Lambda trigger
+          receives the validation data and uses it in the validation process.
+          The users validation data is not persisted.
+          Required: No
+          Type: List of AttributeType
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluser.html
     Properties:
       DesiredDeliveryMediums:
       - String
@@ -465,34 +469,34 @@ Amazon Cognito:
       ValidationData:
       - AttributeType
     Type: AWS::Cognito::UserPoolUser
-- MetaData:
-    description: 'The AWS::Cognito::UserPoolUserToGroupAttachment resource attaches a user to an Amazon
-      Cognito user pool user group. '
-    name: AWS::Cognito::UserPoolUserToGroupAttachment
-    properties:
-    - GroupName: 'The group name.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 128
-        Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}]+
-        Update requires: Replacement'
-    - Username: 'The username for the user.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 128
-        Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}]+
-        Update requires: Replacement'
-    - UserPoolId: 'The user pool ID for the user pool.
-        Required: Yes
-        Type: String
-        Minimum: 1
-        Maximum: 55
-        Pattern: [\w-]+_[0-9a-zA-Z]+
-        Update requires: Replacement'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolusertogroupattachment.html
-  UserPoolUserToGroupAttachment:
+  UserPoolUserToGroupAttachmentLogicalName:
+    MetaData:
+      Description: 'The AWS::Cognito::UserPoolUserToGroupAttachment resource attaches a user to an Amazon
+        Cognito user pool user group. '
+      Name: AWS::Cognito::UserPoolUserToGroupAttachment
+      Properties:
+      - GroupName: 'The group name.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 128
+          Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}]+
+          Update requires: Replacement'
+      - Username: 'The username for the user.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 128
+          Pattern: [\p{L}\p{M}\p{S}\p{N}\p{P}]+
+          Update requires: Replacement'
+      - UserPoolId: 'The user pool ID for the user pool.
+          Required: Yes
+          Type: String
+          Minimum: 1
+          Maximum: 55
+          Pattern: [\w-]+_[0-9a-zA-Z]+
+          Update requires: Replacement'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolusertogroupattachment.html
     Properties:
       GroupName: String
       UserPoolId: String

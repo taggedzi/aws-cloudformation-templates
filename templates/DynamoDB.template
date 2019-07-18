@@ -1,110 +1,112 @@
 ---
-DynamoDB:
-- MetaData:
-    description: 'The AWS::DynamoDB::Table resource creates a DynamoDB table. For more information, see
-      CreateTable in the Amazon DynamoDB API Reference. '
-    name: AWS::DynamoDB::Table
-    properties:
-    - AttributeDefinitions: 'A list of attributes that describe the key schema for the table and indexes.
-        Duplicates
-        are allowed.
-        Update requires: Some interruptions. Replacement if you edit an existing AttributeDefinition.
-        Required: No
-        Type: List of AttributeDefinition'
-    - BillingMode: 'Specify how you are charged for read and write throughput and how you manage capacity.
-        Valid values include:
-        PROVISIONED - Sets the billing mode to PROVISIONED. We recommend using PROVISIONED for predictable
-        workloads.
-        PAY_PER_REQUEST - Sets the billing mode to PAY_PER_REQUEST. We recommend using PAY_PER_REQUEST
-        for unpredictable workloads.
-        If not specified, the default is PROVISIONED.
-        Required: No
-        Type: String
-        Allowed Values: PAY_PER_REQUEST | PROVISIONED
-        Update requires: No interruption'
-    - GlobalSecondaryIndexes: 'Global secondary indexes to be created on the table. You can create up
-        to 20 global
-        secondary indexes.
-        Important
-        If you update a table to include a new global secondary index, AWS CloudFormation
-        initiates the index creation and then proceeds with the stack update.
-        AWS CloudFormation doesnt wait for the index to complete creation because the backfilling
-        phase can take a long time, depending on the size of the table.
-        You cant use the index or update the table until the indexs status is ACTIVE. You can track
-        its status by using the DynamoDB DescribeTable command.
-        If you add or delete an index during an update, we recommend that you dont update
-        any other resources. If your stack fails to update and is rolled back while adding
-        a new index, you must manually delete the index.
-        Updates are not supported. The following are exceptions:
-        If you update only the provisioned throughput values of global secondary indexes,
-        you can update the table without interruption.
-        You can delete or add one global secondary index without interruption. If you do both
-        in the same update (for example, by changing the indexs logical ID), the update fails.
-        Required: No
-        Type: List of GlobalSecondaryIndex
-        Update requires: No interruption'
-    - KeySchema: 'Specifies the attributes that make up the primary key for the table. The attributes
-        in the KeySchema property must also be defined in the AttributeDefinitions property.
-        Required: Yes
-        Type: List of KeySchema
-        Update requires: Replacement'
-    - LocalSecondaryIndexes: 'Local secondary indexes to be created on the table. You can create up to
-        5 local secondary
-        indexes. Each index is scoped to a given hash key value. The size of each hash key
-        can be up to 10 gigabytes.
-        Required: No
-        Type: List of LocalSecondaryIndex
-        Update requires: Replacement'
-    - PointInTimeRecoverySpecification: 'The settings used to enable point in time recover.
-        Required: No
-        Type: PointInTimeRecoverySpecification
-        Update requires: No interruption'
-    - ProvisionedThroughput: 'Throughput for the specified table, which consists of values for ReadCapacityUnits
-        and WriteCapacityUnits.
-        For more information about the contents of a provisioned throughput structure, see
-        Amazon DynamoDB Table ProvisionedThroughput.
-        If you set BillingMode as PROVISIONED, you must specify this property. If you set BillingMode
-        as PAY_PER_REQUEST, you cannot specify this property.
-        Required: Conditional
-        Type: ProvisionedThroughput
-        Update requires: No interruption'
-    - SSESpecification: 'Specifies the settings to enable server-side encryption.
-        Update requires: Some interruptions.
-        Required: No
-        Type: SSESpecification'
-    - StreamSpecification: 'The settings for the DynamoDB table stream, which capture changes to items
-        stored
-        in the table.
-        Required: No
-        Type: StreamSpecification
-        Update requires: No interruption'
-    - TableName: 'A name for the table. If you dont specify a name, AWS CloudFormation generates a
-        unique physical ID and uses that ID for the table name. For more information, see
-        Name Type.
-        Important
-        If you specify a name, you cannot perform updates that require replacement of this
-        resource. You can perform updates that require no or some interruption. If you must
-        replace the resource, specify a new name.
-        Required: No
-        Type: String
-        Minimum: 3
-        Maximum: 255
-        Pattern: [a-zA-Z0-9_.-]+
-        Update requires: Replacement'
-    - Tags: 'An array of key-value pairs to apply to this resource.
-        For more information, see Tag.
-        Required: No
-        Type: List of Tag
-        Update requires: No interruption'
-    - TimeToLiveSpecification: 'Specifies the Time to Live (TTL) settings for the table.
-        Note
-        For detailed information about the limits in DynamoDB, see Limits in Amazon DynamoDB in the Amazon
-        DynamoDB Developer Guide.
-        Required: No
-        Type: TimeToLiveSpecification
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html
-  Table:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: DynamoDB
+Resources:
+  TableLogicalName:
+    MetaData:
+      Description: 'The AWS::DynamoDB::Table resource creates a DynamoDB table. For more information,
+        see CreateTable in the Amazon DynamoDB API Reference. '
+      Name: AWS::DynamoDB::Table
+      Properties:
+      - AttributeDefinitions: 'A list of attributes that describe the key schema for the table and indexes.
+          Duplicates
+          are allowed.
+          Update requires: Some interruptions. Replacement if you edit an existing AttributeDefinition.
+          Required: No
+          Type: List of AttributeDefinition'
+      - BillingMode: 'Specify how you are charged for read and write throughput and how you manage capacity.
+          Valid values include:
+          PROVISIONED - Sets the billing mode to PROVISIONED. We recommend using PROVISIONED for predictable
+          workloads.
+          PAY_PER_REQUEST - Sets the billing mode to PAY_PER_REQUEST. We recommend using PAY_PER_REQUEST
+          for unpredictable workloads.
+          If not specified, the default is PROVISIONED.
+          Required: No
+          Type: String
+          Allowed Values: PAY_PER_REQUEST | PROVISIONED
+          Update requires: No interruption'
+      - GlobalSecondaryIndexes: 'Global secondary indexes to be created on the table. You can create up
+          to 20 global
+          secondary indexes.
+          Important
+          If you update a table to include a new global secondary index, AWS CloudFormation
+          initiates the index creation and then proceeds with the stack update.
+          AWS CloudFormation doesnt wait for the index to complete creation because the backfilling
+          phase can take a long time, depending on the size of the table.
+          You cant use the index or update the table until the indexs status is ACTIVE. You can track
+          its status by using the DynamoDB DescribeTable command.
+          If you add or delete an index during an update, we recommend that you dont update
+          any other resources. If your stack fails to update and is rolled back while adding
+          a new index, you must manually delete the index.
+          Updates are not supported. The following are exceptions:
+          If you update only the provisioned throughput values of global secondary indexes,
+          you can update the table without interruption.
+          You can delete or add one global secondary index without interruption. If you do both
+          in the same update (for example, by changing the indexs logical ID), the update fails.
+          Required: No
+          Type: List of GlobalSecondaryIndex
+          Update requires: No interruption'
+      - KeySchema: 'Specifies the attributes that make up the primary key for the table. The attributes
+          in the KeySchema property must also be defined in the AttributeDefinitions property.
+          Required: Yes
+          Type: List of KeySchema
+          Update requires: Replacement'
+      - LocalSecondaryIndexes: 'Local secondary indexes to be created on the table. You can create up
+          to 5 local secondary
+          indexes. Each index is scoped to a given hash key value. The size of each hash key
+          can be up to 10 gigabytes.
+          Required: No
+          Type: List of LocalSecondaryIndex
+          Update requires: Replacement'
+      - PointInTimeRecoverySpecification: 'The settings used to enable point in time recover.
+          Required: No
+          Type: PointInTimeRecoverySpecification
+          Update requires: No interruption'
+      - ProvisionedThroughput: 'Throughput for the specified table, which consists of values for ReadCapacityUnits
+          and WriteCapacityUnits.
+          For more information about the contents of a provisioned throughput structure, see
+          Amazon DynamoDB Table ProvisionedThroughput.
+          If you set BillingMode as PROVISIONED, you must specify this property. If you set BillingMode
+          as PAY_PER_REQUEST, you cannot specify this property.
+          Required: Conditional
+          Type: ProvisionedThroughput
+          Update requires: No interruption'
+      - SSESpecification: 'Specifies the settings to enable server-side encryption.
+          Update requires: Some interruptions.
+          Required: No
+          Type: SSESpecification'
+      - StreamSpecification: 'The settings for the DynamoDB table stream, which capture changes to items
+          stored
+          in the table.
+          Required: No
+          Type: StreamSpecification
+          Update requires: No interruption'
+      - TableName: 'A name for the table. If you dont specify a name, AWS CloudFormation generates a
+          unique physical ID and uses that ID for the table name. For more information, see
+          Name Type.
+          Important
+          If you specify a name, you cannot perform updates that require replacement of this
+          resource. You can perform updates that require no or some interruption. If you must
+          replace the resource, specify a new name.
+          Required: No
+          Type: String
+          Minimum: 3
+          Maximum: 255
+          Pattern: [a-zA-Z0-9_.-]+
+          Update requires: Replacement'
+      - Tags: 'An array of key-value pairs to apply to this resource.
+          For more information, see Tag.
+          Required: No
+          Type: List of Tag
+          Update requires: No interruption'
+      - TimeToLiveSpecification: 'Specifies the Time to Live (TTL) settings for the table.
+          Note
+          For detailed information about the limits in DynamoDB, see Limits in Amazon DynamoDB in the
+          Amazon DynamoDB Developer Guide.
+          Required: No
+          Type: TimeToLiveSpecification
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html
     Properties:
       AttributeDefinitions:
       - AttributeDefinition

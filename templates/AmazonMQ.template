@@ -1,6 +1,91 @@
 ---
-AmazonMQ:
-- Broker:
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AmazonMQ
+Resources:
+  BrokerLogicalName:
+    MetaData:
+      Description: 'A broker is a message broker environment running on Amazon MQ. It is the basic building
+        block of Amazon MQ. '
+      Name: AWS::AmazonMQ::Broker
+      Properties:
+      - AutoMinorVersionUpgrade: 'Enables automatic upgrades to new minor versions for brokers, as Apache
+          releases the
+          versions. The automatic upgrades occur during the maintenance window of the broker
+          or after a
+          manual broker reboot.
+          Required: Yes
+          Type: Boolean
+          Update requires: No interruption'
+      - BrokerName: 'The name of the broker. This value must be unique in your AWS account, 1-50 characters
+          long, must contain only letters, numbers, dashes, and underscores, and must not contain
+          white
+          spaces, brackets, wildcard characters, or special characters.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - Configuration: 'A list of information about the configuration.
+          Required: No
+          Type: ConfigurationId
+          Update requires: No interruption'
+      - DeploymentMode: 'The deployment mode of the broker. Available values:
+          SINGLE_INSTANCE
+          ACTIVE_STANDBY_MULTI_AZ
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - EngineType: 'The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - EngineVersion: 'The version of the broker engine. For a list of supported engine versions, see
+          Engine in the Amazon MQ Developer Guide.
+          Required: Yes
+          Type: String
+          Update requires: No interruption'
+      - HostInstanceType: 'The brokers instance type.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - Logs: 'Enables Amazon CloudWatch logging for brokers.
+          Required: No
+          Type: LogList
+          Update requires: No interruption'
+      - MaintenanceWindowStartTime: 'The scheduled time period relative to UTC during which Amazon MQ
+          begins to apply pending
+          updates or patches to the broker..
+          Required: No
+          Type: MaintenanceWindow
+          Update requires: Replacement'
+      - PubliclyAccessible: 'Enables connections from applications outside of the VPC that hosts the brokers
+          subnets.
+          Required: Yes
+          Type: Boolean
+          Update requires: Replacement'
+      - SecurityGroups: 'The list of rules (1 minimum, 125 maximum) that authorize connections to
+          brokers.
+          Required: No
+          Type: List of String
+          Update requires: Replacement'
+      - SubnetIds: 'The list of groups (2 maximum) that define which subnets and IP ranges the broker
+          can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one
+          subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment
+          requires two subnets.
+          Required: No
+          Type: List of String
+          Update requires: Replacement'
+      - Tags: 'An array of key-value pairs. For more information, see Using Cost Allocation Tags in the
+          AWS Billing and Cost Management User Guide.
+          Required: No
+          Type: List of TagsEntry
+          Update requires: No interruption'
+      - Users: 'The list of ActiveMQ users (persons or applications) who can access queues and topics.
+          This value can contain only alphanumeric characters, dashes, periods, underscores,
+          and tildes
+          (- . _ ~). This value must be 2-100 characters long.
+          Required: Yes
+          Type: List of User
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html
     Properties:
       AutoMinorVersionUpgrade: Boolean
       BrokerName: String
@@ -21,90 +106,61 @@ AmazonMQ:
       Users:
       - User
     Type: AWS::AmazonMQ::Broker
-  MetaData:
-    description: 'A broker is a message broker environment running on Amazon MQ. It is the basic building
-      block of Amazon MQ. '
-    name: AWS::AmazonMQ::Broker
-    properties:
-    - AutoMinorVersionUpgrade: 'Enables automatic upgrades to new minor versions for brokers, as Apache
-        releases the
-        versions. The automatic upgrades occur during the maintenance window of the broker
-        or after a
-        manual broker reboot.
-        Required: Yes
-        Type: Boolean
-        Update requires: No interruption'
-    - BrokerName: 'The name of the broker. This value must be unique in your AWS account, 1-50 characters
-        long, must contain only letters, numbers, dashes, and underscores, and must not contain
-        white
-        spaces, brackets, wildcard characters, or special characters.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - Configuration: 'A list of information about the configuration.
-        Required: No
-        Type: ConfigurationId
-        Update requires: No interruption'
-    - DeploymentMode: 'The deployment mode of the broker. Available values:
-        SINGLE_INSTANCE
-        ACTIVE_STANDBY_MULTI_AZ
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - EngineType: 'The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - EngineVersion: 'The version of the broker engine. For a list of supported engine versions, see Engine
-        in the Amazon MQ Developer Guide.
-        Required: Yes
-        Type: String
-        Update requires: No interruption'
-    - HostInstanceType: 'The brokers instance type.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - Logs: 'Enables Amazon CloudWatch logging for brokers.
-        Required: No
-        Type: LogList
-        Update requires: No interruption'
-    - MaintenanceWindowStartTime: 'The scheduled time period relative to UTC during which Amazon MQ begins
-        to apply pending
-        updates or patches to the broker..
-        Required: No
-        Type: MaintenanceWindow
-        Update requires: Replacement'
-    - PubliclyAccessible: 'Enables connections from applications outside of the VPC that hosts the brokers
-        subnets.
-        Required: Yes
-        Type: Boolean
-        Update requires: Replacement'
-    - SecurityGroups: 'The list of rules (1 minimum, 125 maximum) that authorize connections to
-        brokers.
-        Required: No
-        Type: List of String
-        Update requires: Replacement'
-    - SubnetIds: 'The list of groups (2 maximum) that define which subnets and IP ranges the broker
-        can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one
-        subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment
-        requires two subnets.
-        Required: No
-        Type: List of String
-        Update requires: Replacement'
-    - Tags: 'An array of key-value pairs. For more information, see Using Cost Allocation Tags in the
-        AWS Billing and Cost Management User Guide.
-        Required: No
-        Type: List of TagsEntry
-        Update requires: No interruption'
-    - Users: 'The list of ActiveMQ users (persons or applications) who can access queues and topics.
-        This value can contain only alphanumeric characters, dashes, periods, underscores,
-        and tildes
-        (- . _ ~). This value must be 2-100 characters long.
-        Required: Yes
-        Type: List of User
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html
-- Configuration:
+  ConfigurationAssociationLogicalName:
+    MetaData:
+      Description: 'Use the AWS CloudFormation AWS::AmazonMQ::ConfigurationAssociation resource to associate
+        a configuration with a broker, or return information about the specified ConfigurationAssociation.
+        Only use one per broker, and dont use a configuration on the broker resource if you have associated
+        a configuration with that broker. '
+      Name: AWS::AmazonMQ::ConfigurationAssociation
+      Properties:
+      - Broker: 'The broker to associate with a configuration.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - Configuration: 'The configuration to associate with a broker.
+          Required: Yes
+          Type: ConfigurationId
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-configurationassociation.html
+    Properties:
+      Broker: String
+      Configuration: ConfigurationId
+    Type: AWS::AmazonMQ::ConfigurationAssociation
+  ConfigurationLogicalName:
+    MetaData:
+      Description: 'Creates a new configuration for the specified configuration name. Amazon MQ uses the
+        default configuration (the engine type and version). '
+      Name: AWS::AmazonMQ::Configuration
+      Properties:
+      - Data: 'The base64-encoded XML configuration.
+          Required: Yes
+          Type: String
+          Update requires: No interruption'
+      - Description: 'The description of the configuration.
+          Required: No
+          Type: String
+          Update requires: No interruption'
+      - EngineType: 'The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - EngineVersion: 'The version of the broker engine. For a list of supported engine versions, see
+          https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - Name: 'The name of the configuration. This value can contain only alphanumeric characters,
+          dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters
+          long.
+          Required: Yes
+          Type: String
+          Update requires: Replacement'
+      - Tags: 'Create tags when creating the configuration.
+          Required: No
+          Type: List of TagsEntry
+          Update requires: No interruption'
+      Url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-configuration.html
     Properties:
       Data: String
       Description: String
@@ -114,58 +170,4 @@ AmazonMQ:
       Tags:
       - TagsEntry
     Type: AWS::AmazonMQ::Configuration
-  MetaData:
-    description: 'Creates a new configuration for the specified configuration name. Amazon MQ uses the
-      default configuration (the engine type and version). '
-    name: AWS::AmazonMQ::Configuration
-    properties:
-    - Data: 'The base64-encoded XML configuration.
-        Required: Yes
-        Type: String
-        Update requires: No interruption'
-    - Description: 'The description of the configuration.
-        Required: No
-        Type: String
-        Update requires: No interruption'
-    - EngineType: 'The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - EngineVersion: 'The version of the broker engine. For a list of supported engine versions, see
-        https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - Name: 'The name of the configuration. This value can contain only alphanumeric characters,
-        dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters
-        long.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - Tags: 'Create tags when creating the configuration.
-        Required: No
-        Type: List of TagsEntry
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-configuration.html
-- ConfigurationAssociation:
-    Properties:
-      Broker: String
-      Configuration: ConfigurationId
-    Type: AWS::AmazonMQ::ConfigurationAssociation
-  MetaData:
-    description: 'Use the AWS CloudFormation AWS::AmazonMQ::ConfigurationAssociation resource to associate
-      a configuration with a broker, or return information about the specified ConfigurationAssociation.
-      Only use one per broker, and dont use a configuration on the broker resource if you have associated
-      a configuration with that broker. '
-    name: AWS::AmazonMQ::ConfigurationAssociation
-    properties:
-    - Broker: 'The broker to associate with a configuration.
-        Required: Yes
-        Type: String
-        Update requires: Replacement'
-    - Configuration: 'The configuration to associate with a broker.
-        Required: Yes
-        Type: ConfigurationId
-        Update requires: No interruption'
-    url: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-configurationassociation.html
 ...

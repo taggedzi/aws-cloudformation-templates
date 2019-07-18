@@ -15,7 +15,7 @@ import requests
 from requests.exceptions import HTTPError
 
 import logging
-logging.basicConfig(level=logging.WARNING)
+logging.basicConfig(level=logging.DEBUG)
 
 BASE_URL = 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide'
 MAX_PAGES_TO_PULL = 0
@@ -86,75 +86,101 @@ def text_cleanup(in_text):
     return ' '.join(p2)
 
 
+def get_subtype_description(tree):
+    return tree.find('div', id="main-col-body").find('p').get_text()
+
+
+def get_subtype_header(resource_type):
+    return resource_type.get('name').split('::')[-1]
+
+
+def get_subtype_yaml(subtype_content):
+    subtype_yaml_string = subtype_content.find('code', class_="yaml").get_text()
+    logging.debug(subtype_yaml_string)
+    subtype_yaml = yaml.load(subtype_yaml_string, Loader=Loader)
+    logging.debug(subtype_yaml)
+    return subtype_yaml
+
+
+def get_subtype_properties(subtype_content, resource_type):
+    terms = []
+    definitions = []
+    subtype_properties = []
+
+    try:
+        subtype_variables = subtype_content.find('div', class_='variablelist').find('dl')
+        for dts in subtype_variables.find_all('dt'):
+            terms.append(dts.get_text())
+        for dds in subtype_variables.find_all('dd'):
+            definitions.append(dds.get_text())
+    except AttributeError as aErr:
+        logging.exception(f'There has been an error processing: {resource_type}.')
+        logging.exception(f'{aErr}')
+
+    for i in range(0, len(terms)):
+        def_list = [j.strip() for j in definitions[i].splitlines()]
+        def_list = list(filter(None, def_list))
+        def_string = '\n'.join(def_list)
+        subtype_properties.append({terms[i]: def_string})
+
+    return subtype_properties
+
+
+def construct_subtype_yaml(resource_type):
+    subtype_content = get_page(f'{BASE_URL}/{resource_type.get("url")}')
+    subtype_description = get_subtype_description(subtype_content)
+    subtype_yaml_head = get_subtype_header(resource_type) + 'LogicalName'
+
+    subtype_properties = get_subtype_properties(subtype_content, resource_type)
+    subtype_metadata = {
+        'Name': resource_type.get('name'),
+        'Description': text_cleanup(subtype_description),
+        'Properties': subtype_properties,
+        'Url': f'{BASE_URL}/{resource_type.get("url")}'
+    }
+
+    yamli = get_subtype_yaml(subtype_content)
+    yamli.update({'MetaData': subtype_metadata})
+
+    subtype_yaml = {
+        subtype_yaml_head: yamli
+    }
+
+    logging.debug(json.dumps({
+        "subtype_yaml_head": subtype_yaml_head,
+        "subtype_description": subtype_description,
+        "subtype_yaml": subtype_yaml,
+        "subtype_properties": subtype_properties,
+        "subtype_metadata": subtype_metadata
+    }, indent=4, sort_keys=True))
+
+    logging.debug(json.dumps(subtype_yaml, indent=4, sort_keys=True))
+    return subtype_yaml
+
+
 def collect_subtypes_for_resource():
     logging.info(json.dumps({
         "method": "collect_subtypes_for_resource"
     }, indent=4, sort_keys=True))
 
     for resource_name, resource_details in resource_subtypes.items():
-        final_output = {}
         logging.debug(json.dumps({
             "resource_name": resource_name,
             "resource_details": resource_details
         }, indent=4, sort_keys=True))
 
-        subtypes = []
+        subtypes_collection = {}
         for resource_type in resource_details:
             logging.debug(json.dumps({
                 "resource_type": resource_type
             }, indent=4, sort_keys=True))
+            subtypes_collection.update(construct_subtype_yaml(resource_type))
 
-            subtype_content = get_page(f'{BASE_URL}/{resource_type.get("url")}')
-
-            subtype_description = subtype_content.find('div', id="main-col-body").find('p').get_text()
-
-            subtype_yaml_head = resource_type.get('name').split('::')[-1] + ':\n  '
-            subtype_yaml_string = subtype_content.find('code', class_="yaml").get_text()
-            subtype_yaml_out = subtype_yaml_head + subtype_yaml_string.replace('\n', '\n  ')
-
-            subtype_yaml = yaml.load(subtype_yaml_out, Loader=Loader)
-            logging.debug(subtype_yaml)
-
-            terms = []
-            definitions = []
-            subtype_properties = []
-            try:
-                subtype_variables = subtype_content.find('div', class_='variablelist').find('dl')
-                for dts in subtype_variables.find_all('dt'):
-                    terms.append(dts.get_text())
-                for dds in subtype_variables.find_all('dd'):
-                    definitions.append(dds.get_text())
-            except AttributeError as aErr:
-                logging.exception(f'There has been an error processing: {resource_type}.')
-                logging.exception(f'aErr')
-
-            for i in range(0, len(terms)):
-                def_list = [j.strip() for j in definitions[i].splitlines()]
-                def_list = list(filter(None, def_list))
-                def_string = '\n'.join(def_list)
-                subtype_properties.append({terms[i]: def_string})
-
-            subtype_metadata = {
-                'name': resource_type.get('name'),
-                'description': text_cleanup(subtype_description),
-                'properties': subtype_properties,
-                'url': f'{BASE_URL}/{resource_type.get("url")}'
-            }
-
-            logging.debug(json.dumps({
-                "subtype_description": subtype_description,
-                "subtype_yaml": subtype_yaml,
-                "subtype_properties": subtype_properties,
-                "subtype_metadata": subtype_metadata
-            }, indent=4, sort_keys=True))
-
-            subtype_yaml.update({
-                "MetaData": subtype_metadata
-            })
-            logging.debug(json.dumps(subtype_yaml, indent=4, sort_keys=True))
-            subtypes.append(subtype_yaml)
-
-        final_output[resource_name] = subtypes
+        final_output = {
+            'AWSTemplateFormatVersion': '2010-09-09',
+            'Description': resource_name,
+            'Resources': subtypes_collection
+        }
         yaml_output = yaml.dump(json.loads(json.dumps(final_output)),
                                 indent=2,
                                 explicit_start=True,
